@@ -1,0 +1,264 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    /* width: 100%; */
+    overflow-x: hidden;
+    /* Ẩn thanh cuộn ngang */
+}
+
+.header {
+    background-image: url('./img/breadcrumb-bg1.png');
+    background-size: cover;
+    background-position: center;
+    height: 385px;
+    position: relative;
+    width: 100%;
+}
+
+.header-menu {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.header h1 {
+    font-size: 50px;
+    margin-top: 0;
+    padding-top: 120px;
+}
+
+.logo {
+    margin-top: 20px;
+    width: 20%;
+    position: relative;
+}
+
+.logoPage {
+    width: 100%;
+    position: absolute;
+    color: #ffff;
+    font-size: 54px;
+    font-weight: 500;
+    font-family: "Inknut Antiqua";
+    top: 30%;
+    left: 40%;
+}
+
+.navbar {
+    overflow: hidden;
+    width: 60%;
+    margin: 0 auto;
+}
+
+.menu {
+    list-style-type: none;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+}
+
+.menu li {}
+
+.menu li a,
+.dropbtn {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.dropdown {
+    display: inline-block;
+}
+
+.dropdown-content li {
+    list-style-type: none;
+}
+
+.dropdown-content {
+    display: none;
+    padding: 0;
+    position: absolute;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-content li a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a:hover {
+    color: #ff7f50;
+}
+
+.menu li a:hover,
+.dropdown:hover .dropbtn {
+    color: #ff7f50;
+}
+
+.acc-search,
+.acc-cart,
+.acc-user {
+    width: 36px;
+    height: 35px;
+    /* margin-left: 12px; */
+    padding: 0 8px;
+}
+
+.acc {
+    width: 20%;
+}
+
+.account-content {
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+    width: 100%;
+    height: 500px;
+}
+
+.account-left {
+    width: 340px;
+    height: 259px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #838383;
+    margin-left: 170px;
+}
+
+
+.option {
+    border: 1px solid #838383;
+    width: 340px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+
+}
+
+.option:hover {
+    background-color: #c18257;
+}
+
+.option:hover a {
+    color: #ffff;
+}
+
+.option a {
+    color: black;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 500;
+    font-family: "Inter";
+    align-self: center;
+    margin-left: 50px;
+}
+
+.account-right {
+    width: 60%;
+    height: 678px;
+    padding: 0px 50px;
+}
+
+.footer {
+    margin-top: 200px;
+    height: 273px;
+    background-image: url('./img/footer.png');
+    background-size: cover;
+    padding: 50px;
+}
+
+.footer-left {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    float: left;
+}
+
+.footerlogo {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.footer-info {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    margin-left: 50px;
+}
+
+.info {
+    margin: 10px 0 0 0;
+    display: flex;
+    margin-top: 32px;
+
+}
+
+.info img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.info p {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 500;
+    color: #ffff;
+}
+
+.footer-right {
+    width: 45%;
+    display: flex;
+    justify-content: flex-end;
+    float: left;
+    align-items: center;
+    height: 273px;
+}
+
+.footer-right img {
+    width: 324px;
+    height: 182px;
+    border-radius: 20px;
+}
+/**/
+.tableOder {
+    width: 80%;
+    border-collapse: collapse;
+    align-self: center;
+    margin-left: 100px;
+}
+.tableOder th, td {
+    padding: 18px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    height: 24px;
+    font-family: "Inter";
+    font-size: 18px;
+    
+}
+.tableOder th {
+    font-size: 20px;
+    font-weight: 800;
+    font-family: "Inter";
+    
+}
+td:first-child {
+    font-weight: bold;
+    font-family: "Inter";
+}
