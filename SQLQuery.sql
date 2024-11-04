@@ -67,3 +67,8 @@ select * from products ORDER BY product_name
         
 --        // Tính số lượng trang
 --        int totalPages = (int) Math.ceil((double) totalProducts / pageSize);
+
+
+--<c:if test="${pageContext.request.userPrincipal != null && pageContext.request.isUserInRole('admin')}">
+--    <a href="${pageContext.request.contextPath}/admin"><img class="acc-admin" src="./resources/images/icons8-admin-64.png" alt="Admin"></a>
+--</c:if>

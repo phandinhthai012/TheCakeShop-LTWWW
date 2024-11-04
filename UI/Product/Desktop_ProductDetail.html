@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Detail</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            width: 100%;
+            height: 2507px;
+        }
+
+        #container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-content: center;
+        }
+
+        #header {
+            width: 100%;
+            height: 384px;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5),
+                    rgba(0, 0, 0, 0.5)), url('./assets/img/general/banner.webp');
+            background-size: cover;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-content: center;
+        }
+
+        .header-top {
+            margin-top: 30px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .header-logo {
+            width: 229px;
+            height: 62px;
+        }
+
+        .header-menu {
+            width: auto;
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            align-items: center;
+            font-family: "Inter", sans-serif;
+            font-weight: bold;
+        }
+
+        .header-menu .menu-item {
+            font-size: 20px;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .header-menu .menu-item i {
+            font-size: 15px;
+            margin-left: 10px;
+        }
+
+        .header-navigation-bar {
+            display: flex;
+            justify-content: space-evenly;
+        }
+
+        .header-search .header-search-input {
+            display: none;
+        }
+
+        .header-navigation-bar button {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background-color: transparent;
+            outline: none;
+            border: none;
+        }
+
+        .header-navigation-bar i {
+            font-size: 30px;
+            color: #fff;
+        }
+
+        .header-title {
+            margin-top: 20px;
+            align-self: center;
+            font-size: 52px;
+            font-family: "Inknut Antiqua", serif;
+        }
+
+        .header-path {
+            align-self: center;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 10;
+            margin-top: 20px;
+        }
+
+        #content {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+
+        .content-main-detail {
+            width: 80%;
+            height: 555px;
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+        }
+
+        .content-main-detail .main-detail-left {
+            width: 60%;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .main-detail-left-sub-photo {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .main-detail-left-sub-photo .sub-photo {
+            width: 101px;
+            height: 127px;
+        }
+
+        .main-detail-left-main-photo {
+            position: relative;
+            border: 1px solid grey;
+
+        }
+
+        .main-detail-left-main-photo .btn-arrow-main-detail {
+            background-color: transparent;
+            outline: none;
+            color: grey;
+            border: 1px solid grey;
+        }
+
+        .main-detail-left-main-photo .btn-arrow-left {
+            position: absolute;
+            left: 0px;
+            top: 260px;
+        }
+
+        .main-detail-left-main-photo .btn-arrow-right {
+            position: absolute;
+            top: 260px;
+            right: 0px;
+        }
+
+        .main-detail-left-main-photo .btn-arrow-main-detail i {
+            font-size: 30px;
+            padding: 5px;
+        }
+
+        .main-detail-left-main-photo .main-photo {
+            width: 467px;
+            height: 555px;
+        }
+
+        .content-main-detail .main-detail-right {
+            width: 40%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .main-detail-right .product-name {
+            font-family: "Inria Serif", serif;
+            font-size: 22px;
+            color: #7B7B7B;
+        }
+
+        .main-detail-right .product-price {
+            font-family: "Inria Serif", serif;
+            font-size: 28px;
+            color: #7B7B7B;
+        }
+
+        .main-text-description {
+            font-family: "Inria Serif", serif;
+            font-size: 16px;
+            color: #7B7B7B;
+        }
+
+        .main-detail-right .product-quantity-control {
+            margin: 50px 0px;
+            display: flex;
+            gap: 30px;
+            font-size: 16px;
+        }
+
+        .product-quantity-selection {
+            width: 20%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 15px 20px;
+            border: 1px solid grey;
+            border-radius: 50px;
+        }
+
+        .product-quantity-selection button {
+            font-size: 25px;
+            color: #333333;
+            border: none;
+            background-color: transparent;
+        }
+
+        .product-quantity-selection .quantity-number {
+            width: 50%;
+            height: 80%;
+            border: none;
+            outline: none;
+            text-align: right;
+        }
+
+        .btn-add {
+            width: 40%;
+            font-size: 16px;
+            background-color: #333333;
+            color: #fff;
+            outline: none;
+            border: none;
+            border-radius: 50px;
+            padding: 0px 15px;
+        }
+
+        .product-infor {
+            display: flex;
+            color: #333333;
+        }
+
+        .product-infor tr td {
+            padding-right: 10px;
+        }
+
+        .main-detail-right .social-reference {
+            display: flex;
+            gap: 10px;
+        }
+
+        .main-detail-right .social-reference a {
+            width: 20px;
+            height: 20px;
+            border: 1px solid #000;
+            border-radius: 50px;
+            padding: 10px;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+        }
+
+        .social-reference a i {
+            display: flex;
+            font-size: 16px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .content-sub-desciption {
+            width: 80%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content-sub-desciption .sub-description-title,
+        .product-reference-title {
+            font-size: 22px;
+            font-family: "Inria Serif", serif;
+            margin-bottom: 10px;
+        }
+
+        .sub-description-body {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .sub-description-photo {
+            width: 537px;
+            height: 372px;
+        }
+
+        .sub-description-01 {
+            width: 40%;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .sub-description-product-name {
+            font-size: 28px;
+        }
+
+        .sub-text-description {
+            color: #333333;
+            font-size: 22px;
+            font-family: "Inria Serif", serif;
+        }
+
+        .content-product-reference {
+            width: 80%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-reference-body {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .product-reference {
+            width: 269px;
+            height: 441px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 10px;
+            color: #333333;
+        }
+
+        .product-reference .product-reference-photo {
+            width: 100%;
+            height: 316px;
+            border: 0.5px solid grey;
+        }
+
+        .product-reference-name {
+            font-size: 22px;
+        }
+
+        .product-reference-price {
+            font-size: 28px;
+        }
+
+        #footer {
+            width: 100%;
+            height: 273px;
+            background-color: red;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="container">
+        <div id="header">
+            <div class="header-top">
+                <img class="header-logo" src="./assets/img/general/logo.png" alt="">
+                <div class="header-menu">
+                    <a href="" class="menu-item">Home<i class="fa-solid fa-angle-down"></i></a>
+                    <a href="" class="menu-item">Shop<i class="fa-solid fa-angle-down"></i></a>
+                    <a href="" class="menu-item">Pages<i class="fa-solid fa-angle-down"></i></a>
+                    <a href="" class="menu-item">Contact</a>
+                </div>
+                <div class="header-navigation-bar">
+                    <div class="header-search">
+                        <button class="btn btn-search"><i class="fas fa-search header-icon-search"></i></button>
+                        <input class="header-search-input" type="text">
+                    </div>
+                    <button class="btn btn-cart"><i class="fas fa-shopping-cart header-icon-shopping-cart"></i></button>
+                    <button class="btn btn-user"><i class="fa-solid fa-user header-icon-user"></i></button>
+                </div>
+
+            </div>
+            <div class="header-title">Product</div>
+            <div class="header-path">Home/product</div>
+        </div>
+        <div id="content">
+            <div class="content-main-detail">
+                <div class="main-detail-left">
+                    <div class="main-detail-left-sub-photo">
+                        <img class="sub-photo" src="./assets/img/productDetail/cake.webp" alt="">
+                        <img class="sub-photo" src="./assets/img/productDetail/cake.webp" alt="">
+                        <img class="sub-photo" src="./assets/img/productDetail/cake.webp" alt="">
+                        <img class="sub-photo" src="./assets/img/productDetail/cake.webp" alt="">
+                    </div>
+                    <div class="main-detail-left-main-photo">
+                        <button class="btn-arrow-main-detail btn-arrow-left"><i
+                                class="fa-solid fa-arrow-left"></i></button>
+                        <img class="main-photo" src="./assets/img/productDetail/cake.webp" alt="">
+                        <button class="btn-arrow-main-detail btn-arrow-right"><i
+                                class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                </div>
+                <div class="main-detail-right">
+                    <h2 class="product-name">Italian Loaf</h2>
+                    <h2 class="product-price">400000 vnd</h2>
+                    <p class="main-text-description">Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt
+                        qui esse pariatur duis
+                        deserunt mollit dolore cillum minim tempor enim. Elit aute irure tempor cupidatat incididunt
+                        sint deserunt ut voluptate aute id deserunt nisi.</p>
+                    <div class="product-quantity-control">
+                        <div class="product-quantity-selection">
+                            <button class="btn-decrement">-</button>
+                            <input type="number" class="quantity-number">
+                            <button class="btn-increment">+</button>
+                        </div>
+                        <button class="btn-add">Thêm vào giỏ</button>
+                    </div>
+                    <table class="product-infor">
+                        <tr>
+                            <td>Category</td>
+                            <td>:</td>
+                            <td>cake abc</td>
+                        </tr>
+                        <tr>
+                            <td>Size</td>
+                            <td>:</td>
+                            <td>15 cm</td>
+                        </tr>
+                    </table>
+                    <div class="social-reference">
+                        <a href=""><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href=""><i class="fa-brands fa-pinterest-p"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="content-sub-desciption">
+                <p class="sub-description-title">Mô tả</p>
+                <div class="sub-description-body">
+                    <img class="sub-description-photo" src="./assets/img/productDetail/cake.webp" alt="">
+                    <div class="sub-description-01">
+                        <p class="sub-description-product-name">Italian Loaf</p>
+                        <p class="sub-text-description">
+                            Aliquam pulvinar vestibulum blandit. Donec sed nisl libero. Fusce dignissim luctus sem eu
+                            dapibus. Pellentesque vulputate quam a quam volutpat, sed ullamcorper erat commodo.
+                            Vestibulum sit amet ipsum vitae mauris mattis vulputate lacinia nec neque. Aenean quis
+                            consectetur nisi, ac interdum elit</p>
+                    </div>
+                </div>
+            </div>
+            <div class="content-product-reference">
+                <p class="product-reference-title">Sản phẩm liên quan</p>
+                <div class="product-reference-body">
+                    <div class="product-reference">
+                        <img src="./assets/img/productDetail/cake.webp" alt="" class="product-reference-photo">
+                        <p class="product-reference-name">Italian Loaf</p>
+                        <p class="product-reference-price">400000 vnd</p>
+                    </div>
+                    <div class="product-reference">
+                        <img src="./assets/img/productDetail/cake.webp" alt="" class="product-reference-photo">
+                        <p class="product-reference-name">Italian Loaf</p>
+                        <p class="product-reference-price">400000 vnd</p>
+                    </div>
+                    <div class="product-reference">
+                        <img src="./assets/img/productDetail/cake.webp" alt="" class="product-reference-photo">
+                        <p class="product-reference-name">Italian Loaf</p>
+                        <p class="product-reference-price">400000 vnd</p>
+                    </div>
+                    <div class="product-reference">
+                        <img src="./assets/img/productDetail/cake.webp" alt="" class="product-reference-photo">
+                        <p class="product-reference-name">Italian Loaf</p>
+                        <p class="product-reference-price">400000 vnd</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="footer">Footer</div>
+    </div>
+    <script>
+        const decrementBtn = document.querySelector('.btn-decrement');
+        const incrementBtn = document.querySelector('.btn-increment');
+        const quantityInput = document.querySelector('.quantity-number');
+
+        quantityInput.value = 1;
+
+        decrementBtn.addEventListener('click', () => {
+            let currentValue = parseInt(quantityInput.value);
+            if (currentValue > 1) {
+                quantityInput.value = currentValue - 1;
+            }
+        });
+
+        incrementBtn.addEventListener('click', () => {
+            let currentValue = parseInt(quantityInput.value);
+            quantityInput.value = currentValue + 1;
+        });
+
+        quantityInput.addEventListener('change', () => {
+            let currentValue = parseInt(quantityInput.value);
+            if (currentValue < 1 || isNaN(currentValue)) {
+                quantityInput.value = 1;
+            }
+        });
+    </script>
+</body>
+
+</html>
