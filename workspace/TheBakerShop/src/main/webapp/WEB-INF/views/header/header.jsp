@@ -47,7 +47,7 @@ body {
 }
 
 .header {
-	background-image: url('./resources/images//breadcrumb-bg1.png');
+	background-image: url('./resources/images/breadcrumb-bg1.png');
 	background-size: cover;
 	background-position: center;
 	height: 385px;

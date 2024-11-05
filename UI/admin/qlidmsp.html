@@ -1,0 +1,67 @@
+<html>
+<head>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .bg-brown-500 {
+            background-color: #b07c50;
+        }
+        .hover-bg-custom:hover {
+            background-color: #b07c50;
+            color: white;
+        }
+    </style>
+</head>
+<body class="flex">
+    <!-- Sidebar -->
+    <div class="w-1/4 p-4">
+        <div class="border border-gray-300">
+            <a href="#" class="block bg-brown-500 text-white p-4 hover-bg-custom">Home</a>
+            <a href="#" class="block border-t border-gray-300 p-4 hover-bg-custom">Quản lí sản phẩm</a>
+            <a href="#" class="block border-t border-gray-300 p-4 hover-bg-custom">Quản lí loại sản phẩm</a>
+            <a href="#" class="block border-t border-gray-300 p-4 hover-bg-custom">Quản lí khách hàng</a>
+            <a href="#" class="block border-t border-gray-300 p-4 hover-bg-custom">Doanh thu</a>
+            <a href="#" class="block border-t border-gray-300 p-4 hover-bg-custom">Đăng xuất</a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="w-3/4 p-4">
+        <div class="mb-4">
+            <label class="block mb-2">Tên loại sản phẩm</label>
+            <input type="text" class="border border-gray-300 w-full p-2">
+        </div>
+        <div class="mb-4">
+            <label class="block mb-2">Mô tả</label>
+            <input type="text" class="border border-gray-300 w-full p-2">
+        </div>
+        <div class="flex space-x-4 mb-4">
+            <button class="bg-brown-500 text-white px-4 py-2 hover-bg-custom">Thêm</button>
+            <button class="bg-brown-500 text-white px-4 py-2 hover-bg-custom">Xóa</button>
+            <button class="bg-brown-500 text-white px-4 py-2 hover-bg-custom">Sửa</button>
+            <button class="bg-brown-500 text-white px-4 py-2 hover-bg-custom">Làm mới</button>
+        </div>
+        <table class="w-full border-collapse border border-gray-300">
+            <thead>
+                <tr>
+                    <th class="border border-gray-300 p-2">Tên loại sản phẩm</th>
+                    <th class="border border-gray-300 p-2">Mô tả</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="border border-gray-300 p-2">Chocolate Muffin</td>
+                    <td class="border border-gray-300 p-2">Chocolate Muffin</td>
+                </tr>
+                <tr>
+                    <td class="border border-gray-300 p-2">Chocolate Muffin</td>
+                    <td class="border border-gray-300 p-2">Chocolate Muffin</td>
+                </tr>
+                <tr>
+                    <td class="border border-gray-300 p-2">Chocolate Muffin</td>
+                    <td class="border border-gray-300 p-2">Chocolate Muffin</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
