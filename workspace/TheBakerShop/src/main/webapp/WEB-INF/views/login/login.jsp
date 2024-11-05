@@ -48,9 +48,8 @@
 	</main>
 	<!-- Footer -->
 	<jsp:include page="../footer/footer.jsp" />
-
-
-	<style>
+</body>
+<style>
 body {
 	font-family: 'Roboto', sans-serif;
 	margin: 0;
@@ -58,8 +57,5 @@ body {
 	/* width: 100%; */
 	overflow-x: hidden; /* Ẩn thanh cuộn ngang */
 }
-
-
-/*footer*/
 </style>
 </html>

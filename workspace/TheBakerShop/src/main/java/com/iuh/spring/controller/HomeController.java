@@ -53,5 +53,16 @@ public class HomeController {
 		model.addAttribute("pageTitle", "Contact");
 		return "contact/contact";
 	}
+	@GetMapping("/productDetail")
+	public String showProductDetail(Model model) {
+		model.addAttribute("pageTitle", "Product Detail");
+		return "product/product_detail";
+	}
+	
+	@GetMapping("/productList")
+	public String showProductList(Model model) {
+		model.addAttribute("pageTitle", "Product List");
+		return "product/listproduct";
+	}
 	
 }

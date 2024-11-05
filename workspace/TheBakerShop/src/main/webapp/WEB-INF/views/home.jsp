@@ -34,12 +34,12 @@ body {
 			</div>
 			<nav class="space-x-6 text-white">
 				<a class="hover:text-orange-500" href="${pageContext.request.contextPath}/">Home</a> 
-				<a class="hover:text-orange-500" href="">Shop</a> 
+				<a class="hover:text-orange-500" href="${pageContext.request.contextPath}/productList">Shop</a> 
 				<a class="hover:text-orange-500" href="${pageContext.request.contextPath}/account">Account</a> 
 				<a class="hover:text-orange-500" href="${pageContext.request.contextPath}/contact">Contact</a>
 			</nav>
 			<div class="text-white space-x-4">
-				<a class="fas fa-search" href="#"></a> 
+				<a class="fas fa-search" href="${pageContext.request.contextPath}/productDetail"></a> 
 				<a class="fas fa-shopping-cart" href="${pageContext.request.contextPath}/accountorder"></a> 
 				<a class="fas fa-user" href="login"></a>
 			</div>
