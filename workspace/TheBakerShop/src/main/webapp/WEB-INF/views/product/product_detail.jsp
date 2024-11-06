@@ -28,7 +28,7 @@
 			</div>
 			<div class="main-detail-right">
 				<h2 class="product-name">${product.productName}</h2>
-				<h2 class="product-price">${product.price}vnd</h2>
+				<h2 class="product-price">${product.price} vnd</h2>
 				<form action="/add-to-cart" method="POST">
 					<div class="product-quantity-control">
 						<div class="product-quantity-selection">
@@ -44,12 +44,12 @@
 					<tr>
 						<td>Category</td>
 						<td>:</td>
-						<td>cake abc</td>
+						<td>${product.category.categoryName}</td>
 					</tr>
 					<tr>
 						<td>Size</td>
 						<td>:</td>
-						<td>15 cm</td>
+						<td>${product.size} cm</td>
 					</tr>
 				</table>
 				<div class="social-reference">
@@ -74,11 +74,11 @@
 			<p class="product-reference-title">Sản phẩm liên quan</p>
 			<div class="product-reference-body">
 				<c:forEach var="p" items="${productRe}">
-					<a class="product-reference" href="ac"> <img
+					<a class="product-reference" href="${pageContext.request.contextPath}/product/productDetail/${p.productId}?categoryId=${p.category.categoryId}"> <img
 						src="${pageContext.request.contextPath}/resources/images/Products/${p.image}"
 						alt="" class="product-reference-photo">
 						<p class="product-reference-name">${p.productName}</p>
-						<p class="product-reference-price">${p.price}vnd</p>
+						<p class="product-reference-price">${p.price} vnd</p>
 					</a>
 				</c:forEach>
 			</div>

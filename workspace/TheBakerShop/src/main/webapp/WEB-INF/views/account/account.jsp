@@ -22,17 +22,17 @@
 				<a href="${pageContext.request.contextPath}/user/account"> Home </a>
 			</div>
 			<div class="option">
-				<a href="${pageContext.request.contextPath}/accountorder2"> Đơn hàng </a>
+				<a href="${pageContext.request.contextPath}/user/accountOrderHistory"> Đơn hàng </a>
 			</div>
 			<div class="option">
-				<a href="${pageContext.request.contextPath}/accountdetail"> Chi tiết tài khoản </a>
+				<a href="${pageContext.request.contextPath}/user/accountDetail"> Chi tiết tài khoản </a>
 			</div>
 			<div class="option">
-				<a href="${pageContext.request.contextPath}/accountaddress"> Địa
+				<a href="${pageContext.request.contextPath}/user/accountAddress"> Địa
 					chỉ </a>
 			</div>
 			<div class="option">
-				<a href="#"> Đăng xuất </a>
+				<a href="${pageContext.request.contextPath}/user/logout"> Đăng xuất </a>
 			</div>
 		</div>
 		<div class="account-right">

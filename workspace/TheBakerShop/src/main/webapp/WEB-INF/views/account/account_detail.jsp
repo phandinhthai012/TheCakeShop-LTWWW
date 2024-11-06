@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="jakarta.tags.core"%>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ page import="com.iuh.spring.entity.User" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,44 +21,46 @@
 	<div class="account-content">
 		<div class="account-left">
 			<div class="option">
-				<a href="#"> Home </a>
+				<a href="${pageContext.request.contextPath}/user/account"> Home </a>
 			</div>
 			<div class="option">
-				<a href="${pageContext.request.contextPath}/accountorder2"> Đơn hàng </a>
+				<a href="${pageContext.request.contextPath}/user/accountOrderHistory"> Đơn hàng </a>
 			</div>
 			<div class="option">
-				<a href="${pageContext.request.contextPath}/accountdetail"> Chi tiết tài khoản </a>
+				<a href="${pageContext.request.contextPath}/user/accountDetail"> Chi tiết tài khoản </a>
 			</div>
 			<div class="option">
-				<a href="${pageContext.request.contextPath}/accountaddress"> Địa chỉ </a>
+				<a href="${pageContext.request.contextPath}/user/accountAddress"> Địa
+					chỉ </a>
 			</div>
 			<div class="option">
-				<a href="#"> Đăng xuất </a>
+				<a href="${pageContext.request.contextPath}/user/logout"> Đăng xuất </a>
 			</div>
 		</div>
 		<div class="account-right">
-			<form action="">
+		<c:set var="account" value="${sessionScope.user}" />
+			<form action="" method="post">
 				<div class="container">
 					<div class="half-width">
 						<div class="half-width1">
-							<label for="lName">Họ</label> <input type="text" id="lName"
-								name="lname" class="lname">
+							<label for="lName">Họ</label> 
+							<input type="text" id="lName"	name="lname" class="lname" value="${account.lastName }" >
 						</div>
 						<div class="half-width1">
-							<label for="fName">Tên</label> <input type="text" id="fName"
-								name="fname" class="fname">
+							<label for="fName">Tên</label> 
+							<input type="text" id="fName" name="fname" class="fname" value="${account.firstName }">
 						</div>
 
 					</div>
-					<label for="email">Email</label> <input type="email" id="email"
-						name="email">
+						<label for="email">Email</label> 
+						<input type="email" id="email" name="email" value="${account.email }">
 					<h2>Thay đổi mật khẩu</h2>
 					<label for="currentPassword">Mật khẩu hiện tại</label> <input
-						type="password" id="currentPassword" name="currentPassword">
-					<label for="newPassword">Mật khẩu mới</label> <input
-						type="password" id="newPassword" name="newPassword"> <label
-						for="confirmPassword">Xác nhận mật khẩu</label> <input
-						type="password" id="confirmPassword" name="confirmPassword">
+						type="password" id="currentPassword" name="currentPassword" value="${account.password }">
+					<label for="newPassword">Mật khẩu mới</label> 
+					<input type="password" id="newPassword" name="newPassword"> 
+					<label for="confirmPassword">Xác nhận mật khẩu</label> 
+					<input type="password" id="confirmPassword" name="confirmPassword">
 
 				</div>
 				<div>

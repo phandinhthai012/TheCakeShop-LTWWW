@@ -1,0 +1,242 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice Management</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+        .header h1 {
+            margin: 0;
+        }
+        .header .user-info {
+            display: flex;
+            align-items: center;
+        }
+        .header .user-info i {
+            margin-right: 10px;
+        }
+        .invoice-list {
+            margin-top: 20px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .invoice-list table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .invoice-list th, .invoice-list td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        .invoice-list th {
+            background-color: #007bff;
+            color: white;
+        }
+        .invoice-list tr:hover {
+            background-color: #f1f1f1;
+        }
+        .invoice-list .actions {
+            display: flex;
+            gap: 10px;
+        }
+        .invoice-list .actions button {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .invoice-list .actions .view-btn {
+            background-color: #28a745;
+            color: white;
+        }
+        .invoice-list .actions .edit-btn {
+            background-color: #ffc107;
+            color: white;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            width: 50%;
+        }
+        .modal-header, .modal-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .modal-header h2 {
+            margin: 0;
+        }
+        .modal-footer button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .modal-footer .close-btn {
+            background-color: #dc3545;
+            color: white;
+        }
+        .modal-footer .save-btn {
+            background-color: #007bff;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Invoice Management</h1>
+            <div class="user-info">
+                <i class="fas fa-user-circle"></i>
+                <span>Admin</span>
+            </div>
+        </div>
+        <div class="invoice-list">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Invoice ID</th>
+                        <th>Customer Name</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>INV001</td>
+                        <td>John Doe</td>
+                        <td>2023-10-01</td>
+                        <td>Pending</td>
+                        <td class="actions">
+                            <button class="view-btn" onclick="openModal('INV001')">View</button>
+                            <button class="edit-btn" onclick="editStatus('INV001')">Edit</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>INV002</td>
+                        <td>Jane Smith</td>
+                        <td>2023-10-02</td>
+                        <td>Paid</td>
+                        <td class="actions">
+                            <button class="view-btn" onclick="openModal('INV002')">View</button>
+                            <button class="edit-btn" onclick="editStatus('INV002')">Edit</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>INV003</td>
+                        <td>Michael Brown</td>
+                        <td>2023-10-03</td>
+                        <td>Pending</td>
+                        <td class="actions">
+                            <button class="view-btn" onclick="openModal('INV003')">View</button>
+                            <button class="edit-btn" onclick="editStatus('INV003')">Edit</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>INV004</td>
+                        <td>Emily Davis</td>
+                        <td>2023-10-04</td>
+                        <td>Cancelled</td>
+                        <td class="actions">
+                            <button class="view-btn" onclick="openModal('INV004')">View</button>
+                            <button class="edit-btn" onclick="editStatus('INV004')">Edit</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>INV005</td>
+                        <td>Chris Johnson</td>
+                        <td>2023-10-05</td>
+                        <td>Paid</td>
+                        <td class="actions">
+                            <button class="view-btn" onclick="openModal('INV005')">View</button>
+                            <button class="edit-btn" onclick="editStatus('INV005')">Edit</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Invoice Details</h2>
+                <button class="close-btn" onclick="closeModal()">Close</button>
+            </div>
+            <div class="modal-body">
+                <p>Invoice ID: <span id="invoice-id"></span></p>
+                <p>Customer Name: <span id="customer-name"></span></p>
+                <p>Date: <span id="invoice-date"></span></p>
+                <p>Status: <span id="invoice-status"></span></p>
+            </div>
+            <div class="modal-footer">
+                <button class="close-btn" onclick="closeModal()">Close</button>
+                <button class="save-btn" onclick="saveChanges()">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openModal(invoiceId) {
+            document.getElementById('modal').style.display = 'flex';
+            // Fetch and display invoice details based on invoiceId
+            // For demonstration, using static data
+            document.getElementById('invoice-id').innerText = invoiceId;
+            document.getElementById('customer-name').innerText = 'John Doe';
+            document.getElementById('invoice-date').innerText = '2023-10-01';
+            document.getElementById('invoice-status').innerText = 'Pending';
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+
+        function editStatus(invoiceId) {
+            // Logic to edit the status of the invoice
+            alert('Edit status for ' + invoiceId);
+        }
+
+        function saveChanges() {
+            // Logic to save changes
+            alert('Changes saved');
+            closeModal();
+        }
+    </script>
+</body>
+</html>

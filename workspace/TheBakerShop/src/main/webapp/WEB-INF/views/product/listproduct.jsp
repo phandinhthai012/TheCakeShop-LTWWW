@@ -57,11 +57,9 @@
     </div>
     <div class="pagination">
         <a href="#">←</a>
-        <a href="#">1</a>
-        <a href="#">2</a>
-        <a href="#">3</a>
-        <a href="#">4</a>
-        <a href="#">5</a>
+  		<c:forEach var="i" begin="1" end="${totalPages}">
+  		<a href="${pageContext.request.contextPath}/product/productList?page=${i}" class= "${i == currentPage ? 'active' : ''}">${i }</a>
+  		</c:forEach>
         <a href="#">→</a>
     </div>
     
@@ -189,6 +187,11 @@
         .pagination a:hover {
             color: orange;
         }
+        .pagination a.active {
+        font-weight: bold;
+        color: orange;
+    }
+        
 </style>
 
 </html>

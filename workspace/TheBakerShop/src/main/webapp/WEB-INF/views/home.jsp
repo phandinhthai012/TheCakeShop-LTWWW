@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@ page import="com.iuh.spring.entity.User" %>
+<%@ page import="com.iuh.spring.entity.User"%>
 
 <!DOCTYPE html>
 <html>
@@ -38,18 +38,16 @@ body {
 				<a class="hover:text-orange-500"
 					href="${pageContext.request.contextPath}/">Home</a> <a
 					class="hover:text-orange-500"
-					href="${pageContext.request.contextPath}/product/productList">Shop</a> <a
-					class="hover:text-orange-500"
-					href="${pageContext.request.contextPath}/account">Account</a> <a
-					class="hover:text-orange-500"
+					href="${pageContext.request.contextPath}/product/productList">Shop</a>
+				<a class="hover:text-orange-500"
+					href="${pageContext.request.contextPath}/user/account">Account</a>
+				<a class="hover:text-orange-500"
 					href="${pageContext.request.contextPath}/contact">Contact</a>
 			</nav>
 			<div class="text-white space-x-4">
-				<a class="fas fa-search"
-					href="${pageContext.request.contextPath}/productDetail"></a> <a
-					class="fas fa-shopping-cart"
-					href="${pageContext.request.contextPath}/user/account"></a> <a
-					class="fas fa-user" href="login"></a>
+				<a class="fas fa-search" href="${pageContext.request.contextPath}/product/productList"></a> 
+				<a class="fas fa-shopping-cart" href=""></a> 
+				<a class="fas fa-user" href="${pageContext.request.contextPath}/user/account"></a>
 			</div>
 		</div>
 		<div
@@ -68,13 +66,13 @@ body {
 				<div class="relative">
 					<img alt="" class="w-full h-60 object-cover"
 						src="resources/images/${category.img}" /> 
-						<a href="#">
+						<a href="${pageContext.request.contextPath}/product/productList">
 						<div
 							class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center text-white text-xl font-bold">
 							${category.categoryName}</div>
 					</a>
 				</div>
-	
+
 			</c:forEach>
 
 		</div>
@@ -88,15 +86,14 @@ body {
 				exercitation incididunt.</p>
 			<div class="grid grid-cols-2 md:grid-cols-4 gap-8">
 				<c:forEach items="${randomP}" var="p">
-					<a href="#">
+					<a
+						href="${pageContext.request.contextPath}/product/productDetail/${p.productId}?categoryId=${p.category.categoryId}">
 						<div class="bg-white p-4 rounded shadow">
-							<img alt="" class="w-full h-40 object-cover mb-4"
-							height="150"
-							src="resources/images/Products/${p.image}"
-							width="200" />
-						<div class="text-lg font-bold">${p.productName }</div>
-						<div class="text-orange-500">$${p.price }</div>
-					</div>
+							<img alt="" class="w-full h-40 object-cover mb-4" height="150"
+								src="resources/images/Products/${p.image}" width="200" />
+							<div class="text-lg font-bold">${p.productName }</div>
+							<div class="text-orange-500">${p.price } vnd</div>
+						</div>
 					</a>
 				</c:forEach>
 			</div>

@@ -28,13 +28,6 @@ public class HomeController {
 		model.addAttribute("randomP", random);
 		return "home";
 	}
-	
-	
-	@GetMapping("/login")
-	public String showLogi(Model model, HttpSession session) {
-		model.addAttribute("pageTitle", "Login");
-		return "login/login";
-	}
 //	
 //	@GetMapping("/account")
 //	public String showAccount(Model model) {
@@ -61,10 +54,10 @@ public class HomeController {
 //		model.addAttribute("pageTitle", "Order");
 //		return "cart/cart";
 //	}
-//	@GetMapping("/contact")
-//	public String showAccountWishlist(Model model) {
-//		model.addAttribute("pageTitle", "Contact");
-//		return "contact/contact";
-//	}
+	@GetMapping("/contact")
+	public String showAccountWishlist(Model model) {
+		model.addAttribute("pageTitle", "Contact");
+		return "contact/contact";
+	}
 	
 }

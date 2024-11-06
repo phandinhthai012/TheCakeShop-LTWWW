@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core"%>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,22 +20,25 @@
 	<div class="account-content">
 		<div class="account-left">
 			<div class="option">
-				<a href="#"> Home </a>
+				<a href="${pageContext.request.contextPath}/user/account"> Home </a>
 			</div>
 			<div class="option">
-				<a href="${pageContext.request.contextPath}/accountorder2"> Đơn hàng </a>
+				<a href="${pageContext.request.contextPath}/user/accountOrderHistory"> Đơn hàng </a>
 			</div>
 			<div class="option">
-				<a href="${pageContext.request.contextPath}/accountdetail"> Chi tiết tài khoản </a>
+				<a href="${pageContext.request.contextPath}/user/accountDetail"> Chi tiết tài khoản </a>
 			</div>
 			<div class="option">
-				<a href="${pageContext.request.contextPath}/accountaddress"> Địa chỉ </a>
+				<a href="${pageContext.request.contextPath}/user/accountAddress"> Địa
+					chỉ </a>
 			</div>
 			<div class="option">
-				<a href="#"> Đăng xuất </a>
+				<a href="${pageContext.request.contextPath}/user/logout"> Đăng xuất </a>
 			</div>
 		</div>
 		<div class="account-right">
+			<c:set var="account" value="${sessionScope.user}" />
+			<c:set var="address" value="${address}" />
 			<form action="" method="post">
 				<table>
 					<tr>
@@ -40,31 +46,30 @@
 						<td><label for="ten">Tên</label></td>
 					</tr>
 					<tr>
-						<td><input type="text" id="ho" name="ho"></td>
-						<td><input type="text" id="ten" name="ten"></td>
+						<td><input type="text" id="ho" name="lname" value="${account.lastName }"></td>
+						<td><input type="text" id="ten" name="fname" value="${account.firstName }"></td>
 					</tr>
 					<tr>
 						<td><label for="email">Email</label></td>
 						<td><label for="dien-thoai">Điện thoại</label></td>
 					</tr>
 					<tr>
-						<td><input type="email" id="email" name="email"></td>
-						<td><input type="text" id="dien-thoai" name="dien-thoai"></td>
+						<td><input type="email" id="email" name="email" value="${account.email }"></td>
+						<td><input type="text" id="dien-thoai" name="phone" value="${account.phone }"></td>
 					</tr>
 					<tr>
 						<td><label for="thanh-pho">Thành phố / tỉnh</label></td>
 						<td><label for="quan-huyen">Quận / huyện</label></td>
 					</tr>
 					<tr>
-						<td><input type="text" id="thanh-pho" name="thanh-pho"></td>
-						<td><input type="text" id="quan-huyen" name="quan-huyen"></td>
+						<td><input type="text" id="thanh-pho" name="city" value =${address.city }></td>
+						<td><input type="text" id="quan-huyen" name="dictrict" value =${address.dictrict }></td>
 					</tr>
 					<tr>
 						<td colspan="2"><label for="dia-chi">Địa chỉ</label></td>
 					</tr>
 					<tr>
-						<td colspan="2"><input type="text" id="dia-chi"
-							name="dia-chi"></td>
+						<td colspan="2"><input type="text" id="dia-chi" name="addressInfo" value="${address.addressInfo }"></td>
 					</tr>
 					<tr>
 						<td colspan="2">

@@ -1,11 +1,18 @@
 package com.iuh.spring.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.iuh.spring.entity.Address;
+import com.iuh.spring.entity.Order;
 import com.iuh.spring.entity.User;
+import com.iuh.spring.service.AddressService;
+import com.iuh.spring.service.OrderService;
 import com.iuh.spring.service.UserService;
 
 import jakarta.servlet.http.HttpSession;
@@ -13,8 +20,12 @@ import jakarta.servlet.http.HttpSession;
 @org.springframework.stereotype.Controller
 @org.springframework.web.bind.annotation.RequestMapping("/user")
 public class UserController {
-	@org.springframework.beans.factory.annotation.Autowired
+	@Autowired
 	private UserService userService;
+	@Autowired
+	private OrderService orderService;
+	@Autowired
+	private AddressService addressService;
 
 	@GetMapping("/Slogin")
 	public String showLogin(Model model, HttpSession session) {
@@ -48,22 +59,45 @@ public class UserController {
             return "redirect:/user/Slogin";
         }
     }
-
-	@GetMapping("/accountaddress")
-	public String showAccountAddress(Model model) {
+	
+	@GetMapping("/accountOrderHistory")
+	public String showAccountOrderHistory(HttpSession session, Model model) {
+		User user = (User) session.getAttribute("user");
+		List<Order> orders = orderService.getAllOrderByUserId(user.getUserId());
+		model.addAttribute("orders", orders);
+		session.setAttribute("user", user);
+		model.addAttribute("pageTitle", "Account");
+		return "account/account_order";
+	}
+	
+	@GetMapping("/accountAddress")
+	public String showAccountAddress(HttpSession session, Model model) {
+		User user = (User) session.getAttribute("user");
+		Address address = addressService.getAddressByUserId(user.getUserId());
+		model.addAttribute("address", address);
+		session.setAttribute("user", user);
 		model.addAttribute("pageTitle", "Account");
 		return "account/account_address";
 	}
 
-	@GetMapping("/accountdetail")
-	public String showAccountDetail(Model model) {
+	@GetMapping("/accountDetail")
+	public String showAccountDetail(HttpSession session, Model model) {
+		User user = (User) session.getAttribute("user");
+		session.setAttribute("user", user);
 		model.addAttribute("pageTitle", "Account");
 		return "account/account_detail";
 	}
 
-	@GetMapping("/accountorder2")
-	public String showOrderHitory(Model model) {
-		model.addAttribute("pageTitle", "Account");
-		return "account/account_order";
+	
+	@GetMapping("/register")
+	public String showRegister(Model model) {
+		model.addAttribute("pageTitle", "Resgiter");
+		return "login/register";
+	}
+	
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+		session.removeAttribute("user");
+		return "redirect:/";
 	}
 }

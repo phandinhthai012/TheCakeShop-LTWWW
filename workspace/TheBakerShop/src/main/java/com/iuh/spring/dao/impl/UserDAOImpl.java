@@ -12,7 +12,7 @@ import com.iuh.spring.entity.User;
 import jakarta.transaction.Transactional;
 
 @Repository
-public class UserDAPOImpl implements UserDAO {
+public class UserDAOImpl implements UserDAO {
 
 	@Autowired
 	private SessionFactory sessionFactory;

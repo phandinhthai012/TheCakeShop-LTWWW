@@ -25,7 +25,7 @@
 	<main class="flex justify-center py-12">
 		<div class="bg-white p-8 shadow-md w-full max-w-md">
 			<h2 class="text-2xl font-bold text-center mb-4">ĐĂNG NHẬP</h2>
-			<p class="text-center mb-6">Bạn chưa có tài khoản? Đăng kí?</p>
+			<p class="text-center mb-6">Bạn chưa có tài khoản? <a href="${pageContext.request.contextPath}/user/register">Đăng kí?</a></a></p>
 			<form action="${pageContext.request.contextPath}/user/login" method="post">
 				<div class="mb-4">
 					<label class="block text-gray-700" for="email"> Email </label> 

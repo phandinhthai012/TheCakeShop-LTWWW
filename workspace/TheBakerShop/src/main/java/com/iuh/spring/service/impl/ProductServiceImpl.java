@@ -39,7 +39,18 @@ public class ProductServiceImpl implements ProductService {
 	public List<Product> getProductsByCategory(long categoryId) {
 		return productDAO.getProductsByCategory(categoryId);
 	}
-	
-	
 
+	@Override
+	@Transactional
+	public List<Product> getProductsByCategory(long categoryId, int pageNo, int pageSize) {
+		
+		return productDAO.getProductsByCategory(categoryId, pageNo, pageSize);
+	}
+
+	@Override
+	@Transactional
+	public int countAllProduct() {
+		// TODO Auto-generated method stub
+		return productDAO.countAllProduct();
+	}
 }

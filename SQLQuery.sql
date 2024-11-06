@@ -86,5 +86,8 @@ VALUES
 select * from address
 select * from users
 
+select * from  [dbo].[orders]
 
 
+
+SELECT p FROM products WHERE category_id like '%2%'
