@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core"%>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,12 +29,12 @@
 			<div class="main-detail-right">
 				<h2 class="product-name">${product.productName}</h2>
 				<h2 class="product-price">${product.price}vnd</h2>
-				<p class="main-text-description">${product.description}</p>
 				<form action="/add-to-cart" method="POST">
 					<div class="product-quantity-control">
 						<div class="product-quantity-selection">
 							<button class="btn-decrement" type="button">-</button>
-							<input class="quantity-number" name="quantity" type="number" value="1" />
+							<input class="quantity-number" name="quantity" type="number"
+								value="1" />
 							<button class="btn-increment" type="button">+</button>
 						</div>
 						<button class="btn-add" type="submit">Thêm vào giỏ</button>
@@ -70,30 +73,14 @@
 		<div class="content-product-reference">
 			<p class="product-reference-title">Sản phẩm liên quan</p>
 			<div class="product-reference-body">
-				<a class="product-reference" href="ac">
-					<img src="./assets/img/productDetail/cake.webp" alt=""
-						class="product-reference-photo">
-					<p class="product-reference-name">Italian Loaf</p>
-					<p class="product-reference-price">400000 vnd</p>
-				</a>
-				<div class="product-reference">
-					<img src="./assets/img/productDetail/cake.webp" alt=""
-						class="product-reference-photo">
-					<p class="product-reference-name">Italian Loaf</p>
-					<p class="product-reference-price">400000 vnd</p>
-				</div>
-				<div class="product-reference">
-					<img src="./assets/img/productDetail/cake.webp" alt=""
-						class="product-reference-photo">
-					<p class="product-reference-name">Italian Loaf</p>
-					<p class="product-reference-price">400000 vnd</p>
-				</div>
-				<a class="product-reference">
-					<img src="./assets/img/productDetail/cake.webp" alt=""
-						class="product-reference-photo">
-					<p class="product-reference-name">Italian Loaf</p>
-					<p class="product-reference-price">400000 vnd</p>
-				</a>
+				<c:forEach var="p" items="${productRe}">
+					<a class="product-reference" href="ac"> <img
+						src="${pageContext.request.contextPath}/resources/images/Products/${p.image}"
+						alt="" class="product-reference-photo">
+						<p class="product-reference-name">${p.productName}</p>
+						<p class="product-reference-price">${p.price}vnd</p>
+					</a>
+				</c:forEach>
 			</div>
 		</div>
 	</div>
@@ -108,12 +95,12 @@ body {
 }
 
 #content {
-	height: 80%;
-	display: flex;
+	height: 70%; display : flex;
 	flex-direction: column;
 	justify-content: space-evenly;
 	align-items: center;
 	margin-top: 0px;
+	display: flex;
 }
 
 .content-main-detail {
@@ -123,8 +110,6 @@ body {
 	justify-content: center;
 	gap: 50px;
 }
-
-
 
 .content-main-detail .main-detail-left {
 	width: 60%;
@@ -176,6 +161,7 @@ body {
 	width: 467px;
 	height: 555px;
 }
+
 .content-main-detail .main-detail-right {
 	width: 70%;
 	display: flex;
@@ -226,7 +212,7 @@ body {
 }
 
 .product-quantity-selection .quantity-number {
-	width: 50%;
+	width: 30%;
 	height: 80%;
 	border: none;
 	outline: none;
@@ -289,7 +275,6 @@ body {
 	{
 	font-size: 22px;
 	font-family: "Inria Serif", serif;
-	margin-bottom: 10px;
 }
 
 .sub-description-body {
@@ -298,8 +283,8 @@ body {
 }
 
 .sub-description-photo {
-	width: 537px;
-	height: 372px;
+	width: 500px;
+	height: 400px;
 }
 
 .sub-description-01 {
@@ -340,6 +325,12 @@ body {
 	align-items: center;
 	gap: 10px;
 	color: #333333;
+	text-decoration: none;
+}
+
+.product-reference:hover {
+	transform: translateY(-5px);
+	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .product-reference .product-reference-photo {
@@ -349,11 +340,13 @@ body {
 }
 
 .product-reference-name {
-	font-size: 22px;
+	margin: 0;
+	font-size: 18px;
 }
 
 .product-reference-price {
-	font-size: 22px;
+	margin: 0;
+	font-size: 18px;
 }
 </style>
 <script>

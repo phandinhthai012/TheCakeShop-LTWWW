@@ -33,6 +33,12 @@ public class ProductServiceImpl implements ProductService {
 		
 		return productDAO.getProductById(id);
 	}
+
+	@Override
+	@Transactional
+	public List<Product> getProductsByCategory(long categoryId) {
+		return productDAO.getProductsByCategory(categoryId);
+	}
 	
 	
 

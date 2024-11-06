@@ -11,6 +11,8 @@ public interface ProductDAO {
 	public List<Product> getFeaturedProducts();
 	
 	public Product getProductById(long id);
+	
+	public List<Product> getProductsByCategory(long categoryId);
 
 //	public boolean addProduct(Product product);
 //

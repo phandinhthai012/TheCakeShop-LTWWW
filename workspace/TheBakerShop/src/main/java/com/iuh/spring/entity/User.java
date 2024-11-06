@@ -30,8 +30,8 @@ public class User {
 	private String email;
 	@Column(name = "phone")
 	private String phone;
-	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "address_id", referencedColumnName = "address_id")
+	@OneToOne(mappedBy = "user",cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id")
 	private Address address;
 	@Column(name = "role")
 	private String role;

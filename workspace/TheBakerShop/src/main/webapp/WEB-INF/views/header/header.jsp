@@ -18,7 +18,7 @@
 			<div class="navbar">
 				<ul class="menu">
 					<li><a href="${pageContext.request.contextPath}/">Home</a></li>
-					<li><a href="#">Shop</a></li>
+					<li><a href="${pageContext.request.contextPath}/product/productList"">Shop</a></li>
 					<li class="dropdown"><a
 						href="${pageContext.request.contextPath}/account" class="dropbtn">Pages</a>
 						<ul class="dropdown-content">
@@ -31,7 +31,7 @@
 			<div class="acc">
 				<a href=""><img class="acc-search" src="${pageContext.request.contextPath}/resources/images/icons8-search-5022.png" alt=""></a>
 				<a href="${pageContext.request.contextPath}/accountorder"><img class="acc-cart" src="${pageContext.request.contextPath}/resources/images/icons8-cart-64.png" alt=""></a> 
-				<a href="login"><img class="acc-user" src="${pageContext.request.contextPath}/resources/images/icons8-account-48.png" alt=""></a>
+				<a href="${pageContext.request.contextPath}/user/account"><img class="acc-user" src="${pageContext.request.contextPath}/resources/images/icons8-account-48.png" alt=""></a>
 			</div>
 
 		</div>

@@ -3,6 +3,8 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ page import="com.iuh.spring.entity.User" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,7 +48,7 @@ body {
 				<a class="fas fa-search"
 					href="${pageContext.request.contextPath}/productDetail"></a> <a
 					class="fas fa-shopping-cart"
-					href="${pageContext.request.contextPath}/accountorder"></a> <a
+					href="${pageContext.request.contextPath}/user/account"></a> <a
 					class="fas fa-user" href="login"></a>
 			</div>
 		</div>
@@ -64,27 +66,9 @@ body {
 		<div class="container mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
 			<c:forEach items="${categories}" var="category">
 				<div class="relative">
-					<c:if test="${category.categoryName eq 'Cupcake'}">
-						<img alt="Cupcake" class="w-full h-full object-cover" height="300"
-							src="https://storage.googleapis.com/a1aa/image/pQvHoOEePvyeIEjdKQPWd3MjEnVUUWCWHZ8fPcrSeFbtb91OB.jpg"
-							width="400" />
-					</c:if>
-					<c:if test="${category.categoryName eq 'Pastry'}">
-						<img alt="Pastry" class="w-full h-full object-cover" height="300"
-							src="https://storage.googleapis.com/a1aa/image/Pf1vXU59Ub2CYaqlXrucqNqhBuBdJA8i7u4NlVFeu0r5WfanA.jpg"
-							width="400" />
-					</c:if>
-					<c:if test="${category.categoryName eq 'Muffin'}">
-						<img alt="Muffin" class="w-full h-full object-cover" height="300"
-							src="https://storage.googleapis.com/a1aa/image/NepWOwCZbqX1DKqpGDvBiqAheud2uLYVSJfDc73g6JRwte1OB.jpg"
-							width="400" />
-					</c:if>	
-					<c:if test="${category.categoryName eq 'Waffle'}">
-						<img alt="Waffle" class="w-full h-full object-cover" height="300"
-							src="https://storage.googleapis.com/a1aa/image/0eV9j1kmvqwJRSu7HehCzDxQFWRQ5Htyfo2eslW6DK88b91OB.jpg"
-							width="400" />
-					</c:if>
-					<a href="#">
+					<img alt="" class="w-full h-60 object-cover"
+						src="resources/images/${category.img}" /> 
+						<a href="#">
 						<div
 							class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center text-white text-xl font-bold">
 							${category.categoryName}</div>

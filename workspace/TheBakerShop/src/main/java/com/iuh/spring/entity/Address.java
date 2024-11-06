@@ -22,14 +22,22 @@ public class Address {
 	private String dictrict;
 	@Column(name = "address_Info",columnDefinition = "NVARCHAR(255)")
 	private String addressInfo;
+	
 	@OneToOne
-	@JoinColumn(name = "user_id", referencedColumnName = "user_id")
-	private User user;
-	public Address(String city, String dictrict, String addressInfo, User user) {
+    @JoinColumn(name = "user_id", unique = true) // Unique để đảm bảo quan hệ 1-1
+    private User user;
+	
+	public Address(String city, String dictrict, String addressInfo,User user) {
 		super();
 		this.city = city;
 		this.dictrict = dictrict;
 		this.addressInfo = addressInfo;
+		this.user = user;
+	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
 		this.user = user;
 	}
 	public Address(long addressId, String city, String dictrict, String addressInfo, User user) {
@@ -39,6 +47,7 @@ public class Address {
 		this.dictrict = dictrict;
 		this.addressInfo = addressInfo;
 		this.user = user;
+		
 	}
 	public Address() {
 		super();
@@ -66,13 +75,6 @@ public class Address {
 	}
 	public void setAddressInfo(String addressInfo) {
 		this.addressInfo = addressInfo;
-	}
-	public User getUser() {
-		return user;
-	}
-	public void setUser(User user) {
-		this.user = user;
-	}
-	
+	}	
 	
 }

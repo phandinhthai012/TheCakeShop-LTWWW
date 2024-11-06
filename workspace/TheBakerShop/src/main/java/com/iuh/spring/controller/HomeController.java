@@ -8,8 +8,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.iuh.spring.entity.Product;
+import com.iuh.spring.entity.User;
 import com.iuh.spring.service.CategoryService;
 import com.iuh.spring.service.ProductService;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class HomeController {
@@ -19,7 +22,7 @@ public class HomeController {
 	private ProductService productService;
 	
 	@GetMapping("/")
-	public String showHome(Model model) {
+	public String showHome(Model model, HttpSession session) {
 		model.addAttribute("categories", categoryService.getAllCategory());
 		List<Product> random = productService.getFeaturedProducts();
 		model.addAttribute("randomP", random);
@@ -28,7 +31,7 @@ public class HomeController {
 	
 	
 	@GetMapping("/login")
-	public String showLogi(Model model) {
+	public String showLogi(Model model, HttpSession session) {
 		model.addAttribute("pageTitle", "Login");
 		return "login/login";
 	}

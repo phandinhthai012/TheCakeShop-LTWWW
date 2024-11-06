@@ -26,16 +26,14 @@
 		<div class="bg-white p-8 shadow-md w-full max-w-md">
 			<h2 class="text-2xl font-bold text-center mb-4">ĐĂNG NHẬP</h2>
 			<p class="text-center mb-6">Bạn chưa có tài khoản? Đăng kí?</p>
-			<form>
+			<form action="${pageContext.request.contextPath}/user/login" method="post">
 				<div class="mb-4">
-					<label class="block text-gray-700" for="email"> Email </label> <input
-						class="w-full px-3 py-2 border border-gray-300 rounded" id="email"
-						type="email" />
+					<label class="block text-gray-700" for="email"> Email </label> 
+					<input class="w-full px-3 py-2 border border-gray-300 rounded" id="email" type="email" name="username" />
 				</div>
 				<div class="mb-4">
-					<label class="block text-gray-700" for="password"> Mật khẩu
-					</label> <input class="w-full px-3 py-2 border border-gray-300 rounded"
-						id="password" type="password" />
+					<label class="block text-gray-700" for="password"> Mật khẩu </label> 
+					<input class="w-full px-3 py-2 border border-gray-300 rounded" id="password" type="password"  name ="password"/>
 				</div>
 				<div class="mb-4 text-right">
 					<a class="text-blue-500" href="#"> Quên mật khẩu? Nhấn vào đây

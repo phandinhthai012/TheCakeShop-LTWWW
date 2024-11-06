@@ -11,4 +11,6 @@ public interface ProductService {
 	public List<Product> getFeaturedProducts();
 
 	public Product getProductById(long id);
+	// get 4 product by category
+	public List<Product> getProductsByCategory(long categoryId);
 }

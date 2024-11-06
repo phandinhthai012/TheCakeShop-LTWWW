@@ -29,7 +29,7 @@ public class ProductDAOImpl implements ProductDAO {
 	public List<Product> getFeaturedProducts() {
 		Session currentSession = sessionFactory.getCurrentSession();
 		String hql = "select p from Product p order by p.productName";
-		return currentSession.createQuery(hql, Product.class).setMaxResults(12).getResultList();
+		return currentSession.createQuery(hql, Product.class).setMaxResults(8).getResultList();
 		
 	}
 	@Override
@@ -37,6 +37,13 @@ public class ProductDAOImpl implements ProductDAO {
 	public Product getProductById(long id) {
 		Session currentSession = sessionFactory.getCurrentSession();
 		return currentSession.get(Product.class, id);
+	}
+	@Override
+	@Transactional
+	public List<Product> getProductsByCategory(long categoryId) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		String hql = "select p from Product p where p.category.categoryId = :categoryId order by p.productName";
+		return currentSession.createQuery(hql, Product.class).setParameter("categoryId", categoryId).setMaxResults(4).getResultList();
 	}
 
 }

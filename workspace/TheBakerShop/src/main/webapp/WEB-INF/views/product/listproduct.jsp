@@ -42,7 +42,7 @@
         </div>
         <div class="products">
         	<c:forEach var="product" items="${products}">
-        		<a class="product" href="${pageContext.request.contextPath}/product/productDetail/${product.productId}">
+        		<a class="product" href="${pageContext.request.contextPath}/product/productDetail/${product.productId}?categoryId=${product.category.categoryId}">
                 <img src="${pageContext.request.contextPath}/resources/images/Products/${product.image}" width="100" height="100">
                	<h4>${product.productName }</h4>
                 <div class="product-info">

@@ -22,6 +22,8 @@ public class Category {
 	private String categoryName;
 	@Column(name = "description",columnDefinition = "NVARCHAR(255)")
 	private String description;
+	@Column(name = "img",columnDefinition = "NVARCHAR(255)")
+	private String img;
 	@OneToMany(mappedBy = "category",cascade = CascadeType.ALL)
 	private List<Product> products;
 	public Category() {
@@ -33,6 +35,19 @@ public class Category {
 		this.description = description;
 	}
 	
+	public String getImg() {
+		return img;
+	}
+	public void setImg(String img) {
+		this.img = img;
+	}
+	public Category(long categoryId, String categoryName, String description, String img) {
+		super();
+		this.categoryId = categoryId;
+		this.categoryName = categoryName;
+		this.description = description;
+		this.img = img;
+	}
 	public Category(long categoryId, String categoryName, String description) {
 		super();
 		this.categoryId = categoryId;

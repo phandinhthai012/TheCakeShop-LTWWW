@@ -19,7 +19,7 @@
 	<div class="account-content">
 		<div class="account-left">
 			<div class="option">
-				<a href="#"> Home </a>
+				<a href="${pageContext.request.contextPath}/user/account"> Home </a>
 			</div>
 			<div class="option">
 				<a href="${pageContext.request.contextPath}/accountorder2"> Đơn hàng </a>
@@ -36,8 +36,9 @@
 			</div>
 		</div>
 		<div class="account-right">
+		<c:set var="account" value="${sessionScope.user}" />
 			<h3>
-				Hello AccountA (not AccountA? <a href="">Log out</a>)
+				Hello ${account.lastName} ${account.firstName} (not ${account.lastName} ${account.firstName}? <a href="">Log out</a>)
 			</h3>
 			<p>Từ bảng điều khiển tài khoản, bạn có thể xem các đơn hàng gần
 				đây , quản lý địa chỉ giao hàng và thanh toán cũng như chỉnh sửa mật
