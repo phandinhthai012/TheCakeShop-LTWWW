@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core"%>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,103 +41,18 @@
            </form>
         </div>
         <div class="products">
-            <a class="product" href="#">
-                <img src="https://storage.googleapis.com/a1aa/image/lG3jWtDvVUb8PtflnUNIBqeI6Jpi1fXuBQsutch0KLAfgC4OB.jpg" alt="Italian Loaf" width="200" height="200">
-               	<h4>Italian Loaf</h4>
+        	<c:forEach var="product" items="${products}">
+        		<a class="product" href="${pageContext.request.contextPath}/product/productDetail/${product.productId}">
+                <img src="${pageContext.request.contextPath}/resources/images/Products/${product.image}" width="100" height="100">
+               	<h4>${product.productName }</h4>
                 <div class="product-info">
-                 	
-                    <p>$200.00</p>
+                    <p>${product.price }</p>
                     <i class="fas fa-shopping-cart cart-icon"></i>
                 </div>
             </a>
-            <a class="product" href="#">
-                <img src="https://storage.googleapis.com/a1aa/image/lG3jWtDvVUb8PtflnUNIBqeI6Jpi1fXuBQsutch0KLAfgC4OB.jpg" alt="Italian Loaf" width="200" height="200">
-                <h4>Italian Loaf</h4>
-                <div class="product-info">
-                    <p>$200.00</p>
-                    <i class="fas fa-shopping-cart cart-icon"></i>
-                </div>
-            </a>
-            <a class="product" href="#">
-                <img src="https://storage.googleapis.com/a1aa/image/lG3jWtDvVUb8PtflnUNIBqeI6Jpi1fXuBQsutch0KLAfgC4OB.jpg" alt="Italian Loaf" width="200" height="200">
-                <h4>Italian Loaf</h4>
-                <div class="product-info">
-                    <p>$200.00</p>
-                    <i class="fas fa-shopping-cart cart-icon"></i>
-                </div>
-            </a>
-            <a class="product" href="#">
-                <img src="https://storage.googleapis.com/a1aa/image/lG3jWtDvVUb8PtflnUNIBqeI6Jpi1fXuBQsutch0KLAfgC4OB.jpg" alt="Italian Loaf" width="200" height="200">
-                <h4>Italian Loaf</h4>
-                <div class="product-info">
-                    <p>$200.00</p>
-                    <i class="fas fa-shopping-cart cart-icon"></i>
-                </div>
-            </a>
-            <a class="product" href="#">
-                <img src="https://storage.googleapis.com/a1aa/image/lG3jWtDvVUb8PtflnUNIBqeI6Jpi1fXuBQsutch0KLAfgC4OB.jpg" alt="Italian Loaf" width="200" height="200">
-                <h4>Italian Loaf</h4>
-                <div class="product-info">
-                    <p>$200.00</p>
-                    <i class="fas fa-shopping-cart cart-icon"></i>
-                </div>
-            </a>
-            <a class="product" href="#">
-                <img src="https://storage.googleapis.com/a1aa/image/lG3jWtDvVUb8PtflnUNIBqeI6Jpi1fXuBQsutch0KLAfgC4OB.jpg" alt="Italian Loaf" width="200" height="200">
-                <h4>Italian Loaf</h4>
-                <div class="product-info">
-                    <p>$200.00</p>
-                    <i class="fas fa-shopping-cart cart-icon"></i>
-                </div>
-            </a>
-            <a class="product" href="#">
-                <img src="https://storage.googleapis.com/a1aa/image/lG3jWtDvVUb8PtflnUNIBqeI6Jpi1fXuBQsutch0KLAfgC4OB.jpg" alt="Italian Loaf" width="200" height="200">
-                <h4>Italian Loaf</h4>
-                <div class="product-info">
-                    <p>$200.00</p>
-                    <i class="fas fa-shopping-cart cart-icon"></i>
-                </div>
-            </a>
-            <a class="product" href="#">
-                <img src="https://storage.googleapis.com/a1aa/image/lG3jWtDvVUb8PtflnUNIBqeI6Jpi1fXuBQsutch0KLAfgC4OB.jpg" alt="Italian Loaf" width="200" height="200">
-                <h4>Italian Loaf</h4>
-                <div class="product-info">
-                    <p>$200.00</p>
-                    <i class="fas fa-shopping-cart cart-icon"></i>
-                </div>
-            </a>
-            <a class="product" href="#">
-                <img src="https://storage.googleapis.com/a1aa/image/lG3jWtDvVUb8PtflnUNIBqeI6Jpi1fXuBQsutch0KLAfgC4OB.jpg" alt="Italian Loaf" width="200" height="200">
-                <h4>Italian Loaf</h4>
-                <div class="product-info">
-                    <p>$200.00</p>
-                    <i class="fas fa-shopping-cart cart-icon"></i>
-                </div>
-            </a>
-            <a class="product" href="#">
-                <img src="https://storage.googleapis.com/a1aa/image/lG3jWtDvVUb8PtflnUNIBqeI6Jpi1fXuBQsutch0KLAfgC4OB.jpg" alt="Italian Loaf" width="200" height="200">
-                <h4>Italian Loaf</h4>
-                <div class="product-info">
-                    <p>$200.00</p>
-                    <i class="fas fa-shopping-cart cart-icon"></i>
-                </div>
-            </a>
-            <a class="product" href="#">
-                <img src="https://storage.googleapis.com/a1aa/image/lG3jWtDvVUb8PtflnUNIBqeI6Jpi1fXuBQsutch0KLAfgC4OB.jpg" alt="Italian Loaf" width="200" height="200">
-                <h4>Italian Loaf</h4>
-                <div class="product-info">
-                    <p>$200.00</p>
-                    <i class="fas fa-shopping-cart cart-icon"></i>
-                </div>
-            </a>
-            <a class="product" href="#">
-                <img src="https://storage.googleapis.com/a1aa/image/lG3jWtDvVUb8PtflnUNIBqeI6Jpi1fXuBQsutch0KLAfgC4OB.jpg" alt="Italian Loaf" width="200" height="200">
-                <h4>Italian Loaf</h4>
-                <div class="product-info">
-                    <p>$200.00</p>
-                    <i class="fas fa-shopping-cart cart-icon"></i>
-                </div>
-            </a>
+        	
+        	</c:forEach>
+            
         </div>
     </div>
     <div class="pagination">
@@ -230,9 +148,11 @@
         }
         .product img {
             width: 100%;
-            height: auto;
+            height: 294px;
+            object-fit: cover; 
             border-bottom: 1px solid #ccc;
             margin-bottom: 10px;
+            
         }
         .product h4 {
             margin: 10px 0;

@@ -33,15 +33,21 @@ body {
 				<img src="./resources/images/logo.png" alt="">
 			</div>
 			<nav class="space-x-6 text-white">
-				<a class="hover:text-orange-500" href="${pageContext.request.contextPath}/">Home</a> 
-				<a class="hover:text-orange-500" href="${pageContext.request.contextPath}/productList">Shop</a> 
-				<a class="hover:text-orange-500" href="${pageContext.request.contextPath}/account">Account</a> 
-				<a class="hover:text-orange-500" href="${pageContext.request.contextPath}/contact">Contact</a>
+				<a class="hover:text-orange-500"
+					href="${pageContext.request.contextPath}/">Home</a> <a
+					class="hover:text-orange-500"
+					href="${pageContext.request.contextPath}/product/productList">Shop</a> <a
+					class="hover:text-orange-500"
+					href="${pageContext.request.contextPath}/account">Account</a> <a
+					class="hover:text-orange-500"
+					href="${pageContext.request.contextPath}/contact">Contact</a>
 			</nav>
 			<div class="text-white space-x-4">
-				<a class="fas fa-search" href="${pageContext.request.contextPath}/productDetail"></a> 
-				<a class="fas fa-shopping-cart" href="${pageContext.request.contextPath}/accountorder"></a> 
-				<a class="fas fa-user" href="login"></a>
+				<a class="fas fa-search"
+					href="${pageContext.request.contextPath}/productDetail"></a> <a
+					class="fas fa-shopping-cart"
+					href="${pageContext.request.contextPath}/accountorder"></a> <a
+					class="fas fa-user" href="login"></a>
 			</div>
 		</div>
 		<div
@@ -56,45 +62,37 @@ body {
 	<!-- Categories Section -->
 	<section class="py-12">
 		<div class="container mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
-		<c:forEach items="${categories}" var="category">
-			<div class="relative">
-				<img alt="Cupcake" class="w-full h-full object-cover" height="300"
-					src="https://storage.googleapis.com/a1aa/image/pQvHoOEePvyeIEjdKQPWd3MjEnVUUWCWHZ8fPcrSeFbtb91OB.jpg"
-					width="400" /> <a href="#">
-					<div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center text-white text-xl font-bold">
-					${category.categoryName}</div>
-				</a>
-			</div>
-		
-		</c:forEach>
-			
-			<div class="relative">
-				<img alt="Pastry" class="w-full h-full object-cover" height="300"
-					src="https://storage.googleapis.com/a1aa/image/Pf1vXU59Ub2CYaqlXrucqNqhBuBdJA8i7u4NlVFeu0r5WfanA.jpg"
-					width="400" /> <a href="#">
-					<div
-						class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center text-white text-xl font-bold">
-						Pastry</div>
-				</a>
-			</div>
-			<div class="relative">
-				<img alt="Muffin" class="w-full h-full object-cover" height="300"
-					src="https://storage.googleapis.com/a1aa/image/NepWOwCZbqX1DKqpGDvBiqAheud2uLYVSJfDc73g6JRwte1OB.jpg"
-					width="400" /> <a href="#">
-					<div
-						class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center text-white text-xl font-bold">
-						Muffin</div>
-				</a>
-			</div>
-			<div class="relative">
-				<img alt="Waffle" class="w-full h-full object-cover" height="300"
-					src="https://storage.googleapis.com/a1aa/image/0eV9j1kmvqwJRSu7HehCzDxQFWRQ5Htyfo2eslW6DK88b91OB.jpg"
-					width="400" /> <a href="#">
-					<div
-						class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center text-white text-xl font-bold">
-						Waffle</div>
-				</a>
-			</div>
+			<c:forEach items="${categories}" var="category">
+				<div class="relative">
+					<c:if test="${category.categoryName eq 'Cupcake'}">
+						<img alt="Cupcake" class="w-full h-full object-cover" height="300"
+							src="https://storage.googleapis.com/a1aa/image/pQvHoOEePvyeIEjdKQPWd3MjEnVUUWCWHZ8fPcrSeFbtb91OB.jpg"
+							width="400" />
+					</c:if>
+					<c:if test="${category.categoryName eq 'Pastry'}">
+						<img alt="Pastry" class="w-full h-full object-cover" height="300"
+							src="https://storage.googleapis.com/a1aa/image/Pf1vXU59Ub2CYaqlXrucqNqhBuBdJA8i7u4NlVFeu0r5WfanA.jpg"
+							width="400" />
+					</c:if>
+					<c:if test="${category.categoryName eq 'Muffin'}">
+						<img alt="Muffin" class="w-full h-full object-cover" height="300"
+							src="https://storage.googleapis.com/a1aa/image/NepWOwCZbqX1DKqpGDvBiqAheud2uLYVSJfDc73g6JRwte1OB.jpg"
+							width="400" />
+					</c:if>	
+					<c:if test="${category.categoryName eq 'Waffle'}">
+						<img alt="Waffle" class="w-full h-full object-cover" height="300"
+							src="https://storage.googleapis.com/a1aa/image/0eV9j1kmvqwJRSu7HehCzDxQFWRQ5Htyfo2eslW6DK88b91OB.jpg"
+							width="400" />
+					</c:if>
+					<a href="#">
+						<div
+							class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center text-white text-xl font-bold">
+							${category.categoryName}</div>
+					</a>
+				</div>
+	
+			</c:forEach>
+
 		</div>
 	</section>
 	<!-- Products Section -->
@@ -105,79 +103,18 @@ body {
 				Laborum magna nulla duis ullamco cillum dolor. Voluptate
 				exercitation incididunt.</p>
 			<div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-				<a href="#">
-					<div class="bg-white p-4 rounded shadow">
-						<img alt="Italian Loaf" class="w-full h-40 object-cover mb-4"
+				<c:forEach items="${randomP}" var="p">
+					<a href="#">
+						<div class="bg-white p-4 rounded shadow">
+							<img alt="" class="w-full h-40 object-cover mb-4"
 							height="150"
-							src="https://storage.googleapis.com/a1aa/image/6lD9v9jw4o71LtNK4Kvuo9EGXYptt4dnQE6Cz0f12qdfWfanA.jpg"
+							src="resources/images/Products/${p.image}"
 							width="200" />
-						<div class="text-lg font-bold">Italian Loaf</div>
-						<div class="text-orange-500">$4.99</div>
+						<div class="text-lg font-bold">${p.productName }</div>
+						<div class="text-orange-500">$${p.price }</div>
 					</div>
-				</a> <a href="#">
-					<div class="bg-white p-4 rounded shadow">
-						<img alt="Italian Loaf" class="w-full h-40 object-cover mb-4"
-							height="150"
-							src="https://storage.googleapis.com/a1aa/image/6lD9v9jw4o71LtNK4Kvuo9EGXYptt4dnQE6Cz0f12qdfWfanA.jpg"
-							width="200" />
-						<div class="text-lg font-bold">Italian Loaf</div>
-						<div class="text-orange-500">$4.99</div>
-					</div>
-				</a> <a href="#">
-					<div class="bg-white p-4 rounded shadow">
-						<img alt="Italian Loaf" class="w-full h-40 object-cover mb-4"
-							height="150"
-							src="https://storage.googleapis.com/a1aa/image/6lD9v9jw4o71LtNK4Kvuo9EGXYptt4dnQE6Cz0f12qdfWfanA.jpg"
-							width="200" />
-						<div class="text-lg font-bold">Italian Loaf</div>
-						<div class="text-orange-500">$4.99</div>
-					</div>
-				</a> <a href="#">
-					<div class="bg-white p-4 rounded shadow">
-						<img alt="Italian Loaf" class="w-full h-40 object-cover mb-4"
-							height="150"
-							src="https://storage.googleapis.com/a1aa/image/6lD9v9jw4o71LtNK4Kvuo9EGXYptt4dnQE6Cz0f12qdfWfanA.jpg"
-							width="200" />
-						<div class="text-lg font-bold">Italian Loaf</div>
-						<div class="text-orange-500">$4.99</div>
-					</div>
-				</a> <a href="#">
-					<div class="bg-white p-4 rounded shadow">
-						<img alt="Italian Loaf" class="w-full h-40 object-cover mb-4"
-							height="150"
-							src="https://storage.googleapis.com/a1aa/image/6lD9v9jw4o71LtNK4Kvuo9EGXYptt4dnQE6Cz0f12qdfWfanA.jpg"
-							width="200" />
-						<div class="text-lg font-bold">Italian Loaf</div>
-						<div class="text-orange-500">$4.99</div>
-					</div>
-				</a> <a href="#">
-					<div class="bg-white p-4 rounded shadow">
-						<img alt="Italian Loaf" class="w-full h-40 object-cover mb-4"
-							height="150"
-							src="https://storage.googleapis.com/a1aa/image/6lD9v9jw4o71LtNK4Kvuo9EGXYptt4dnQE6Cz0f12qdfWfanA.jpg"
-							width="200" />
-						<div class="text-lg font-bold">Italian Loaf</div>
-						<div class="text-orange-500">$4.99</div>
-					</div>
-				</a> <a href="#">
-					<div class="bg-white p-4 rounded shadow">
-						<img alt="Italian Loaf" class="w-full h-40 object-cover mb-4"
-							height="150"
-							src="https://storage.googleapis.com/a1aa/image/6lD9v9jw4o71LtNK4Kvuo9EGXYptt4dnQE6Cz0f12qdfWfanA.jpg"
-							width="200" />
-						<div class="text-lg font-bold">Italian Loaf</div>
-						<div class="text-orange-500">$4.99</div>
-					</div>
-				</a> <a href="#">
-					<div class="bg-white p-4 rounded shadow">
-						<img alt="Italian Loaf" class="w-full h-40 object-cover mb-4"
-							height="150"
-							src="https://storage.googleapis.com/a1aa/image/6lD9v9jw4o71LtNK4Kvuo9EGXYptt4dnQE6Cz0f12qdfWfanA.jpg"
-							width="200" />
-						<div class="text-lg font-bold">Italian Loaf</div>
-						<div class="text-orange-500">$4.99</div>
-					</div>
-				</a>
+					</a>
+				</c:forEach>
 			</div>
 		</div>
 	</section>

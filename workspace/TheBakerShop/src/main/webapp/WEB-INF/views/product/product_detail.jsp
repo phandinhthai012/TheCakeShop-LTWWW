@@ -18,26 +18,25 @@
 		<div class="content-main-detail">
 			<div class="main-detail-left">
 				<div class="main-detail-left-main-photo">
-					<img class="main-photo" src="./assets/img/productDetail/cake.webp"
+					<img class="main-photo"
+						src="${pageContext.request.contextPath}/resources/images/Products/${product.image}"
 						alt="">
 				</div>
 			</div>
 			<div class="main-detail-right">
-				<h2 class="product-name">Italian Loaf</h2>
-				<h2 class="product-price">400000 vnd</h2>
-				<p class="main-text-description">Aliqua id fugiat nostrud irure
-					ex duis ea quis id quis ad et. Sunt qui esse pariatur duis deserunt
-					mollit dolore cillum minim tempor enim. Elit aute irure tempor
-					cupidatat incididunt sint deserunt ut voluptate aute id deserunt
-					nisi.</p>
-				<div class="product-quantity-control">
-					<div class="product-quantity-selection">
-						<button class="btn-decrement">-</button>
-						<input type="number" class="quantity-number" name="quantity" value="1">
-						<button class="btn-increment">+</button>
+				<h2 class="product-name">${product.productName}</h2>
+				<h2 class="product-price">${product.price}vnd</h2>
+				<p class="main-text-description">${product.description}</p>
+				<form action="/add-to-cart" method="POST">
+					<div class="product-quantity-control">
+						<div class="product-quantity-selection">
+							<button class="btn-decrement" type="button">-</button>
+							<input class="quantity-number" name="quantity" type="number" value="1" />
+							<button class="btn-increment" type="button">+</button>
+						</div>
+						<button class="btn-add" type="submit">Thêm vào giỏ</button>
 					</div>
-					<button class="btn-add">Thêm vào giỏ</button>
-				</div>
+				</form>
 				<table class="product-infor">
 					<tr>
 						<td>Category</td>
@@ -60,21 +59,23 @@
 			<p class="sub-description-title">Mô tả</p>
 			<div class="sub-description-body">
 				<img class="sub-description-photo"
-					src="./assets/img/productDetail/cake.webp" alt="">
+					src="${pageContext.request.contextPath}/resources/images/Products/${product.image}"
+					alt="">
 				<div class="sub-description-01">
-					<p class="sub-description-product-name">Italian Loaf</p>
-					<p class="sub-text-description">Aliquam pulvinar vestibulum
-						blandit. Donec sed nisl libero. Fusce dignissim luctus sem eu
-						dapibus. Pellentesque vulputate quam a quam volutpat, sed
-						ullamcorper erat commodo. Vestibulum sit amet ipsum vitae mauris
-						mattis vulputate lacinia nec neque. Aenean quis consectetur nisi,
-						ac interdum elit</p>
+					<p class="sub-description-product-name">${product.productName}</p>
+					<p class="sub-text-description">${product.description}</p>
 				</div>
 			</div>
 		</div>
 		<div class="content-product-reference">
 			<p class="product-reference-title">Sản phẩm liên quan</p>
 			<div class="product-reference-body">
+				<a class="product-reference" href="ac">
+					<img src="./assets/img/productDetail/cake.webp" alt=""
+						class="product-reference-photo">
+					<p class="product-reference-name">Italian Loaf</p>
+					<p class="product-reference-price">400000 vnd</p>
+				</a>
 				<div class="product-reference">
 					<img src="./assets/img/productDetail/cake.webp" alt=""
 						class="product-reference-photo">
@@ -87,18 +88,12 @@
 					<p class="product-reference-name">Italian Loaf</p>
 					<p class="product-reference-price">400000 vnd</p>
 				</div>
-				<div class="product-reference">
+				<a class="product-reference">
 					<img src="./assets/img/productDetail/cake.webp" alt=""
 						class="product-reference-photo">
 					<p class="product-reference-name">Italian Loaf</p>
 					<p class="product-reference-price">400000 vnd</p>
-				</div>
-				<div class="product-reference">
-					<img src="./assets/img/productDetail/cake.webp" alt=""
-						class="product-reference-photo">
-					<p class="product-reference-name">Italian Loaf</p>
-					<p class="product-reference-price">400000 vnd</p>
-				</div>
+				</a>
 			</div>
 		</div>
 	</div>
@@ -107,19 +102,18 @@
 
 </body>
 <style>
-
-
 body {
 	width: 100%;
 	height: 2507px;
 }
 
 #content {
-	height: 100%;
+	height: 80%;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-evenly;
 	align-items: center;
+	margin-top: 0px;
 }
 
 .content-main-detail {
@@ -129,6 +123,8 @@ body {
 	justify-content: center;
 	gap: 50px;
 }
+
+
 
 .content-main-detail .main-detail-left {
 	width: 60%;
@@ -180,9 +176,8 @@ body {
 	width: 467px;
 	height: 555px;
 }
-
 .content-main-detail .main-detail-right {
-	width: 40%;
+	width: 70%;
 	display: flex;
 	flex-direction: column;
 	gap: 20px;
@@ -246,7 +241,10 @@ body {
 	outline: none;
 	border: none;
 	border-radius: 50px;
-	padding: 0px 15px;
+	padding: 15px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
 }
 
 .product-infor {
@@ -305,7 +303,7 @@ body {
 }
 
 .sub-description-01 {
-	width: 40%;
+	width: 52%;
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
@@ -355,13 +353,16 @@ body {
 }
 
 .product-reference-price {
-	font-size: 28px;
+	font-size: 22px;
 }
 </style>
 <script>
         const decrementBtn = document.querySelector('.btn-decrement');
         const incrementBtn = document.querySelector('.btn-increment');
         const quantityInput = document.querySelector('.quantity-number');
+        const addToCartBtn = document.querySelector('.btn-add');
+        
+        
 
         quantityInput.value = 1;
 

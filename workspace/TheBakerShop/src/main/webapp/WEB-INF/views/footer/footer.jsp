@@ -9,7 +9,7 @@
 <body>
 	<div class="footer">
         <div class="footer-left">
-            <img src="./resources/images/logo.png" alt="" class="footerlogo">
+            <img src="${pageContext.request.contextPath}/resources/images/logo.png" alt="" class="footerlogo">
             <div class="footer-info">
                 <div class="info">
                     <img src="" alt="">
@@ -27,7 +27,7 @@
             </div>
         </div>
         <div class="footer-right">
-            <img src="./resources/images/map.jpg" alt="">
+            <img src="${pageContext.request.contextPath}/resources/images/map.jpg" alt="">
 
         </div>
     </div>
@@ -36,7 +36,7 @@
 .footer {
         margin-top:100px;
         height:500px;
-        background-image: url('./resources/images/footer.png');
+        background-image: url('${pageContext.request.contextPath}/resources/images/footer.png');
         background-size: cover;
        	padding-top: 50px;
        	padding-left: 50px;

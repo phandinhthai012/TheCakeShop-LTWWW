@@ -13,7 +13,7 @@
 		<p class="logoPage">${pageTitle}</p>
 		<div class="header-menu">
 			<div class="logo">
-				<img src="./resources/images/logo.png" alt="">
+				<img src="${pageContext.request.contextPath}/resources/images/logo.png" alt="">
 			</div>
 			<div class="navbar">
 				<ul class="menu">
@@ -29,9 +29,9 @@
 				</ul>
 			</div>
 			<div class="acc">
-				<a href=""><img class="acc-search" src="./resources/images/icons8-search-5022.png" alt=""></a>
-				<a href="${pageContext.request.contextPath}/accountorder"><img class="acc-cart" src="./resources/images/icons8-cart-64.png" alt=""></a> 
-				<a href="login"><img class="acc-user" src="./resources/images/icons8-account-48.png" alt=""></a>
+				<a href=""><img class="acc-search" src="${pageContext.request.contextPath}/resources/images/icons8-search-5022.png" alt=""></a>
+				<a href="${pageContext.request.contextPath}/accountorder"><img class="acc-cart" src="${pageContext.request.contextPath}/resources/images/icons8-cart-64.png" alt=""></a> 
+				<a href="login"><img class="acc-user" src="${pageContext.request.contextPath}/resources/images/icons8-account-48.png" alt=""></a>
 			</div>
 
 		</div>
@@ -47,7 +47,7 @@ body {
 }
 
 .header {
-	background-image: url('./resources/images/breadcrumb-bg1.png');
+	background-image: url('${pageContext.request.contextPath}/resources/images/breadcrumb-bg1.png');
 	background-size: cover;
 	background-position: center;
 	height: 385px;
