@@ -39,9 +39,9 @@ public class ProductController {
 
 	@GetMapping("/productList")
 	public String showProductList(Model model,
-			@RequestParam(name = "page", required = false, defaultValue = "1") int page,HttpSession session) {
+			@RequestParam(name = "page", required = false, defaultValue = "1") int page, HttpSession session) {
 		model.addAttribute("pageTitle", "Product List");
-		
+
 //		if(session.getAttribute("categoryId") != null) {
 //			if ((Long) session.getAttribute("categoryId") == 0) {
 //				return showProductList(model, page, session);
@@ -56,47 +56,56 @@ public class ProductController {
 		List<Product> list = productService.getProducts(page, productsPerPage);
 		model.addAttribute("products", list);
 		model.addAttribute("currentPage", page);
-		
+
 		List<Category> categories = categoryService.getAllCategory();
 		model.addAttribute("categories", categories);
 //		model.addAttribute("products", productService.getAllProducts());
-		
+
 		return "product/listproduct";
 	}
+
 	@GetMapping("/productList/category/{categoryId}")
 	public String showProductListByCategory(@PathVariable("categoryId") Long categoryId, Model model,
-            @RequestParam(name = "page", required = false, defaultValue = "1") int page, HttpSession session) {
-		if(categoryId == 0) {
+			@RequestParam(name = "page", required = false, defaultValue = "1") int page, HttpSession session) {
+		if (categoryId == 0) {
 //			 session.setAttribute("categoryId", categoryId);
 			session.removeAttribute("categoryId");
-			return showProductList(model, page , session);
+			return showProductList(model, page, session);
 		}
-        model.addAttribute("pageTitle", "Product List");
-        session.setAttribute("categoryId", categoryId);
-        int pumProductByCategory = productService.countProductByCategory(categoryId);
-        int productsPerPage = 9;
-        int totalPages = (int) Math.ceil((double) pumProductByCategory / productsPerPage);
-        model.addAttribute("totalPages", totalPages);
-        List<Product> list = productService.getProductsByCategory(categoryId, page, productsPerPage);
-        model.addAttribute("products", list);
-        model.addAttribute("currentPage", page);
-        
-        List<Category> categories = categoryService.getAllCategory();
-		model.addAttribute("categories", categories);
-        return "product/listproduct";
-	}
-	
-	@PostMapping("/filter")
-	public String filterProducts(@RequestParam(name = "price",required = false) List<Integer> price, Model model,HttpSession session) {
 		model.addAttribute("pageTitle", "Product List");
-	    model.addAttribute("selectedPrices", price);
-	    
-	    List<Product> list = productService.getProductsByPriceRanges(price);
-	    model.addAttribute("products", list);
-	    
-	    List<Category> categories = categoryService.getAllCategory();
+		session.setAttribute("categoryId", categoryId);
+		int pumProductByCategory = productService.countProductByCategory(categoryId);
+		int productsPerPage = 9;
+		int totalPages = (int) Math.ceil((double) pumProductByCategory / productsPerPage);
+		model.addAttribute("totalPages", totalPages);
+		List<Product> list = productService.getProductsByCategory(categoryId, page, productsPerPage);
+		model.addAttribute("products", list);
+		model.addAttribute("currentPage", page);
+
+		List<Category> categories = categoryService.getAllCategory();
 		model.addAttribute("categories", categories);
-	    // Add other necessary attributes to the model
+		return "product/listproduct";
+	}
+
+	@PostMapping("/filter")
+	public String filterProducts(@RequestParam(name = "price", required = false) List<Integer> price, Model model,
+			HttpSession session, @RequestParam(name = "search", required = false, defaultValue = "") String search) {
+		model.addAttribute("pageTitle", "Product List");
+		model.addAttribute("selectedPrices", price);
+		model.addAttribute("search", search);
+		if ((price == null || price.size() == 0) && (search.isEmpty() || search.isBlank())) {
+			session.removeAttribute("price");
+			return showProductList(model, 1, session);
+		}
+		System.out.println(search);
+		System.out.println(price);
+//		List<Product> list = productService.getProductsByPriceRanges(price);
+		List<Product> list = productService.getProductsByPriceRangesAndName(price, search);
+		model.addAttribute("products", list);
+
+		List<Category> categories = categoryService.getAllCategory();
+		model.addAttribute("categories", categories);
+		// Add other necessary attributes to the model
 		return "product/listproduct";
 	}
 }

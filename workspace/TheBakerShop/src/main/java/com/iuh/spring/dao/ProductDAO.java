@@ -25,6 +25,8 @@ public interface ProductDAO {
 	
 	public List<Product> getProductsByPriceRanges(List<Integer> priceRanges);
 	
+	public List<Product> getProductsByPriceRangesAndName(List<Integer> priceRanges, String text);
+	
 
 //	public boolean addProduct(Product product);
 //

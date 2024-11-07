@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="jakarta.tags.core"%>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,13 +22,32 @@
 			<div class="content-left">
 				<table class="tbl-product table">
 					<thead>
+					<tr>
+						
 						<th></th>
 						<th>Sản phẩm</th>
 						<th>Giá</th>
 						<th>Số lượng</th>
 						<th>Tổng tiền</th>
+						<th></th>
+					</tr>
 					</thead>
 					<tbody>
+						<c:set var="i" value="1" />
+						<c:forEach var="cart" items="${sessionScope.cart}">
+							<tr>
+								<td>${i}</td>
+								<td><img class="img-product"
+										 src="${pageContext.request.contextPath}/resources/images/Products/${cart.product.image}" alt="">
+									${cart.product.productName}</td>
+								<td>${cart.product.price} VNĐ</td>
+								<td>${cart.quantity}</td>
+								<td>${cart.price} VNĐ</td>
+								<td><a href="#" class="remove">X</a></td>
+								
+							</tr>
+							<c:set var="i" value="${i + 1}" />
+						</c:forEach>
 						<tr>
 							<td>1</td>
 							<td><img class="img-product"
@@ -33,24 +56,7 @@
 							<td>200.000đ</td>
 							<td>4</td>
 							<td>800.000đ</td>
-						</tr>
-						<tr>
-							<td>1</td>
-							<td><img class="img-product"
-								src="./assets/img/productDetail/cake.webp" alt="">
-								Chocolate Muffin</td>
-							<td>200.000đ</td>
-							<td>4</td>
-							<td>800.000đ</td>
-						</tr>
-						<tr>
-							<td>1</td>
-							<td><img class="img-product"
-								src="./assets/img/productDetail/cake.webp" alt="">
-								Chocolate Muffin</td>
-							<td>200.000đ</td>
-							<td>4</td>
-							<td>800.000đ</td>
+							<td><a href="#" class="remove">X</a></td>
 						</tr>
 					</tbody>
 				</table>
@@ -62,8 +68,8 @@
 			<div class="content-right">
 				<div class="sub-content-right">
 					<p class="sub-content-title">Cart totals</p>
-					<p class="sub-content-1  txt-sub-content"></p>
-					<p class="sub-content-2 txt-sub-content"></p>
+					<p class="sub-content-1  txt-sub-content">${user.firstName }</p>
+					<p class="sub-content-2 txt-sub-content">${totalCart } VNĐ</p>
 					<a class="btn-purchase">Thanh toán</a>
 				</div>
 			</div>
@@ -81,6 +87,13 @@ body {
 	padding: 0;
 	/* width: 100%; */
 	overflow-x: hidden; /* Ẩn thanh cuộn ngang */
+}
+
+
+.remove {
+	color: red;
+	cursor: pointer;
+	text-decoration: none;
 }
 
 #content {
@@ -164,7 +177,12 @@ body {
 }
 
 .bl-product th {
-    padding: 10px;
+	padding: 10px;
+}
+
+.tbl-product td {
+    padding: 16px;
+    text-align: left;
 }
 </style>
 </html>

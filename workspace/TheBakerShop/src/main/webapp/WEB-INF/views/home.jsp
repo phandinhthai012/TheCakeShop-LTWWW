@@ -46,7 +46,7 @@ body {
 			</nav>
 			<div class="text-white space-x-4">
 				<a class="fas fa-search" href="${pageContext.request.contextPath}/product/productList"></a> 
-				<a class="fas fa-shopping-cart" href="${pageContext.request.contextPath}/order/showOrder"></a> 
+				<a class="fas fa-shopping-cart" href="${pageContext.request.contextPath}/order/showOrderDetail"></a> 
 				<a class="fas fa-user" href="${pageContext.request.contextPath}/user/account"></a>
 			</div>
 		</div>
@@ -92,7 +92,7 @@ body {
 							<img alt="" class="w-full h-40 object-cover mb-4" height="150"
 								src="resources/images/Products/${p.image}" width="200" />
 							<div class="text-lg font-bold">${p.productName }</div>
-							<div class="text-orange-500">${p.price } vnd</div>
+							<div class="text-orange-500">${p.price } VNĐ</div>
 						</div>
 					</a>
 				</c:forEach>

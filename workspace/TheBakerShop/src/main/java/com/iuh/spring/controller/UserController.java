@@ -98,6 +98,7 @@ public class UserController {
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
 		session.removeAttribute("user");
+		session.removeAttribute("cart");
 		return "redirect:/";
 	}
 }

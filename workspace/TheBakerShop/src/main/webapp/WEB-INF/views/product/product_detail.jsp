@@ -20,6 +20,12 @@
 	<div id="content">
 		<div class="content-main-detail">
 			<div class="main-detail-left">
+				<div class="main-detail-left-sub-photo">
+                        <img class="sub-photo" src="${pageContext.request.contextPath}/resources/images/Products/${product.image}" alt="">
+                        <img class="sub-photo" src="${pageContext.request.contextPath}/resources/images/Products/${product.image}" alt="">
+                        <img class="sub-photo" src="${pageContext.request.contextPath}/resources/images/Products/${product.image}" alt="">
+                        <img class="sub-photo" src="${pageContext.request.contextPath}/resources/images/Products/${product.image}" alt="">
+                    </div>
 				<div class="main-detail-left-main-photo">
 					<img class="main-photo"
 						src="${pageContext.request.contextPath}/resources/images/Products/${product.image}"
@@ -28,8 +34,13 @@
 			</div>
 			<div class="main-detail-right">
 				<h2 class="product-name">${product.productName}</h2>
-				<h2 class="product-price">${product.price} vnd</h2>
-				<form action="/add-to-cart" method="POST">
+				<h2 class="product-price">${product.price} VNĐ</h2>
+				<form action="${pageContext.request.contextPath}/order/addToCart" method="POST">
+				<p class="main-text-description">Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt
+                        qui esse pariatur duis
+                        deserunt mollit dolore cillum minim tempor enim. Elit aute irure tempor cupidatat incididunt
+                        sint deserunt ut voluptate aute id deserunt nisi.</p>
+                    <input type="hidden" name="productId" value="${product.productId}">
 					<div class="product-quantity-control">
 						<div class="product-quantity-selection">
 							<button class="btn-decrement" type="button">-</button>
@@ -78,7 +89,7 @@
 						src="${pageContext.request.contextPath}/resources/images/Products/${p.image}"
 						alt="" class="product-reference-photo">
 						<p class="product-reference-name">${p.productName}</p>
-						<p class="product-reference-price">${p.price} vnd</p>
+						<p class="product-reference-price">${p.price} VNĐ</p>
 					</a>
 				</c:forEach>
 			</div>
@@ -121,6 +132,7 @@ body {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
+	margin-right: 20px;
 }
 
 .main-detail-left-sub-photo .sub-photo {
