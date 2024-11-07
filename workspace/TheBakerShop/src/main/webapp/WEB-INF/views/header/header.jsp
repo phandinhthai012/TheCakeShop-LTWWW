@@ -30,7 +30,7 @@
 			</div>
 			<div class="acc">
 				<a href="${pageContext.request.contextPath}/product/productList"><img class="acc-search" src="${pageContext.request.contextPath}/resources/images/icons8-search-5022.png" alt=""></a>
-				<a href="${pageContext.request.contextPath}/accountorder"><img class="acc-cart" src="${pageContext.request.contextPath}/resources/images/icons8-cart-64.png" alt=""></a> 
+				<a href="${pageContext.request.contextPath}/order/showOrder"><img class="acc-cart" src="${pageContext.request.contextPath}/resources/images/icons8-cart-64.png" alt=""></a> 
 				<a href="${pageContext.request.contextPath}/user/account"><img class="acc-user" src="${pageContext.request.contextPath}/resources/images/icons8-account-48.png" alt=""></a>
 			</div>
 

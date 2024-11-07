@@ -79,4 +79,73 @@ public class ProductDAOImpl implements ProductDAO {
 		return currentSession.createQuery(hql, Long.class).getSingleResult().intValue();
 	}
 
+	@Override
+	@Transactional
+	public List<Product> getProducts(int pageNo, int pageSize) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		String hql = "select * from products order by product_name OFFSET (:pageNo - 1) * :pageSize ROWS FETCH NEXT :pageSize ROWS ONLY";
+		List<Product> list = currentSession.createNativeQuery(hql, Product.class).setParameter("pageNo", pageNo)
+				.setParameter("pageSize", pageSize).getResultList();
+		return list;
+	}
+
+	@Override
+	@Transactional
+	public int countProductByCategory(long categoryId) {
+        Session currentSession = sessionFactory.getCurrentSession();
+        if (categoryId == 0) {
+            String hql = "select count(p) from Product p";
+            return currentSession.createQuery(hql, Long.class).getSingleResult().intValue();
+        } else {
+            // If categoryId is not 0, filter by the given categoryId
+            String hql = "select count(p) from Product p where p.category.categoryId = :categoryId";
+            return currentSession.createQuery(hql, Long.class)
+                    .setParameter("categoryId", categoryId)
+                    .getSingleResult()
+                    .intValue();
+        }
+    }
+
+	@Override
+	@Transactional
+	public List<Product> getProductsByPriceRanges(List<Integer> priceRanges) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		List<String> conditions = new ArrayList<>();
+	    
+	    // Iterate through priceRanges and add conditions based on specified ranges
+	    for (int range : priceRanges) {
+	        switch (range) {
+	            case 1:
+	                conditions.add("price BETWEEN 10000 AND 20000");
+	                break;
+	            case 2:
+	                conditions.add("price BETWEEN 20000 AND 40000");
+	                break;
+	            case 3:
+	                conditions.add("price BETWEEN 40000 AND 60000");
+	                break;
+	            case 4:
+	                conditions.add("price BETWEEN 60000 AND 80000");
+	                break;
+	            case 5:
+	                conditions.add("price BETWEEN 80000 AND 100000");
+	                break;
+	            case 6:
+	                conditions.add("price >= 100000");
+	                break;
+	            default:
+	                throw new IllegalArgumentException("Invalid price range: " + range);
+	        }
+	    }
+
+	    // Combine conditions with "OR" to match any of the specified ranges
+	    String priceCondition = String.join(" OR ", conditions);
+	    
+	    // Construct the full SQL query
+	    String sql = "SELECT * FROM products WHERE " + priceCondition + " ORDER BY price";
+	    
+	    // Execute the query and return the result
+	    return currentSession.createNativeQuery(sql, Product.class).getResultList();
+	}
+
 }

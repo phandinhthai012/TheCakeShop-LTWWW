@@ -46,16 +46,16 @@ body {
 			</nav>
 			<div class="text-white space-x-4">
 				<a class="fas fa-search" href="${pageContext.request.contextPath}/product/productList"></a> 
-				<a class="fas fa-shopping-cart" href=""></a> 
+				<a class="fas fa-shopping-cart" href="${pageContext.request.contextPath}/order/showOrder"></a> 
 				<a class="fas fa-user" href="${pageContext.request.contextPath}/user/account"></a>
 			</div>
 		</div>
 		<div
 			class="absolute inset-0 flex flex-col justify-center items-center text-center text-white">
 			<h1 class="text-5xl font-bold mb-4">Bring The Best Experience</h1>
-			<button
+			<a href="${pageContext.request.contextPath}/product/productList"
 				class="bg-yellow-500 text-white px-6 py-3 rounded-full font-semibold">ORDER
-				NOW</button>
+				NOW</a>
 		</div>
 	</header>
 
@@ -66,7 +66,7 @@ body {
 				<div class="relative">
 					<img alt="" class="w-full h-60 object-cover"
 						src="resources/images/${category.img}" /> 
-						<a href="${pageContext.request.contextPath}/product/productList">
+						<a href="${pageContext.request.contextPath}/product/productList/category/${category.categoryId}">
 						<div
 							class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center text-white text-xl font-bold">
 							${category.categoryName}</div>

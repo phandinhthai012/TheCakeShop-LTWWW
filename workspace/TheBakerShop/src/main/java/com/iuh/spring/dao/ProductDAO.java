@@ -18,6 +18,13 @@ public interface ProductDAO {
 	public List<Product> getProductsByCategory(long categoryId, int pageNo, int pageSize);
 	
 	public int countAllProduct();
+	// lấy sản phẩm phân trang
+	public List<Product> getProducts(int pageNo, int pageSize);
+	// dem so luong san pham theo category
+	public int countProductByCategory(long categoryId);
+	
+	public List<Product> getProductsByPriceRanges(List<Integer> priceRanges);
+	
 
 //	public boolean addProduct(Product product);
 //

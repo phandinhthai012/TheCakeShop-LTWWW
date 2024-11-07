@@ -13,10 +13,10 @@ import com.iuh.spring.entity.Category;
 
 @Repository
 public class CategoryDAOImpl implements CatergoryDAO {
-	
+
 	@Autowired
 	private SessionFactory sessionFactory;
-	
+
 	@Override
 	@Transactional
 	public List<Category> getAllCategory() {
@@ -25,21 +25,33 @@ public class CategoryDAOImpl implements CatergoryDAO {
 	}
 
 	@Override
+	@Transactional
 	public Category getCategoryById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		Session currentSession = sessionFactory.getCurrentSession();
+		return currentSession.get(Category.class, id);
 	}
 
 	@Override
+	@Transactional
 	public boolean insertCategory(Category category) {
-		// TODO Auto-generated method stub
-		return false;
+		Session currentSession = sessionFactory.getCurrentSession();
+		try {
+			currentSession.persist(category);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
 	}
 
 	@Override
+	@Transactional
 	public boolean updateCategory(Category category) {
-		// TODO Auto-generated method stub
-		return false;
+		Session currentSession = sessionFactory.getCurrentSession();
+		try {
+			currentSession.merge(category);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
 	}
-	
 }

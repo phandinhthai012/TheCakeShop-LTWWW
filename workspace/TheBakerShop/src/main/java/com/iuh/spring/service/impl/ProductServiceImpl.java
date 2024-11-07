@@ -53,4 +53,23 @@ public class ProductServiceImpl implements ProductService {
 		// TODO Auto-generated method stub
 		return productDAO.countAllProduct();
 	}
+
+	@Override
+	@Transactional
+	public List<Product> getProducts(int pageNo, int pageSize) {
+		// TODO Auto-generated method stub
+		return productDAO.getProducts(pageNo, pageSize);
+	}
+
+	@Override
+	@Transactional
+	public int countProductByCategory(long categoryId) {
+		return productDAO.countProductByCategory(categoryId);
+	}
+
+	@Override
+	public List<Product> getProductsByPriceRanges(List<Integer> priceRanges) {
+		// TODO Auto-generated method stub
+		return productDAO.getProductsByPriceRanges(priceRanges);
+	}
 }

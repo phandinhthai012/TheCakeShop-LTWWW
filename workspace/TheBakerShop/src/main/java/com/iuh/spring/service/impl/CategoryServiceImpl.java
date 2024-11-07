@@ -23,21 +23,24 @@ public class CategoryServiceImpl implements CategoryService {
 	}
 
 	@Override
+	@Transactional
 	public Category getCategoryById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return catergoryDAO.getCategoryById(id);
 	}
 
 	@Override
+	@Transactional
 	public boolean insertCategory(Category category) {
 		// TODO Auto-generated method stub
-		return false;
+		return catergoryDAO.insertCategory(category);
 	}
 
 	@Override
+	@Transactional
 	public boolean updateCategory(Category category) {
 		// TODO Auto-generated method stub
-		return false;
+		return catergoryDAO.updateCategory(category);
 	}
 	
 }
