@@ -27,6 +27,8 @@ public interface ProductDAO {
 	
 	public List<Product> getProductsByPriceRangesAndName(List<Integer> priceRanges, String text);
 	
+	public boolean updateProductQuantity(long productId, int newQuantity);
+	
 
 //	public boolean addProduct(Product product);
 //

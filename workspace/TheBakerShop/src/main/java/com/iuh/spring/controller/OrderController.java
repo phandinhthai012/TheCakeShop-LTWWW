@@ -1,5 +1,6 @@
 package com.iuh.spring.controller;
 
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,8 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.iuh.spring.entity.ItemCart;
+import com.iuh.spring.entity.Order;
+import com.iuh.spring.entity.OrderDetail;
 import com.iuh.spring.entity.Product;
 import com.iuh.spring.entity.User;
+import com.iuh.spring.service.OrderDetailService;
+import com.iuh.spring.service.OrderService;
 import com.iuh.spring.service.ProductService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -25,6 +30,10 @@ public class OrderController {
 	
 	@Autowired
 	private ProductService productService;
+	@Autowired
+	private OrderService orderService;
+	@Autowired
+	private OrderDetailService orderDetailService;
 	
 	@GetMapping("/showOrder")
 	public String showAccountOrder(Model model, HttpSession session) {
@@ -121,11 +130,7 @@ public class OrderController {
 		return -1;
 	}
 	
-	@GetMapping("/checkout")
-	public String showCheckout(Model model, HttpSession session) {
-		model.addAttribute("pageTitle", "Checkout");
-		return "cart/checkout";
-	}
+	
 	@GetMapping("/RemoveAll")
 	public String removeAllProductFromCart(Model model, HttpSession session) {
 		session.removeAttribute("cart");
@@ -134,6 +139,68 @@ public class OrderController {
 	@GetMapping("/continueShopping")
 	public String continueShopping(Model model, HttpSession session) {
 		return "redirect:/product/productList";
+	}
+	
+	@GetMapping("/checkout")
+	public String showCheckout(Model model, HttpSession session) {
+		User user = (User) session.getAttribute("user");
+		if (user == null) {
+			return "redirect:/user/Slogin";
+		}
+		model.addAttribute("pageTitle", "Checkout");
+		List<ItemCart> listCart = (List<ItemCart>) session.getAttribute("cart");
+		session.setAttribute("user", user);
+		if (listCart == null) {
+			return "redirect:/order/showOrderDetail";
+		}
+		double totalCart = 0;
+		for (ItemCart itemCart : listCart) {
+			totalCart += itemCart.getPrice();
+		}
+		Product product = checkQuantity(listCart);
+		if (product != null) {
+            model.addAttribute("message", "Sản phẩm " + product.getProductName() + " không đủ số lượng");
+            model.addAttribute("pageTitle", "Order");
+            return "cart/cart";
+        }
+		model.addAttribute("totalCart", totalCart);
+		return "cart/checkout";
+	}
+	
+	@GetMapping("/toOrder")
+	public String toOrder(Model model, HttpSession session) {
+		User user = (User) session.getAttribute("user");
+		session.setAttribute("user", user);
+		List<ItemCart> listCart = (List<ItemCart>) session.getAttribute("cart");
+		double totalCart = 0;
+		for (ItemCart itemCart : listCart) {
+			totalCart += itemCart.getPrice();
+		}
+		// create order
+		Date date = new Date();
+		Order order = new Order(user, totalCart, "Chờ xác nhận", date);
+		boolean result = orderService.createOrder(order);
+		if (result) {
+			for (ItemCart itemCart : listCart) {
+				OrderDetail orderDetail = new OrderDetail(order, itemCart.getProduct(), itemCart.getQuantity(),
+                        itemCart.getProduct().getPrice());
+				int newQuantity = itemCart.getProduct().getStockQuantity() - itemCart.getQuantity();
+				productService.updateProductQuantity(itemCart.getProduct().getProductId(), newQuantity);
+				orderDetailService.insertOrderDetailByOrderId(orderDetail, order.getOrderId());
+			}
+		}
+		session.removeAttribute("cart");
+		return "redirect:/user/accountOrderHistory";
+	}
+	//kiem tra so luong san pham con trong kho
+	private Product checkQuantity(List<ItemCart> listCart) {
+		for (ItemCart itemCart : listCart) {
+			Product product = productService.getProductById(itemCart.getProduct().getProductId());
+			if (product.getStockQuantity() < itemCart.getQuantity()) {
+				return product;
+			}
+		}
+		return null;
 	}
 	
 }

@@ -79,4 +79,11 @@ public class ProductServiceImpl implements ProductService {
 		// TODO Auto-generated method stub
 		return productDAO.getProductsByPriceRangesAndName(priceRanges, text);
 	}
+
+	@Override
+	@Transactional
+	public boolean updateProductQuantity(long productId, int newQuantity) {
+		// TODO Auto-generated method stub
+		return productDAO.updateProductQuantity(productId, newQuantity);
+	}
 }

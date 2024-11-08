@@ -29,4 +29,39 @@ public class OrderServiceImpl implements OrderService {
 		return orderDAO.getAllOrderByUserId(userId);
 	}
 
+	@Override
+	@Transactional
+	public List<Order> getAllOrderByStatus(String status) {
+		// TODO Auto-generated method stub
+		return orderDAO.getAllOrderByStatus(status);
+	}
+
+	@Override
+	@Transactional
+	public boolean createOrder(Order order) {
+		// TODO Auto-generated method stub
+		return orderDAO.createOrder(order);
+	}
+
+	@Override
+	@Transactional
+	public boolean updateOrder(Order order) {
+		// TODO Auto-generated method stub
+		return orderDAO.updateOrder(order);
+	}
+
+	@Override
+	@Transactional
+	public boolean updateStatusOrder(long orderId, String status) {
+		// TODO Auto-generated method stub
+		return orderDAO.updateStatusOrder(orderId, status);
+	}
+
+	@Override
+	@Transactional
+	public Order getOrderById(long orderId) {
+		// TODO Auto-generated method stub
+		return orderDAO.getOrderById(orderId);
+	}
+
 }

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+     body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .checkout-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .checkout-header h1 {
+            font-size: 2.5em;
+            margin: 0;
+        }
+        .checkout-form {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .checkout-form .form-section {
+            flex: 1;
+            min-width: 300px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-section h2 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        .form-section label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        .form-section input, .form-section select, .form-section textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .form-section input[type="submit"] {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        .form-section input[type="submit"]:hover {
+            background-color: #218838;
+        }
+        .order-summary {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 40%;
+        }
+        .order-summary h2 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        .order-summary ul {
+            list-style: none;
+            padding: 0;
+        }
+        .order-summary ul li {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .order-summary ul li span {
+            font-weight: 500;
+        }
+        .order-summary .total {
+            font-size: 1.2em;
+            font-weight: 700;
+        }
+        .action {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .action a {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+
+</style>
+<body>
+    <div class="container">
+        <div class="checkout-header">
+            <h1>Checkout</h1>
+        </div>
+        <div class="checkout-form">
+            <div class="form-section">
+                <h2>Billing Details</h2>
+                <label for="first-name">First Name</label>
+                <input type="text" id="first-name" name="first-name" required>
+                
+                <label for="last-name">Last Name</label>
+                <input type="text" id="last-name" name="last-name" required>
+                
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="phone">Phone</label>
+                <input type="tel" id="phone" name="phone" required>
+                
+                <label for="address">Address</label>
+                <input type="text" id="address" name="address" required>
+                
+                <label for="city">City</label>
+                <input type="text" id="city" name="city" required>
+                
+                <label for="state">State</label>
+                <input type="text" id="state" name="state" required>
+                
+                <label for="zip">Zip Code</label>
+                <input type="text" id="zip" name="zip" required>
+                
+                <label for="country">Country</label>
+                <select id="country" name="country" required>
+                    <option value="USA">USA</option>
+                    <option value="Canada">Canada</option>
+                    <option value="UK">UK</option>
+                    <option value="Australia">Australia</option>
+                </select>
+            </div>
+            <!-- <div class="form-section">
+                <h2>Payment Details</h2>
+                <label for="card-name">Name on Card</label>
+                <input type="text" id="card-name" name="card-name" required>
+                
+                <label for="card-number">Card Number</label>
+                <input type="text" id="card-number" name="card-number" required>
+                
+                <label for="expiry-date">Expiry Date</label>
+                <input type="text" id="expiry-date" name="expiry-date" placeholder="MM/YY" required>
+                
+                <label for="cvv">CVV</label>
+                <input type="text" id="cvv" name="cvv" required>
+                
+                <input type="submit" value="Place Order">
+            </div> -->
+            <div class="order-summary">
+                <h2>Order Summary</h2>
+                <ul>
+                    <li>
+                        <span>Product 1</span>
+                        <span>$10.00</span>
+                    </li>
+                    <li>
+                        <span>Product 2</span>
+                        <span>$20.00</span>
+                    </li>
+                    <li>
+                        <span>Product 3</span>
+                        <span>$30.00</span>
+                    </li>
+                    <li>
+                        <span>Product 4</span>
+                        <span>$40.00</span>
+                    </li>
+                    <li>
+                        <span>Product 5</span>
+                        <span>$50.00</span>
+                    </li>
+                    <li class="total">
+                        <span>Total</span>
+                        <span>$150.00</span>
+                    </li>
+                    <li class ="action">
+                        <a class ="action1" href="index.html">Continue Shopping</a>
+                        <a class ="action1" href="checkout.html">Order</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,11 +1,10 @@
-package com.iuh.spring.dao;
+package com.iuh.spring.service;
 
 import java.util.List;
 
 import com.iuh.spring.entity.OrderDetail;
 
-public interface OrderDetailDAO {
-
+public interface OrderDetailService {
 	public List<OrderDetail> getOrderDetailByOrderId(long orderId);
 
 	public boolean insertOrderDetailByOrderId(OrderDetail orderDetail,Long orderId);

@@ -55,8 +55,11 @@
 							</tr>
 							<c:set var="i" value="${i + 1}" />
 						</c:forEach>
+						<p>${message}</p>
 					</tbody>
 				</table>
+				<br>
+				<br>
 				<div class="contain-btn">
 					<a class="btn-continue btn-action" href="${pageContext.request.contextPath}/order/continueShopping" >Tiếp tục mua sắm</a>
 					<a class="btn-clear btn-action"  href="${pageContext.request.contextPath}/order/RemoveAll" >Xóa giỏ hàng</a>
@@ -67,7 +70,8 @@
 					<p class="sub-content-title">Cart totals</p>
 					<p class="sub-content-1  txt-sub-content">${user.firstName }</p>
 					<p class="sub-content-2 txt-sub-content">${totalCart } VNĐ</p>
-					<a class="btn-purchase">Thanh toán</a>
+					<br>
+					<a href="${pageContext.request.contextPath}/order/checkout" class="btn-purchase">Thanh toán</a>
 				</div>
 			</div>
 		</div>
@@ -171,6 +175,7 @@ body {
 	color: #fff;
 	border: none;
 	cursor: pointer;
+	text-decoration: none;
 }
 
 .bl-product th {

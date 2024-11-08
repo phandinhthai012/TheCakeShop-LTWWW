@@ -28,4 +28,6 @@ public interface ProductService {
 	public List<Product> getProductsByPriceRanges(List<Integer> priceRanges);
 	
 	public List<Product> getProductsByPriceRangesAndName(List<Integer> priceRanges, String text);
+	
+	public boolean updateProductQuantity(long productId, int newQuantity);
 }

@@ -31,37 +31,39 @@
 	<div class="content">
 		<jsp:include page="../admin/siderbar.jsp" />
 		<div class="w-3/4 p-4">
-			<h1 class="text-2xl font-bold mb-4">Doanh thu</h1>
-			<div class="mb-4">
-				<label class="block mb-2">Chọn tháng</label> <select
-					class="border border-gray-300 w-full p-2">
-					<option>Tháng 1</option>
-					<option>Tháng 2</option>
-					<option>Tháng 3</option>
-					<option>Tháng 4</option>
-					<option>Tháng 5</option>
-					<option>Tháng 6</option>
-					<option>Tháng 7</option>
-					<option>Tháng 8</option>
-					<option>Tháng 9</option>
-					<option>Tháng 10</option>
-					<option>Tháng 11</option>
-					<option>Tháng 12</option>
-				</select>
-			</div>
-			<div class="mb-4">
-				<label class="block mb-2">Chọn năm</label> <select
-					class="border border-gray-300 w-full p-2">
-					<option>2021</option>
-					<option>2022</option>
-					<option>2023</option>
-					<option>2024</option>
-				</select>
-			</div>
-			<div class="flex space-x-4 mb-4">
-				<button class="bg-brown-500 text-white px-4 py-2 hover-bg-custom">Xem
-					báo cáo</button>
-			</div>
+			<form action="">
+				<h1 class="text-2xl font-bold mb-4">Doanh thu</h1>
+				<div class="mb-4">
+					<label class="block mb-2">Chọn tháng</label> <select
+						class="border border-gray-300 w-full p-2">
+						<option>Tháng 1</option>
+						<option>Tháng 2</option>
+						<option>Tháng 3</option>
+						<option>Tháng 4</option>
+						<option>Tháng 5</option>
+						<option>Tháng 6</option>
+						<option>Tháng 7</option>
+						<option>Tháng 8</option>
+						<option>Tháng 9</option>
+						<option>Tháng 10</option>
+						<option>Tháng 11</option>
+						<option>Tháng 12</option>
+					</select>
+				</div>
+				<div class="mb-4">
+					<label class="block mb-2">Chọn năm</label> <select
+						class="border border-gray-300 w-full p-2">
+						<option>2021</option>
+						<option>2022</option>
+						<option>2023</option>
+						<option>2024</option>
+					</select>
+				</div>
+				<div class="flex space-x-4 mb-4">
+					<button type="submit" class="bg-brown-500 text-white px-4 py-2 hover-bg-custom">Xem
+						báo cáo</button>
+				</div>
+			</form>
 			<table class="w-full border-collapse border border-gray-300">
 				<thead>
 					<tr>

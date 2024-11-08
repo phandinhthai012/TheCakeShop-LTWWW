@@ -189,4 +189,22 @@ public class ProductDAOImpl implements ProductDAO {
 	    return query.getResultList();
 	}
 
+	@Override
+	@Transactional
+	public boolean updateProductQuantity(long productId, int newQuantity) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		Product product = currentSession.get(Product.class, productId);
+		if (product == null) {
+			return false;
+		}
+		product.setStockQuantity(newQuantity);
+		try {
+			currentSession.merge(product);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
 }

@@ -44,7 +44,7 @@
                 <c:set var ="i" value="0"/>
                 <c:forEach var="order" items="${orders}">
                     <tr>
-							<td>${i+1 }</td>
+							<td>${order.orderId }</td>
 							<td>${order.orderDate}</td>
 							<td>${order.totalOrder}đ</td>
 							<td>${order.status}</td>
