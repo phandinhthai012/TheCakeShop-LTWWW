@@ -32,6 +32,7 @@ public class OrderController {
 		if (user == null) {
 			 return "redirect:/user/Slogin";
 		}
+		
 		model.addAttribute("pageTitle", "Order");
 		return "cart/cart";
 	}
@@ -41,6 +42,15 @@ public class OrderController {
 		if (user == null) {
 			return "redirect:/user/Slogin";
 		}
+		@SuppressWarnings("unchecked")
+		List<ItemCart> listCart = (List<ItemCart>) session.getAttribute("cart");
+		double totalCart = 0;
+		if (listCart != null) {
+			for (ItemCart itemCart : listCart) {
+				totalCart += itemCart.getPrice();
+			}
+		}
+		model.addAttribute("totalCart", totalCart);
 		model.addAttribute("pageTitle", "Order Detail");
 		return "cart/cart";
 	}
@@ -50,6 +60,7 @@ public class OrderController {
 		model.addAttribute("pageTitle", "Order");
 		User user = (User) session.getAttribute("user");
 		session.setAttribute("user", user);
+		
 		if (user == null) {
 			return "redirect:/user/Slogin";
 		}
@@ -88,7 +99,13 @@ public class OrderController {
 	@GetMapping("/removeProduct")
 	public String removeProductFromCart(Model model, HttpSession session, @RequestParam("productId") Long productId) {
 		List<ItemCart> listCart = (List<ItemCart>) session.getAttribute("cart");
+		if (listCart == null) {
+			return "redirect:/order/showOrder";
+		}
 		int index = checkExist(productId, listCart);
+		if (index == -1) {
+			return "redirect:/order/showOrder";
+		}
 		listCart.remove(index);
 		session.setAttribute("cart", listCart);
 		return "cart/cart";
@@ -103,4 +120,20 @@ public class OrderController {
 		}
 		return -1;
 	}
+	
+	@GetMapping("/checkout")
+	public String showCheckout(Model model, HttpSession session) {
+		model.addAttribute("pageTitle", "Checkout");
+		return "cart/checkout";
+	}
+	@GetMapping("/RemoveAll")
+	public String removeAllProductFromCart(Model model, HttpSession session) {
+		session.removeAttribute("cart");
+		return "cart/cart";
+	}
+	@GetMapping("/continueShopping")
+	public String continueShopping(Model model, HttpSession session) {
+		return "redirect:/product/productList";
+	}
+	
 }

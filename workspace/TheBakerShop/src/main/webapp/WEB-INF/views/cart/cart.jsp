@@ -37,32 +37,29 @@
 						<c:forEach var="cart" items="${sessionScope.cart}">
 							<tr>
 								<td>${i}</td>
-								<td><img class="img-product"
-										 src="${pageContext.request.contextPath}/resources/images/Products/${cart.product.image}" alt="">
+								<td>
+								<%--<img class="img-product"
+										 src="${pageContext.request.contextPath}/resources/images/Products/${cart.product.image}" alt=""> --%>
 									${cart.product.productName}</td>
 								<td>${cart.product.price} VNĐ</td>
-								<td>${cart.quantity}</td>
+								<td>${cart.quantity}
+									<%--<form action="${pageContext.request.contextPath}/order/updateQuantity" method="post">
+    										<input type="hidden" name="productId" value="${cart.product.productId}" />
+    										<input class="numberquantity" type="number" name="quantity" value="${cart.quantity}" min="1" />
+    										<button type="submit">Update</button>
+  									</form>--%>
+								</td>
 								<td>${cart.price} VNĐ</td>
-								<td><a href="#" class="remove">X</a></td>
+								<td><a href="${pageContext.request.contextPath}/order/removeProduct?productId=${cart.product.productId}" class="remove">X</a></td>
 								
 							</tr>
 							<c:set var="i" value="${i + 1}" />
 						</c:forEach>
-						<tr>
-							<td>1</td>
-							<td><img class="img-product"
-								src="./assets/img/productDetail/cake.webp" alt="">
-								Chocolate Muffin</td>
-							<td>200.000đ</td>
-							<td>4</td>
-							<td>800.000đ</td>
-							<td><a href="#" class="remove">X</a></td>
-						</tr>
 					</tbody>
 				</table>
 				<div class="contain-btn">
-					<a class="btn-continue btn-action" href="" >Tiếp tục mua sắm</a>
-					<a class="btn-clear btn-action"  href="" >Xóa giỏ hàng</a>
+					<a class="btn-continue btn-action" href="${pageContext.request.contextPath}/order/continueShopping" >Tiếp tục mua sắm</a>
+					<a class="btn-clear btn-action"  href="${pageContext.request.contextPath}/order/RemoveAll" >Xóa giỏ hàng</a>
 				</div>
 			</div>
 			<div class="content-right">
@@ -184,5 +181,11 @@ body {
     padding: 16px;
     text-align: left;
 }
+.numberquantity{
+	width: 30px;
+	border: none;	
+	
+}
+
 </style>
 </html>

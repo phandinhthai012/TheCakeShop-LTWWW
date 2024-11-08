@@ -29,6 +29,11 @@
 				</ul>
 			</div>
 			<div class="acc">
+				<c:if test="${not empty sessionScope.user}">
+					<c:if test="${ sessionScope.user.role == 'admin'}">
+						<a class="fas " href="${pageContext.request.contextPath}/admin">Admin</a>
+					</c:if>
+				</c:if>
 				<a href="${pageContext.request.contextPath}/product/productList"><img class="acc-search" src="${pageContext.request.contextPath}/resources/images/icons8-search-5022.png" alt=""></a>
 				<a href="${pageContext.request.contextPath}/order/showOrderDetail"><img class="acc-cart" src="${pageContext.request.contextPath}/resources/images/icons8-cart-64.png" alt=""></a> 
 				<a href="${pageContext.request.contextPath}/user/account"><img class="acc-user" src="${pageContext.request.contextPath}/resources/images/icons8-account-48.png" alt=""></a>
@@ -47,7 +52,8 @@ body {
 }
 
 .header {
-	background-image: url('${pageContext.request.contextPath}/resources/images/breadcrumb-bg1.png');
+	background-image:
+		url('${pageContext.request.contextPath}/resources/images/breadcrumb-bg1.png');
 	background-size: cover;
 	background-position: center;
 	height: 385px;
@@ -157,6 +163,12 @@ body {
 .acc {
 	display: flex;
 	margin-right: 10px;
+}
+
+.fas {
+	color: white;
+	text-decoration: none;
+	align-self: center;
 }
 </style>
 </html>

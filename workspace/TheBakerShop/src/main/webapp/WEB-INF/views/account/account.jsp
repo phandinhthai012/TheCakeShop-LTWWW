@@ -38,7 +38,7 @@
 		<div class="account-right">
 		<c:set var="account" value="${sessionScope.user}" />
 			<h3>
-				Hello ${account.lastName} ${account.firstName} (not ${account.lastName} ${account.firstName}? <a href="">Log out</a>)
+				Hello ${account.lastName} ${account.firstName} (not ${account.lastName} ${account.firstName}? <a href="${pageContext.request.contextPath}/user/logout">Log out</a>)
 			</h3>
 			<p>Từ bảng điều khiển tài khoản, bạn có thể xem các đơn hàng gần
 				đây , quản lý địa chỉ giao hàng và thanh toán cũng như chỉnh sửa mật

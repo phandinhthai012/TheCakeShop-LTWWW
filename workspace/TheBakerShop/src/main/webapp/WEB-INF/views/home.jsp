@@ -4,6 +4,7 @@
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ page import="com.iuh.spring.entity.User"%>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 
 <!DOCTYPE html>
 <html>
@@ -45,7 +46,12 @@ body {
 					href="${pageContext.request.contextPath}/contact">Contact</a>
 			</nav>
 			<div class="text-white space-x-4">
-				<a class="fas fa-search" href="${pageContext.request.contextPath}/product/productList"></a> 
+				<c:if test="${not empty sessionScope.user}">
+					<c:if test="${ sessionScope.user.role == 'admin'}">
+						<a class="fas " href="${pageContext.request.contextPath}/admin/revenue">Admin</a>
+					</c:if>
+				</c:if>
+					<a class="fas fa-search" href="${pageContext.request.contextPath}/product/productList"></a> 
 				<a class="fas fa-shopping-cart" href="${pageContext.request.contextPath}/order/showOrderDetail"></a> 
 				<a class="fas fa-user" href="${pageContext.request.contextPath}/user/account"></a>
 			</div>
