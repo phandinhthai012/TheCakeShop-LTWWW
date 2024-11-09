@@ -20,8 +20,8 @@
 <body>
 	<div class="content">
 		<jsp:include page="../admin/siderbar.jsp" />
-		<div class="container mx-auto p-4">
-			<h1 class="text-3xl font-bold mb-4">Invoice Management</h1>
+		<div class="w-3/4 p-8">
+			<h1 class="text-3xl font-bold mb-4">Quản lí đơn hàng</h1>
 			<div class="bg-white shadow-md rounded-lg p-6">
 				<table class="min-w-full bg-white">
 					<thead>
@@ -29,6 +29,7 @@
 							<th class="py-2 px-4 border-b">ID Hóa Đơn</th>
 							<th class="py-2 px-4 border-b">Khách Hàng</th>
 							<th class="py-2 px-4 border-b">Tổng Tiền</th>
+							<th class="py-2 px-4 border-b">Ngày Đặt</th>
 							<th class="py-2 px-4 border-b">Trạng thái</th>
 							<th class="py-2 px-4 border-b">Xử lí</th>
 						</tr>
@@ -40,6 +41,7 @@
 								<td class="py-2 px-4 border-b">${order.user.firstName }
 									${order.user.lastName }</td>
 								<td class="py-2 px-4 border-b">${order.totalOrder }</td>
+								<td class="py-2 px-4 border-b">${order.orderDate }</td>
 								<td class="py-2 px-4 border-b"><span
 									class="bg-green-200 text-green-800 py-1 px-3 rounded-full text-xs">${order.status }</span>
 								</td>
@@ -94,7 +96,7 @@
 		function viewInvoice(invoiceId) {
 			const id = invoiceId;
 			console.log(`Viewing invoice ${id}`);
-		    fetch(`${pageContext.request.contextPath}/admin/viewInvoice?invoiceId=${id}`)
+		    fetch(`${pageContext.request.contextPath}/admin/viewInvoice?orderId=${id}`)
 		        .then(response => response.text())
 		        .then(data => {
 		            const invoiceDetails = document.getElementById('invoiceDetails');
@@ -109,7 +111,8 @@
 		
         function editStatus(invoiceId) {
             const id = invoiceId;
-            fetch(`${pageContext.request.contextPath}/admin/editStatus`)
+            console.log(`Viewing invoice ${id}`);
+            fetch(`${pageContext.request.contextPath}/admin/editStatus?orderId=${id}`)
                 .then(response => response.text())
                 .then(data => {
                     const editStatusForm = document.getElementById('editStatusForm');

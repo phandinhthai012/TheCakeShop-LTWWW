@@ -17,6 +17,9 @@
 				<p>
 					Ngày đặt hàng: ${order.orderDate }
 				</p>
+				<p>
+					Khách hàng: ${order.user.firstName } ${order.user.lastName }
+				</p>
 				<div id="invoiceDetails">
 					<table class="atble">
 						<tr>

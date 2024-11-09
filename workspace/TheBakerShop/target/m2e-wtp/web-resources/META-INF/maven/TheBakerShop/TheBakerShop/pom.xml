@@ -92,14 +92,14 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
-			<version>6.1.12</version>
+			<version>6.1.13</version>
 		</dependency>
 		<!--
 		https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
-			<version>6.1.12</version>
+			<version>6.1.13</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.springframework/spring-web -->
 		<dependency>
@@ -107,6 +107,7 @@
 			<artifactId>spring-web</artifactId>
 			<version>6.1.12</version>
 		</dependency>
+
 	</dependencies>
 	<build>
 		<plugins>
