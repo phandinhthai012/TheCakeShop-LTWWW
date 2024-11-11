@@ -29,8 +29,8 @@ public interface ProductDAO {
 	
 	public boolean updateProductQuantity(long productId, int newQuantity);
 	
-
-//	public boolean addProduct(Product product);
+	public boolean updateProduct(Product product);
+	public boolean addProduct(Product product);
 //
 //	public boolean updateProduct(Product product);
 //

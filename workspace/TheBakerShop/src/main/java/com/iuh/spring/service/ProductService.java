@@ -25,9 +25,14 @@ public interface ProductService {
 
 	// dem so luong san pham theo category
 	public int countProductByCategory(long categoryId);
+
 	public List<Product> getProductsByPriceRanges(List<Integer> priceRanges);
-	
+
 	public List<Product> getProductsByPriceRangesAndName(List<Integer> priceRanges, String text);
-	
+
 	public boolean updateProductQuantity(long productId, int newQuantity);
+
+	public boolean addProduct(Product product);
+
+	public boolean updateProduct(Product product);
 }

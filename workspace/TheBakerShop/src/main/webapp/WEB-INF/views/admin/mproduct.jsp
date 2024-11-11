@@ -10,23 +10,27 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"></link>
-<link
-	href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
-	rel="stylesheet">
+
 </head>
 <style>
 .content {
 	display: flex;
 	margin-top: 50px;
 }
+table {
+ width: 100%;
+ table-layout: fixed;
+}
+
+td {
+ word-wrap: break-word;
+}
+
 </style>
 <body>
 	<div class="content">
 		<jsp:include page="../admin/siderbar.jsp" />
-		<div class="w-3/4 p-8">
+		<div class="w-3/4 p-8 ax">
 			<h1 class="text-3xl font-bold mb-6">Quản lí sản phẩm</h1>
 			<button class="bg-blue-500 text-white py-2 px-4 rounded mb-4"
 				onclick="openViewAddNew()">Thêm sản phẩm</button>
@@ -38,8 +42,8 @@
 							<th class="py-3 px-4 text-left">Tên Sản Phẩm</th>
 							<th class="py-3 px-4 text-left">Số Lượng</th>
 							<th class="py-3 px-4 text-left">Giá</th>
-							<th class="py-3 px-4 text-left">Mô Tả</th>
 							<th class="py-3 px-4 text-left">Size</th>
+							<th class="py-3 px-4 text-left">Mô tả</th>
 							<th class="py-3 px-4 text-left">Danh Mục</th>
 							<th class="py-3 px-4 text-left">Xử lí</th>
 						</tr>
@@ -54,11 +58,10 @@
 								<td class="py-3 px-4">${product.description}</td>
 								<td class="py-3 px-4">${product.size}</td>
 								<td class="py-3 px-4">${product.category.categoryName}</td>
-								<td class="py-3 px-4">
-								
-									<button class="bg-yellow-500 text-white py-1 px-3 rounded"  
-										onClick="openViewDetail(12)">View</button>
-								</td>
+								<td class="py-3 px-4"><c:set var="id"
+										value="${product.productId}" />
+									<button class="bg-yellow-500 text-white py-1 px-3 rounded"
+										onClick="openModalDetail('${product.productId}')">View</button></td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -91,31 +94,40 @@
 	</div>
 
 </body>
-
-
 <script type="text/javascript">
-        function openViewAddNew() {
-            fetch(`${pageContext.request.contextPath}/admin/viewAddProduct`)
-                .then(response => response.text())
-                .then(data => {
-                    const addProductForm = document.getElementById('addProductForm');
-                    addProductForm.innerHTML = data;
-                    document.getElementById('addProductModal').classList.remove('hidden');
-                });
+
+function openViewDetail(productId) {
+	let name = productId;
+	console.log(name);
+	
+}
+
+function openModalDetail(productId) {
+	  
+	  const url = "/TheBakerShop/admin/viewProductDetail?productId="+ productId;
+	  fetch(url)
+		.then(response => response.text())
+		.then(data => {
+			const productDetails = document.getElementById('viewProductDetail');
+			productDetails.innerHTML = data;
+			document.getElementById('viewProductModal').classList.remove('hidden');
+		});
+	  console.log(url);
+}
+function openViewAddNew() {
+	
+	const url = "/TheBakerShop/admin/viewAddProduct";
+    fetch(url)
+          .then(response => response.text())
+          .then(data => {
+          	 const addProductForm = document.getElementById('addProductForm');
+             addProductForm.innerHTML = data;
+             document.getElementById('addProductModal').classList.remove('hidden');
+           });
         }
-		function openViewDetail(productId) {
-			let id = productId;
-			console.log(`Viewing product ${id}`);
-			fetch(`${pageContext.request.contextPath}/admin/viewProductDetail?productId=${id}`)
-                .then(response => response.text())
-                .then(data => {
-                    const productDetails = document.getElementById('viewProductDetail');
-                    productDetails.innerHTML = data;
-                    document.getElementById('viewProductModal').classList.remove('hidden');
-                });
-		}
-        function closeModal(modalId) {
-            document.getElementById(modalId).classList.add('hidden');
-        }
-    </script>
+        
+function closeModal(modalId) {
+    document.getElementById(modalId).classList.add('hidden');
+}
+</script>
 </html>

@@ -26,7 +26,7 @@ public class CategoryDAOImpl implements CatergoryDAO {
 
 	@Override
 	@Transactional
-	public Category getCategoryById(int id) {
+	public Category getCategoryById(long id) {
 		Session currentSession = sessionFactory.getCurrentSession();
 		return currentSession.get(Category.class, id);
 	}

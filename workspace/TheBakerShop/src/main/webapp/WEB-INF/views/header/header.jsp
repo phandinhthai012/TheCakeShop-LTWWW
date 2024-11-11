@@ -31,7 +31,7 @@
 			<div class="acc">
 				<c:if test="${not empty sessionScope.user}">
 					<c:if test="${ sessionScope.user.role == 'admin'}">
-						<a class="fas " href="${pageContext.request.contextPath}/admin">Admin</a>
+						<a class="fas " href="${pageContext.request.contextPath}/admin/revenue">Admin</a>
 					</c:if>
 				</c:if>
 				<a href="${pageContext.request.contextPath}/product/productList"><img class="acc-search" src="${pageContext.request.contextPath}/resources/images/icons8-search-5022.png" alt=""></a>

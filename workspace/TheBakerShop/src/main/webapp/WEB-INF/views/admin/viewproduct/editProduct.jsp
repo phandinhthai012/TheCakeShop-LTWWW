@@ -10,13 +10,13 @@
 </head>
 <body>
 	<div class="viewEdut">
-		<form action="" method="post">
+		<form action="${pageContext.request.contextPath}/admin/updateProduct" method="post">
 			<input type="text"
 				class="w-full p-2 border border-gray-300 rounded mt-1"
 				value="${product.productId }" name="prodcutId" hidden="true">
 			<div class="mb-2">
-				<label class="block text-gray-700">Tên Sản Phẩm</label> <input
-					type="text" class="w-full p-2 border border-gray-300 rounded mt-1"
+				<label class="block text-gray-700">Tên Sản Phẩm</label> 
+				<input name="productName" type="text" class="w-full p-2 border border-gray-300 rounded mt-1"
 					value="${product.productName }">
 			</div>
 			<div class="mb-2">

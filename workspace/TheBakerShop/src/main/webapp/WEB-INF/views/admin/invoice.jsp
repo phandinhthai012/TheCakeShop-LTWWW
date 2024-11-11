@@ -94,9 +94,10 @@
 
 <script>
 		function viewInvoice(invoiceId) {
-			const id = invoiceId;
-			console.log(`Viewing invoice ${id}`);
-		    fetch(`${pageContext.request.contextPath}/admin/viewInvoice?orderId=${id}`)
+			const orderId = invoiceId;
+			const url = "/TheBakerShop/admin/viewInvoice?orderId=" + orderId;
+			console.log(url);
+		    fetch(url)
 		        .then(response => response.text())
 		        .then(data => {
 		            const invoiceDetails = document.getElementById('invoiceDetails');
@@ -110,9 +111,10 @@
         }
 		
         function editStatus(invoiceId) {
-            const id = invoiceId;
-            console.log(`Viewing invoice ${id}`);
-            fetch(`${pageContext.request.contextPath}/admin/editStatus?orderId=${id}`)
+        	const orderId = invoiceId;
+			const url = "/TheBakerShop/admin/editStatus?orderId=" + orderId;
+			console.log(url);
+            fetch(url)
                 .then(response => response.text())
                 .then(data => {
                     const editStatusForm = document.getElementById('editStatusForm');

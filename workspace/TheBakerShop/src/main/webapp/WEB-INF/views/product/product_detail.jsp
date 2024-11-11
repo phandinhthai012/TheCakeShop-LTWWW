@@ -9,7 +9,7 @@
 <meta charset="UTF-8">
 <title>Product Detail</title>
 <link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <link
 	href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
 	rel="stylesheet">
@@ -21,11 +21,16 @@
 		<div class="content-main-detail">
 			<div class="main-detail-left">
 				<div class="main-detail-left-sub-photo">
-                        <img class="sub-photo" src="${pageContext.request.contextPath}/resources/images/Products/${product.image}" alt="">
-                        <img class="sub-photo" src="${pageContext.request.contextPath}/resources/images/Products/${product.image}" alt="">
-                        <img class="sub-photo" src="${pageContext.request.contextPath}/resources/images/Products/${product.image}" alt="">
-                        <img class="sub-photo" src="${pageContext.request.contextPath}/resources/images/Products/${product.image}" alt="">
-                    </div>
+					<img class="sub-photo"
+						src="${pageContext.request.contextPath}/resources/images/Products/${product.image}"
+						alt=""> <img class="sub-photo"
+						src="${pageContext.request.contextPath}/resources/images/Products/${product.image}"
+						alt=""> <img class="sub-photo"
+						src="${pageContext.request.contextPath}/resources/images/Products/${product.image}"
+						alt=""> <img class="sub-photo"
+						src="${pageContext.request.contextPath}/resources/images/Products/${product.image}"
+						alt="">
+				</div>
 				<div class="main-detail-left-main-photo">
 					<img class="main-photo"
 						src="${pageContext.request.contextPath}/resources/images/Products/${product.image}"
@@ -34,13 +39,15 @@
 			</div>
 			<div class="main-detail-right">
 				<h2 class="product-name">${product.productName}</h2>
-				<h2 class="product-price">${product.price} VNĐ</h2>
-				<form action="${pageContext.request.contextPath}/order/addToCart" method="POST">
-				<p class="main-text-description">Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt
-                        qui esse pariatur duis
-                        deserunt mollit dolore cillum minim tempor enim. Elit aute irure tempor cupidatat incididunt
-                        sint deserunt ut voluptate aute id deserunt nisi.</p>
-                    <input type="hidden" name="productId" value="${product.productId}">
+				<h2 class="product-price">${product.price}VNĐ</h2>
+				<form action="${pageContext.request.contextPath}/order/addToCart"
+					method="POST">
+					<p class="main-text-description">Aliqua id fugiat nostrud irure
+						ex duis ea quis id quis ad et. Sunt qui esse pariatur duis
+						deserunt mollit dolore cillum minim tempor enim. Elit aute irure
+						tempor cupidatat incididunt sint deserunt ut voluptate aute id
+						deserunt nisi.</p>
+					<input type="hidden" name="productId" value="${product.productId}">
 					<div class="product-quantity-control">
 						<div class="product-quantity-selection">
 							<button class="btn-decrement" type="button">-</button>
@@ -60,7 +67,7 @@
 					<tr>
 						<td>Size</td>
 						<td>:</td>
-						<td>${product.size} cm</td>
+						<td>${product.size}cm</td>
 					</tr>
 				</table>
 				<div class="social-reference">
@@ -85,11 +92,13 @@
 			<p class="product-reference-title">Sản phẩm liên quan</p>
 			<div class="product-reference-body">
 				<c:forEach var="p" items="${productRe}">
-					<a class="product-reference" href="${pageContext.request.contextPath}/product/productDetail/${p.productId}?categoryId=${p.category.categoryId}"> <img
+					<a class="product-reference"
+						href="${pageContext.request.contextPath}/product/productDetail/${p.productId}?categoryId=${p.category.categoryId}">
+						<img
 						src="${pageContext.request.contextPath}/resources/images/Products/${p.image}"
 						alt="" class="product-reference-photo">
 						<p class="product-reference-name">${p.productName}</p>
-						<p class="product-reference-price">${p.price} VNĐ</p>
+						<p class="product-reference-price">${p.price}VNĐ</p>
 					</a>
 				</c:forEach>
 			</div>
@@ -106,7 +115,8 @@ body {
 }
 
 #content {
-	height: 70%; display : flex;
+	height: 70%;
+	display: flex;
 	flex-direction: column;
 	justify-content: space-evenly;
 	align-items: center;
@@ -359,6 +369,10 @@ body {
 .product-reference-price {
 	margin: 0;
 	font-size: 18px;
+}
+
+.sub-text-description {
+	word-wrap: break-word;
 }
 </style>
 <script>

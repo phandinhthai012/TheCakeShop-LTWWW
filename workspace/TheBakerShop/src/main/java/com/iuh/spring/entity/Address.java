@@ -75,6 +75,10 @@ public class Address {
 	}
 	public void setAddressInfo(String addressInfo) {
 		this.addressInfo = addressInfo;
+	}
+	@Override
+	public String toString() {
+		return "Address [city=" + city + ", dictrict=" + dictrict + ", addressInfo=" + addressInfo + "]";
 	}	
 	
 }

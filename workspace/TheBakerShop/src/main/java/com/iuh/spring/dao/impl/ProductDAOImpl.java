@@ -207,4 +207,30 @@ public class ProductDAOImpl implements ProductDAO {
 		return false;
 	}
 
+	@Override
+	@Transactional
+	public boolean addProduct(Product product) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		try {
+			currentSession.persist(product);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	@Override
+	@Transactional
+	public boolean updateProduct(Product product) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		try {
+			currentSession.merge(product);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
 }
