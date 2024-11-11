@@ -47,7 +47,9 @@ public class AdminController {
 	}
 
 	@RequestMapping("/category")
-	public String showCategory() {
+	public String showCategory(Model model) {
+		List<Category> categories = categoryService.getAllCategory();
+		model.addAttribute("listCategory", categories);
 		return "admin/category";
 	}
 
@@ -107,14 +109,15 @@ public class AdminController {
 	@PostMapping("/addNewProduct")
 	public String addNewProduct(@RequestParam("productName") String productName, @RequestParam("price") double price,
 			@RequestParam("description") String description, @RequestParam("category") long categoryId,
-			@RequestParam("size") int size
-			,@RequestParam("quantity") int quantity, @RequestParam("image") String image) {
-		Category  category = categoryService.getCategoryById(categoryId);
+			@RequestParam("size") int size, @RequestParam("quantity") int quantity,
+			@RequestParam("image") String image) {
+		Category category = categoryService.getCategoryById(categoryId);
 		Product product = new Product(productName, description, price, image, quantity, size, category);
 		System.out.println(product);
 		productService.addProduct(product);
 		return "redirect:/admin/product";
 	}
+
 	@PostMapping("updateProduct")
 	public String updateProduct(HttpServletRequest request, Model model) {
 		long productId = Long.parseLong(request.getParameter("prodcutId"));
@@ -133,7 +136,37 @@ public class AdminController {
 		product.setImage(imageNew);
 		productService.updateProduct(product);
 		return "redirect:/admin/product";
-		
 	}
 
+	@GetMapping("/viewAddCategory")
+	public String viewAddCategory(Model model) {
+		return "admin/category/addCategory";
+	}
+
+	@GetMapping("/viewEditCategory")
+	public String viewEditCategory(Model model, @RequestParam("categoryId") String categoryId) {
+		if (categoryId != null) {
+			long id = Long.parseLong(categoryId);
+			Category category = categoryService.getCategoryById(id);
+			model.addAttribute("category", category);
+		} else {
+			model.addAttribute("category", categoryService.getCategoryById(1));
+		}
+		return "admin/category/editCategory";
+	}
+	@PostMapping("/addNewCategory")
+	public String addNewCategory(@RequestParam("categoryName") String categoryName, @RequestParam("description") String description,@RequestParam("img") String img) {
+		Category category = new Category(categoryName, description);
+		category.setImg(img);
+		categoryService.insertCategory(category);
+		return "redirect:/admin/category";
+	}
+	@PostMapping("/aditCategory")
+	public String aditCategory(@RequestParam("categoryName") String categoryName, @RequestParam("description") String description,@RequestParam("categoryId") long categoryId) {
+		Category category = categoryService.getCategoryById(categoryId);
+		category.setCategoryName(categoryName);
+		category.setDescription(description);
+		categoryService.updateCategory(category);
+		return "redirect:/admin/category";
+	}
 }
