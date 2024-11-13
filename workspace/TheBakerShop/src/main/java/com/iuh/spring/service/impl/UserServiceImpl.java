@@ -83,5 +83,12 @@ public class UserServiceImpl implements UserService{
 		// TODO Auto-generated method stub
 		return userDAO.changePassword(user);
 	}
+
+	@Override
+	@Transactional
+	public int countUserByRole(String role) {
+		// TODO Auto-generated method stub
+		return userDAO.countUserByRole(role);
+	}
 	
 }

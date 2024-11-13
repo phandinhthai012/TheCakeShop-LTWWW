@@ -12,6 +12,12 @@
 <title>Insert title here</title>
 </head>
 <script src="https://cdn.tailwindcss.com"></script>
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+	rel="stylesheet" />
+<link
+	href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap"
+	rel="stylesheet" />
 <style>
 .bg-brown-500 {
 	background-color: #b07c50;
@@ -31,61 +37,106 @@
 	<div class="content">
 		<jsp:include page="../admin/siderbar.jsp" />
 		<div class="w-3/4 p-4">
-			<form action="">
-				<h1 class="text-2xl font-bold mb-4">Doanh thu</h1>
-				<div class="mb-4">
-					<label class="block mb-2">Chọn tháng</label> <select
-						class="border border-gray-300 w-full p-2">
-						<option>Tháng 1</option>
-						<option>Tháng 2</option>
-						<option>Tháng 3</option>
-						<option>Tháng 4</option>
-						<option>Tháng 5</option>
-						<option>Tháng 6</option>
-						<option>Tháng 7</option>
-						<option>Tháng 8</option>
-						<option>Tháng 9</option>
-						<option>Tháng 10</option>
-						<option>Tháng 11</option>
-						<option>Tháng 12</option>
-					</select>
+			<main class="flex-grow container mx-auto px-4 py-6">
+				<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+					<!-- Card 1 -->
+					<div class="bg-white p-6 rounded-lg shadow">
+						<div class="flex items-center">
+							<div
+								class="w-12 h-12 bg-blue-100 text-blue-500 rounded-full flex items-center justify-center">
+								<i class="fas fa-dollar-sign text-2xl"> </i>
+							</div>
+							<div class="ml-4">
+								<h2 class="text-lg font-semibold text-gray-800">Tổng doanh thu</h2>
+								<p class="text-gray-600">${totalRevenue}VNĐ</p>
+							</div>
+						</div>
+					</div>
+					<!-- Card 2 -->
+					<div class="bg-white p-6 rounded-lg shadow">
+						<div class="flex items-center">
+							<div
+								class="w-12 h-12 bg-green-100 text-green-500 rounded-full flex items-center justify-center">
+								<i class="fas fa-chart-line text-2xl"> </i>
+							</div>
+							<div class="ml-4">
+								<h2 class="text-lg font-semibold text-gray-800">Đoanh thu tháng </h2>
+								<p class="text-gray-600">${totalRevenueMonth}</p>
+							</div>
+						</div>
+					</div>
+					<!-- Card 3 -->
+					<div class="bg-white p-6 rounded-lg shadow">
+						<div class="flex items-center">
+							<div
+								class="w-12 h-12 bg-yellow-100 text-yellow-500 rounded-full flex items-center justify-center">
+								<i class="fas fa-users text-2xl"> </i>
+							</div>
+							<div class="ml-4">
+								<h2 class="text-lg font-semibold text-gray-800">Khách hàng</h2>
+								<p class="text-gray-600">${numberCustomer}</p>
+							</div>
+						</div>
+					</div>
+					<!-- Card 4 -->
+					<div class="bg-white p-6 rounded-lg shadow">
+						<div class="flex items-center">
+							<div
+								class="w-12 h-12 bg-red-100 text-red-500 rounded-full flex items-center justify-center">
+								<i class="fas fa-shopping-cart text-2xl"> </i>
+							</div>
+							<div class="ml-4">
+								<h2 class="text-lg font-semibold text-gray-800">Tổng hóa đơn</h2>
+								<p class="text-gray-600">${totalOrder}</p>
+							</div>
+						</div>
+					</div>
 				</div>
-				<div class="mb-4">
-					<label class="block mb-2">Chọn năm</label> <select
-						class="border border-gray-300 w-full p-2">
-						<option>2021</option>
-						<option>2022</option>
-						<option>2023</option>
-						<option>2024</option>
-					</select>
+				<!-- Recent Transactions -->
+				<div class="bg-white p-6 rounded-lg shadow mt-6">
+					<h2 class="text-lg font-semibold text-gray-800 mb-4">Recent
+						Transactions</h2>
+					<div class="overflow-x-auto">
+						<table class="min-w-full bg-white">
+							<thead>
+								<tr>
+									<th
+										class="py-2 px-4 border-b border-gray-200 text-left text-sm font-semibold text-gray-800">
+										Ngày</th>
+									<th
+										class="py-2 px-4 border-b border-gray-200 text-left text-sm font-semibold text-gray-800">
+										Khách hàng</th>
+									<th
+										class="py-2 px-4 border-b border-gray-200 text-left text-sm font-semibold text-gray-800">
+										Tổng hóa đơn</th>
+									<th
+										class="py-2 px-4 border-b border-gray-200 text-left text-sm font-semibold text-gray-800">
+										Trạng thái</th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach var="order" items="${listOrder}">
+									<tr>
+										<td
+											class="py-2 px-4 border-b border-gray-200 text-sm text-gray-600">
+											${order.orderDate} </td>
+										<td
+											class="py-2 px-4 border-b border-gray-200 text-sm text-gray-600">
+											${order.user.lastName } ${order.user.firstName }</td>
+										<td
+											class="py-2 px-4 border-b border-gray-200 text-sm text-gray-600">
+											${order.totalOrder}</td>
+										<td
+											class="py-2 px-4 border-b border-gray-200 text-sm text-gray-600">
+											${order.status}</td>
+									</tr>
+									
+								</c:forEach>
+							</tbody>
+						</table>
+					</div>
 				</div>
-				<div class="flex space-x-4 mb-4">
-					<button type="submit" class="bg-brown-500 text-white px-4 py-2 hover-bg-custom">Xem
-						báo cáo</button>
-				</div>
-			</form>
-			<table class="w-full border-collapse border border-gray-300">
-				<thead>
-					<tr>
-						<th class="border border-gray-300 p-2">Ngày</th>
-						<th class="border border-gray-300 p-2">Doanh thu</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td class="border border-gray-300 p-2">01/01/2023</td>
-						<td class="border border-gray-300 p-2">$1000</td>
-					</tr>
-					<tr>
-						<td class="border border-gray-300 p-2">02/01/2023</td>
-						<td class="border border-gray-300 p-2">$1500</td>
-					</tr>
-					<tr>
-						<td class="border border-gray-300 p-2">03/01/2023</td>
-						<td class="border border-gray-300 p-2">$2000</td>
-					</tr>
-				</tbody>
-			</table>
+			</main>
 		</div>
 	</div>
 </body>

@@ -64,4 +64,39 @@ public class OrderServiceImpl implements OrderService {
 		return orderDAO.getOrderById(orderId);
 	}
 
+	@Override
+	@Transactional
+	public double getTotolOrderPrice() {
+		// TODO Auto-generated method stub
+		return orderDAO.getTotolOrderPrice();
+	}
+
+	@Override
+	@Transactional
+	public List<Order> getOrderByStatus(String status) {
+		// TODO Auto-generated method stub
+		return orderDAO.getOrderByStatus(status);
+	}
+
+	@Override
+	@Transactional
+	public List<Order> getOrderByMonthAndStatus(String month, String status) {
+		// TODO Auto-generated method stub
+		return orderDAO.getOrderByMonthAndStatus(month, status);
+	}
+
+	@Override
+	@Transactional
+	public List<Order> getOrderByYearAndStatus(String year, String status) {
+		// TODO Auto-generated method stub
+		return orderDAO.getOrderByYearAndStatus(year, status);
+	}
+
+	@Override
+	@Transactional
+	public int countOrderByStatus(String status) {
+		// TODO Auto-generated method stub
+		return orderDAO.countOrderByStatus(status);
+	}
+
 }

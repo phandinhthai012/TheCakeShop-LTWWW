@@ -24,4 +24,6 @@ public interface UserService {
 	public int countAllUser();
 
 	public boolean changePassword(User user);
+	
+	public int countUserByRole(String role);
 }

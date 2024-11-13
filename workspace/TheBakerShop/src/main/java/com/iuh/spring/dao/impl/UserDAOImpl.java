@@ -125,4 +125,13 @@ public class UserDAOImpl implements UserDAO {
 
 	}
 
+	@Override
+	@Transactional
+	public int countUserByRole(String role) {
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "select count(u) from User u where u.role like :role";
+		Long count = session.createQuery(hql, Long.class).setParameter("role","%"+role+"%").uniqueResult();
+		return count.intValue();
+	}
+
 }

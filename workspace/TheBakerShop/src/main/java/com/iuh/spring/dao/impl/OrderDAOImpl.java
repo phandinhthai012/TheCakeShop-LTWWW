@@ -89,4 +89,54 @@ public class OrderDAOImpl implements OrderDAO {
 		}
 		return false;
 	}
+
+	@Override
+	@Transactional
+	public double getTotolOrderPrice() {
+		Session session = sessionFactory.getCurrentSession();
+	    String hql = "SELECT SUM(o.totalOrder) FROM Order o";
+	    Double total = session.createQuery(hql, Double.class).getSingleResult();
+	    return total != null ? total : 0.0;
+	}
+
+	@Override
+	@Transactional
+	public List<Order> getOrderByStatus(String status) {
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "FROM Order o WHERE o.status like :status";
+		List<Order> list = session.createQuery(hql, Order.class).setParameter("status","%"+status+"%").getResultList();
+		return list;
+	}
+
+	@Override
+	@Transactional
+	public List<Order> getOrderByMonthAndStatus(String month, String status) {
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "FROM Order o WHERE MONTH(o.orderDate) = :month AND o.status NOT like :status";
+		List<Order> list = session.createQuery(hql, Order.class).setParameter("month", month)
+				.setParameter("status","%"+status+"%").getResultList();
+		return list;
+	}
+
+	@Override
+	@Transactional
+	public List<Order> getOrderByYearAndStatus(String year, String status) {
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "FROM Order o WHERE YEAR(o.orderDate) = :year AND o.status like :status";
+		List<Order> list = session.createQuery(hql, Order.class).setParameter("year", year)
+				.setParameter("status", "%" + status + "%").getResultList();
+		return list;
+	}
+
+	@Override
+	@Transactional
+	public int countOrderByStatus(String status) {
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "SELECT COUNT(*) FROM Order o WHERE o.status = :status";
+		Long count = session.createQuery(hql, Long.class).setParameter("status", status).getSingleResult();
+		if (count != null) {
+			return count.intValue();
+		}
+		return 0;
+	}
 }

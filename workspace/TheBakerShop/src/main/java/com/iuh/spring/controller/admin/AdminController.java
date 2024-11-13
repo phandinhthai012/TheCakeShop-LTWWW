@@ -1,5 +1,6 @@
 package com.iuh.spring.controller.admin;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ import com.iuh.spring.service.CategoryService;
 import com.iuh.spring.service.OrderDetailService;
 import com.iuh.spring.service.OrderService;
 import com.iuh.spring.service.ProductService;
+import com.iuh.spring.service.UserService;
 
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -33,9 +35,36 @@ public class AdminController {
 	private ProductService productService;
 	@Autowired
 	private CategoryService categoryService;
+	@Autowired
+	private UserService userService;
 
 	@RequestMapping("/revenue")
-	public String showDashboard() {
+	public String showDashboard(Model model) {
+		double totalRevenue = orderService.getTotolOrderPrice();
+		model.addAttribute("totalRevenue", totalRevenue);
+		List<Order> listOrder = orderService.getAllOrder();
+		model.addAttribute("totalOrder", listOrder.size());
+		model.addAttribute("listOrder", listOrder);
+//		int orderCXN = orderService.countOrderByStatus("Chờ xác nhận");
+//		System.out.println("orderCXN: " + orderCXN);
+//		int orderXN = orderService.countOrderByStatus("Xác nhận");
+//		System.out.println("orderXN: " + orderXN);
+//		int orderGH = orderService.countOrderByStatus("Đang giao");
+//		System.out.println("orderGH: " + orderGH);
+//		int totalOrder = orderCXN + orderXN + orderGH;
+//		model.addAttribute("orderNoSuccess", totalOrder);
+		Date date = new Date();
+		int month = date.getMonth() + 1;
+		String monthString = String.valueOf(month);
+		List<Order> orderMonth = orderService.getOrderByMonthAndStatus(monthString, "Đã hủy");
+		double totalRevenueMonth = 0;
+		for (Order order : orderMonth) {
+			totalRevenueMonth += order.getTotalOrder();
+		}
+		model.addAttribute("totalRevenueMonth", totalRevenueMonth);
+		int numberCustomer = userService.getAllUser().size(); // số lượng khách hàng
+		System.out.println("numberCustomer: " + numberCustomer);
+		model.addAttribute("numberCustomer", numberCustomer);
 		return "admin/revenue";
 	}
 
