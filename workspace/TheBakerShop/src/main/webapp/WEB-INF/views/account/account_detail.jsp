@@ -39,32 +39,34 @@
 		</div>
 		<div class="account-right">
 		<c:set var="account" value="${sessionScope.user}" />
-			<form action="" method="post">
+			<form action="${pageContext.request.contextPath}/user/changepass" method="post">
 				<div class="container">
 					<div class="half-width">
 						<div class="half-width1">
 							<label for="lName">Họ</label> 
-							<input type="text" id="lName"	name="lname" class="lname" value="${account.lastName }" >
+							<input type="text" id="lName"	name="lname" class="lname" value="${account.lastName }" disabled="disabled">
 						</div>
 						<div class="half-width1">
 							<label for="fName">Tên</label> 
-							<input type="text" id="fName" name="fname" class="fname" value="${account.firstName }">
+							<input type="text" id="fName" name="fname" class="fname" value="${account.firstName }" disabled="disabled">
 						</div>
 
 					</div>
 						<label for="email">Email</label> 
-						<input type="email" id="email" name="email" value="${account.email }">
+						<input type="email" id="email" name="email" value="${account.email }" disabled="disabled">
 					<h2>Thay đổi mật khẩu</h2>
-					<label for="currentPassword">Mật khẩu hiện tại</label> <input
-						type="password" id="currentPassword" name="currentPassword" value="${account.password }">
+					<input type="hidden" name="userId" value="${account.userId }">
+					<label for="currentPassword">Mật khẩu hiện tại</label> 
+					<input type="password" id="currentPassword" name="currentPassword"><span style="color: red">${messageCurrent}</span>
 					<label for="newPassword">Mật khẩu mới</label> 
 					<input type="password" id="newPassword" name="newPassword"> 
 					<label for="confirmPassword">Xác nhận mật khẩu</label> 
-					<input type="password" id="confirmPassword" name="confirmPassword">
+					<input type="password" id="confirmPassword" name="confirmPassword"><span style="color: red">${messageConfirm}</span>
 
 				</div>
 				<div>
 					<button type="submit" class="submitbtn">Xác nhận</button>
+					<span style="color: red">${message}</span>
 				</div>
 			</form>
 

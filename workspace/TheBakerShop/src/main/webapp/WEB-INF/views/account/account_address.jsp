@@ -39,13 +39,14 @@
 		<div class="account-right">
 			<c:set var="account" value="${sessionScope.user}" />
 			<c:set var="address" value="${address}" />
-			<form action="" method="post">
+			<form action="${pageContext.request.contextPath}/user/changeAddress" method="post">
 				<table>
 					<tr>
 						<td><label for="ho">Họ</label></td>
 						<td><label for="ten">Tên</label></td>
 					</tr>
 					<tr>
+						<input type="hidden" name="userId" value="${account.userId }">
 						<td><input type="text" id="ho" name="lname" value="${account.lastName }"></td>
 						<td><input type="text" id="ten" name="fname" value="${account.firstName }"></td>
 					</tr>
@@ -54,7 +55,7 @@
 						<td><label for="dien-thoai">Điện thoại</label></td>
 					</tr>
 					<tr>
-						<td><input type="email" id="email" name="email" value="${account.email }"></td>
+						<td><input type="email" id="email" name="email" value="${account.email }" disabled="disabled"></td>
 						<td><input type="text" id="dien-thoai" name="phone" value="${account.phone }"></td>
 					</tr>
 					<tr>
@@ -73,6 +74,7 @@
 					</tr>
 					<tr>
 						<td colspan="2">
+							<span style="color: red">${message}</span><br>	
 							<button type="submit" class="submit-btn">Xác nhận</button>
 						</td>
 					</tr>

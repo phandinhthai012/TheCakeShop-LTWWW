@@ -30,41 +30,35 @@ body {
 				Bạn có tài khoản? <a class="text-blue-500 hover:underline" href="${pageContext.request.contextPath}/user/account">
 					Đăng nhập </a>
 			</p>
-			<form>
+			<form action="${pageContext.request.contextPath}/user/registerUser" method="post">
 				<div class="grid grid-cols-2 gap-4 mb-4">
 					<div>
-						<label class="block mb-2" for="first-name"> Họ </label> <input
-							class="border p-2 w-full" id="first-name" placeholder="Họ"
-							type="text" />
+						<label class="block mb-2" for="first-name"> Họ </label> 
+						<input class="border p-2 w-full" id="first-name" placeholder="Họ" type="text" name="lname" value="${lname }"/>
 					</div>
 					<div>
-						<label class="block mb-2" for="last-name"> Tên </label> <input
-							class="border p-2 w-full" id="last-name" placeholder="Tên"
-							type="text" />
+						<label class="block mb-2" for="last-name"> Tên </label> 
+						<input class="border p-2 w-full" id="last-name" placeholder="Tên" type="text" name="fname" value="${fname }" />
 					</div>
 				</div>
 				<div class="mb-4">
-					<label class="block mb-2" for="phone"> Điện thoại </label> <input
-						class="border p-2 w-full" id="phone" placeholder="Điện thoại"
-						type="text" />
+					<label class="block mb-2" for="phone"> Điện thoại </label> 
+					<input class="border p-2 w-full" id="phone" placeholder="Điện thoại" type="text" name="phone"  value="${phone }"/>
 				</div>
 				<div class="mb-4">
-					<label class="block mb-2" for="email"> Email </label> <input
-						class="border p-2 w-full" id="email" placeholder="Email"
-						type="email" />
+					<label class="block mb-2" for="email"> Email </label> 
+					<input class="border p-2 w-full" id="email" placeholder="Email" type="email" name="email" value="${email }" />
 				</div>
 				<div class="mb-4">
-					<label class="block mb-2" for="password"> Mật khẩu </label> <input
-						class="border p-2 w-full" id="password" placeholder="Mật khẩu"
-						type="password" />
+					<label class="block mb-2" for="password"> Mật khẩu </label> 
+					<input class="border p-2 w-full" id="password" placeholder="Mật khẩu" name="password"type="password" />
 				</div>
 				<div class="mb-4">
-					<label class="block mb-2" for="confirm-password"> Xác nhận
-						mật khẩu </label> <input class="border p-2 w-full" id="confirm-password"
-						placeholder="Xác nhận mật khẩu" type="password" />
+					<label class="block mb-2" for="confirm-password"> Xác nhận mật khẩu </label> 
+					<input class="border p-2 w-full" id="confirm-password" name="confirmPassword" placeholder="Xác nhận mật khẩu" type="password" />
 				</div>
-				<button class="bg-gray-800 text-white py-2 px-4 w-full"
-					type="submit">Đăng kí</button>
+				<span style="color: red">${message}</span>
+				<button class="bg-gray-800 text-white py-2 px-4 w-full"type="submit">Đăng kí</button>
 			</form>
 		</div>
 	</section>

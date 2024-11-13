@@ -50,16 +50,6 @@
 							<td>${order.status}</td>
 					</tr>
                 </c:forEach>
-                    <tr>
-                        <td>2</td>
-                        <td>22/9/2024</td>
-                        <td>800.000đ</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>22/9/2024</td>
-                        <td>800.000đ</td>
-                    </tr>
                 </tbody>
             </table>
         </div>

@@ -20,6 +20,7 @@ import com.iuh.spring.entity.User;
 import com.iuh.spring.service.OrderDetailService;
 import com.iuh.spring.service.OrderService;
 import com.iuh.spring.service.ProductService;
+import com.iuh.spring.service.UserService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -34,6 +35,8 @@ public class OrderController {
 	private OrderService orderService;
 	@Autowired
 	private OrderDetailService orderDetailService;
+	@Autowired
+	private UserService userService;
 	
 	@GetMapping("/showOrder")
 	public String showAccountOrder(Model model, HttpSession session) {
@@ -144,9 +147,12 @@ public class OrderController {
 	@GetMapping("/checkout")
 	public String showCheckout(Model model, HttpSession session) {
 		User user = (User) session.getAttribute("user");
+		
 		if (user == null) {
 			return "redirect:/user/Slogin";
 		}
+		user = userService.getUserById(user.getUserId());
+		session.setAttribute("user", user);
 		model.addAttribute("pageTitle", "Checkout");
 		List<ItemCart> listCart = (List<ItemCart>) session.getAttribute("cart");
 		session.setAttribute("user", user);
@@ -170,6 +176,9 @@ public class OrderController {
 	@GetMapping("/toOrder")
 	public String toOrder(Model model, HttpSession session) {
 		User user = (User) session.getAttribute("user");
+		if (user == null) {
+			return "redirect:/user/Slogin";
+		}
 		session.setAttribute("user", user);
 		List<ItemCart> listCart = (List<ItemCart>) session.getAttribute("cart");
 		double totalCart = 0;

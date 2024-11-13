@@ -13,13 +13,19 @@ import com.iuh.spring.entity.Address;
 public class AddressDAOImpl implements AddressDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
-	
+
 	@Override
 	@Transactional
 	public Address getAddressByUserId(long userId) {
 		String hql = "FROM Address a WHERE a.user.userId = :userId";
-		Address address = sessionFactory.getCurrentSession().createQuery(hql, Address.class).setParameter("userId", userId).getSingleResult();
-		return address;
+		try {
+			Address address = sessionFactory.getCurrentSession().createQuery(hql, Address.class)
+					.setParameter("userId", userId).getSingleResult();
+			return address;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@Override

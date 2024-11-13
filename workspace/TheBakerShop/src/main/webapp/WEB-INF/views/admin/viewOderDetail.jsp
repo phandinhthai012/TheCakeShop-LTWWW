@@ -18,9 +18,14 @@
 					Ngày đặt hàng: ${order.orderDate }
 				</p>
 				<p>
-					Khách hàng: ${order.user.firstName } ${order.user.lastName }
+					Khách hàng: ${order.user.firstName }  ${order.user.lastName }
 				</p>
-				<div id="invoiceDetails">
+				<p>
+					Địa chỉ: ${order.user.address.addressInfo } ${order.user.address.dictrict } ${order.user.address.city }
+					
+				</p>
+				<br>
+		<div id="invoiceDetails">
 					<table class="atble">
 						<tr>
 							<th>Bánh</th>
@@ -30,7 +35,7 @@
 						<c:forEach var="orderDetail" items="${listOrderDetail}">
 							<tr>
 								<td>${orderDetail.product.productName }</td>
-								<td>${orderDetail.price }</td>
+								<td>${orderDetail.price } VNĐ</td>
 								<td>${orderDetail.quantity }</td>
 							</tr>
 						</c:forEach>
