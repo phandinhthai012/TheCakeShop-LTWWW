@@ -1,8 +1,8 @@
-﻿INSERT INTO categories (category_id, category_name, description, img) VALUES 
-(1, 'Cupcake', N'Những chiếc bánh cupcake ngọt ngào và thơm ngon được làm từ các nguyên liệu cao cấp, với nhiều hương vị đa dạng như chocolate, vanilla, red velvet, và nhiều hơn nữa. Mỗi chiếc cupcake được phủ lớp kem mềm mịn và rắc các hạt trang trí đầy màu sắc, rất phù hợp cho các bữa tiệc và dịp lễ.'),
-(2, 'Pastry', N'Các loại bánh pastry của chúng tôi được làm mới mỗi ngày, với kết cấu nhẹ và giòn tan ngay trong miệng. Từ bánh croissant bơ, Danish pastry với nhân hoa quả hoặc cream cheese, đến các loại bánh puff pastry cổ điển, mỗi chiếc bánh đều được chế biến tỉ mỉ. Hoàn hảo cho bữa sáng hoặc bữa xế.'),
-(3, 'Muffin', N'Bánh muffin của chúng tôi mềm, xốp và đầy ắp hương vị. Khách hàng có thể chọn các hương vị cổ điển như blueberry, chocolate chip, banana nut và các loại theo mùa. Mỗi chiếc muffin được nướng chín tới, mang đến hương vị thơm ngon như bánh nhà làm, hoàn hảo khi dùng kèm với một tách cà phê hoặc trà.'),
-(4, 'Waffle', N'Bánh waffle giòn vàng bên ngoài, mềm xốp bên trong. Bánh được làm theo yêu cầu và có thể tùy chọn thêm các loại topping như trái cây tươi, kem tươi, siro chocolate và siro maple. Lý tưởng cho bữa sáng hoặc brunch, mỗi miếng bánh mang lại trải nghiệm ấm áp và đầy lôi cuốn.')
+﻿--INSERT INTO categories (category_id, category_name, description, img) VALUES 
+--(1, 'Cupcake', N'Những chiếc bánh cupcake ngọt ngào và thơm ngon được làm từ các nguyên liệu cao cấp, với nhiều hương vị đa dạng như chocolate, vanilla, red velvet, và nhiều hơn nữa. Mỗi chiếc cupcake được phủ lớp kem mềm mịn và rắc các hạt trang trí đầy màu sắc, rất phù hợp cho các bữa tiệc và dịp lễ.'),
+--(2, 'Pastry', N'Các loại bánh pastry của chúng tôi được làm mới mỗi ngày, với kết cấu nhẹ và giòn tan ngay trong miệng. Từ bánh croissant bơ, Danish pastry với nhân hoa quả hoặc cream cheese, đến các loại bánh puff pastry cổ điển, mỗi chiếc bánh đều được chế biến tỉ mỉ. Hoàn hảo cho bữa sáng hoặc bữa xế.'),
+--(3, 'Muffin', N'Bánh muffin của chúng tôi mềm, xốp và đầy ắp hương vị. Khách hàng có thể chọn các hương vị cổ điển như blueberry, chocolate chip, banana nut và các loại theo mùa. Mỗi chiếc muffin được nướng chín tới, mang đến hương vị thơm ngon như bánh nhà làm, hoàn hảo khi dùng kèm với một tách cà phê hoặc trà.'),
+--(4, 'Waffle', N'Bánh waffle giòn vàng bên ngoài, mềm xốp bên trong. Bánh được làm theo yêu cầu và có thể tùy chọn thêm các loại topping như trái cây tươi, kem tươi, siro chocolate và siro maple. Lý tưởng cho bữa sáng hoặc brunch, mỗi miếng bánh mang lại trải nghiệm ấm áp và đầy lôi cuốn.')
 
 
 INSERT INTO categories (category_name, description, img) VALUES 
