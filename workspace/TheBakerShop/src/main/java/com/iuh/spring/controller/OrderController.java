@@ -120,7 +120,7 @@ public class OrderController {
 		}
 		listCart.remove(index);
 		session.setAttribute("cart", listCart);
-		return "cart/cart";
+		return "redirect:/order/showOrderDetail";
 	}
 	
 	// hàm check id sản phẩm đã có trong giỏ hàng chưa
@@ -210,6 +210,33 @@ public class OrderController {
 			}
 		}
 		return null;
+	}
+	@PostMapping("/updateQuantity")
+	public String updateQuantity(Model model, HttpSession session, HttpServletRequest request) {
+		User user = (User) session.getAttribute("user");
+		if (user == null) {
+			return "redirect:/user/Slogin";
+		}
+		session.setAttribute("user", user);
+		List<ItemCart> listCart = (List<ItemCart>) session.getAttribute("cart");
+		long productId = Long.parseLong(request.getParameter("productId"));
+		int quantity = Integer.parseInt(request.getParameter("quantity"));
+		if(quantity>0) {
+			for (ItemCart itemCart : listCart) {
+				if (itemCart.getProduct().getProductId() == productId) {
+					itemCart.setQuantity(quantity);
+					itemCart.setPrice(itemCart.getProduct().getPrice() * quantity);
+					break;
+				}
+			}
+		}else {
+			int index = checkExist(productId, listCart);
+			if (index != -1) {
+				listCart.remove(index);
+			}
+		}
+		session.setAttribute("cart", listCart);
+		return "redirect:/order/showOrderDetail";
 	}
 	
 }

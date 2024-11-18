@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib prefix="c" uri="jakarta.tags.core"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core"%>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,15 +22,15 @@
 			<div class="content-left">
 				<table class="tbl-product table">
 					<thead>
-					<tr>
-						
-						<th></th>
-						<th>Sản phẩm</th>
-						<th>Giá</th>
-						<th>Số lượng</th>
-						<th>Tổng tiền</th>
-						<th></th>
-					</tr>
+						<tr>
+
+							<th></th>
+							<th>Sản phẩm</th>
+							<th>Giá</th>
+							<th>Số lượng</th>
+							<th>Tổng tiền</th>
+							<th></th>
+						</tr>
 					</thead>
 					<tbody>
 						<c:set var="i" value="1" />
@@ -38,40 +38,57 @@
 							<tr>
 								<td>${i}</td>
 								<td>
-								<%--<img class="img-product"
+									<%--<img class="img-product"
 										 src="${pageContext.request.contextPath}/resources/images/Products/${cart.product.image}" alt=""> --%>
-									${cart.product.productName}</td>
-								<td>${cart.product.price} VNĐ</td>
-								<td>${cart.quantity}
+									${cart.product.productName}
+								</td>
+								<td>${cart.product.price}VNĐ</td>
+								<!-- <td>${cart.quantity}
 									<%--<form action="${pageContext.request.contextPath}/order/updateQuantity" method="post">
     										<input type="hidden" name="productId" value="${cart.product.productId}" />
     										<input class="numberquantity" type="number" name="quantity" value="${cart.quantity}" min="1" />
     										<button type="submit">Update</button>
   									</form>--%>
+								</td> -->
+								<td>
+									<form
+										action="${pageContext.request.contextPath}/order/updateQuantity"
+										method="post">
+										<input type="hidden" name="productId"
+											value="${cart.product.productId}" /> <input
+											class="numberquantity" type="number" name="quantity"
+											value="${cart.quantity}" min="1" />
+										<button class="buttoncapnhap" type="submit">Cập nhập</button>
+									</form>
 								</td>
-								<td>${cart.price} VNĐ</td>
-								<td><a href="${pageContext.request.contextPath}/order/removeProduct?productId=${cart.product.productId}" class="remove">X</a></td>
-								
+								<td>${cart.price}VNĐ</td>
+								<td><a
+									href="${pageContext.request.contextPath}/order/removeProduct?productId=${cart.product.productId}"
+									class="remove" title="Xóa sản phẩm">X</a></td>
+
 							</tr>
 							<c:set var="i" value="${i + 1}" />
 						</c:forEach>
 						<p>${message}</p>
 					</tbody>
 				</table>
-				<br>
-				<br>
+				<br> <br>
 				<div class="contain-btn">
-					<a class="btn-continue btn-action" href="${pageContext.request.contextPath}/order/continueShopping" >Tiếp tục mua sắm</a>
-					<a class="btn-clear btn-action"  href="${pageContext.request.contextPath}/order/RemoveAll" >Xóa giỏ hàng</a>
+					<a class="btn-continue btn-action"
+						href="${pageContext.request.contextPath}/order/continueShopping">Tiếp
+						tục mua sắm</a> <a class="btn-clear btn-action"
+						href="${pageContext.request.contextPath}/order/RemoveAll">Xóa
+						giỏ hàng</a>
 				</div>
 			</div>
 			<div class="content-right">
 				<div class="sub-content-right">
 					<p class="sub-content-title">Cart totals</p>
 					<p class="sub-content-1  txt-sub-content">${user.firstName }</p>
-					<p class="sub-content-2 txt-sub-content">${totalCart } VNĐ</p>
-					<br>
-					<a href="${pageContext.request.contextPath}/order/checkout" class="btn-purchase">Thanh toán</a>
+					<p class="sub-content-2 txt-sub-content">${totalCart }VNĐ</p>
+					<br> <a
+						href="${pageContext.request.contextPath}/order/checkout"
+						class="btn-purchase">Thanh toán</a>
 				</div>
 			</div>
 		</div>
@@ -90,11 +107,23 @@ body {
 	overflow-x: hidden; /* Ẩn thanh cuộn ngang */
 }
 
-
 .remove {
 	color: red;
 	cursor: pointer;
 	text-decoration: none;
+}
+
+.remove:hover::after {
+	content: attr(title);
+	position: absolute;
+	top: -25px;
+	left: 0;
+	background-color: #333;
+	color: #fff;
+	padding: 5px;
+	border-radius: 5px;
+	white-space: nowrap;
+	z-index: 10;
 }
 
 #content {
@@ -183,14 +212,27 @@ body {
 }
 
 .tbl-product td {
-    padding: 16px;
-    text-align: left;
-}
-.numberquantity{
-	width: 30px;
-	border: none;	
-	
+	padding: 16px;
+	text-align: center;
 }
 
+.numberquantity {
+	width: 30px;
+	border: none;
+}
+
+.buttoncapnhap {
+	background-color: #333333;
+	color: #fff;
+	border: none;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+.numberquantity {
+	width: 30px;
+	bordercolor: #333333;
+	border: 1px solid #333333;
+}
 </style>
 </html>
