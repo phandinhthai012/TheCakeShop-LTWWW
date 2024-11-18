@@ -1,6 +1,7 @@
 package com.iuh.spring.controller;
 
 import java.util.List;
+import java.util.Properties;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -15,7 +16,14 @@ import com.iuh.spring.service.AddressService;
 import com.iuh.spring.service.OrderService;
 import com.iuh.spring.service.UserService;
 
+import jakarta.mail.Authenticator;
+import jakarta.mail.Message;
+import jakarta.mail.Session;
+import jakarta.mail.Transport;
+import jakarta.mail.internet.InternetAddress;
+import jakarta.mail.internet.MimeMessage;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 @org.springframework.stereotype.Controller
@@ -102,6 +110,7 @@ public class UserController {
 		model.addAttribute("pageTitle", "Resgiter");
 		return "login/register";
 	}
+
 //	${pageContext.request.contextPath}/user/registerUser
 	@PostMapping("/registerUser")
 	public String registerUser(Model model, HttpServletRequest request) {
@@ -151,7 +160,7 @@ public class UserController {
 			model.addAttribute("message", "Email đã tồn tại");
 			return "login/register";
 		}
-		
+
 		User user = new User();
 		user.setEmail(email);
 		user.setPassword(password);
@@ -186,6 +195,7 @@ public class UserController {
 		return "account/account_detail";
 
 	}
+
 //	${pageContext.request.contextPath}/user/changeAddress
 	@PostMapping("/changeAddress")
 	public String ChangeAddress(Model model, HttpServletRequest request) {
@@ -195,18 +205,24 @@ public class UserController {
 		String lname = request.getParameter("lname");
 		String email = request.getParameter("email");
 		String phone = request.getParameter("phone");
-		user.setFirstName(fname); user.setLastName(lname); user.setEmail(email); user.setPhone(phone);
-		
+		user.setFirstName(fname);
+		user.setLastName(lname);
+		user.setEmail(email);
+		user.setPhone(phone);
+
 		String city = request.getParameter("city");
 		String district = request.getParameter("dictrict");
 		String address = request.getParameter("addressInfo");
-		if (city.trim().equalsIgnoreCase("") || district.trim().equalsIgnoreCase("")|| address.trim().equalsIgnoreCase("")) {
+		if (city.trim().equalsIgnoreCase("") || district.trim().equalsIgnoreCase("")
+				|| address.trim().equalsIgnoreCase("")) {
 			model.addAttribute("address", addressService.getAddressByUserId(userId));
 			model.addAttribute("message", "Vui lòng nhập đầy đủ thông tin");
 			return "account/account_address";
 		}
 		Address address2 = addressService.getAddressByUserId(userId);
-		address2.setCity(city); address2.setDictrict(district); address2.setAddressInfo(address);
+		address2.setCity(city);
+		address2.setDictrict(district);
+		address2.setAddressInfo(address);
 		addressService.updateAddress(address2);
 		model.addAttribute("message", "Cập nhật địa chỉ thành công");
 		return "redirect:/user/accountAddress";
@@ -217,5 +233,41 @@ public class UserController {
 		session.removeAttribute("user");
 		session.removeAttribute("cart");
 		return "redirect:/";
+	}
+
+	public void sendMailRegister(String email,HttpServletRequest request, HttpServletResponse response, String messageToUser) {
+		String from = "thaiphan09242002@gmail.com";
+		String password = "etfdfvhcmaqkfgyc";
+		String to = email;
+		String subject = "Register";
+		String text = "You have successfully registered for an account on our website";
+		
+		Properties props = System.getProperties();
+		props.setProperty("mail.smtp.host", "smtp.gmail.com");
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.starttls.enable", "true");
+		props.put("mail.smtp.host", "smtp.gmail.com");
+		props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+		props.put("mail.smtp.port", 587);
+		String localhost = "localhost";
+		Session session = Session.getDefaultInstance(props, new Authenticator() {
+			protected jakarta.mail.PasswordAuthentication getPasswordAuthentication() {
+				return new jakarta.mail.PasswordAuthentication(from, password);
+			}
+		});
+		try {
+			MimeMessage message = new MimeMessage(session); // Tạo đối tượng mặc định MimeMessage.
+			message.setFrom(new InternetAddress(from));
+			message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+			message.setSubject(subject);
+			message.setText(text);
+			Transport.send(message); // Gửi mail
+			response.setContentType("text/html");
+			response.getWriter().println("<h1>Mail sent successfully</h1>");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+
 	}
 }

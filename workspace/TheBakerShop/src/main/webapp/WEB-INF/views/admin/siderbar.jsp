@@ -23,6 +23,7 @@
             <a href="${pageContext.request.contextPath}/admin/product" class="block border-t border-gray-300 p-4 hover-bg-custom">Quản lí sản phẩm</a>
             <a href="${pageContext.request.contextPath}/admin/category" class="block border-t border-gray-300 p-4 hover-bg-custom">Quản lí loại sản phẩm</a>
             <a href="${pageContext.request.contextPath}/admin/invoice" class="block border-t border-gray-300 p-4 hover-bg-custom">Quản li hóa đơn</a>
+             <a href="${pageContext.request.contextPath}/admin/ShowUsers" class="block border-t border-gray-300 p-4 hover-bg-custom">Quản lí người dùng</a>
             <a href="${pageContext.request.contextPath}/admin/revenue" class="block border-t border-gray-300 p-4 hover-bg-custom">Doanh thu</a>
             <a href="#" class="block border-t border-gray-300 p-4 hover-bg-custom">Đăng xuất</a>
         </div>

@@ -45,7 +45,7 @@
                 <ul>
                 <c:forEach var="cart" items="${sessionScope.cart}">
                     <li>
-                        <span>${cart.product.productName }</span>
+                        <span>${cart.product.productName }(sl:${cart.quantity })</span>
                         <span>${cart.price } VNĐ</span>
                     </li>
                  </c:forEach>

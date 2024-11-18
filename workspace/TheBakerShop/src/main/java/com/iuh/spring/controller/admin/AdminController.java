@@ -15,6 +15,7 @@ import com.iuh.spring.entity.Category;
 import com.iuh.spring.entity.Order;
 import com.iuh.spring.entity.OrderDetail;
 import com.iuh.spring.entity.Product;
+import com.iuh.spring.entity.User;
 import com.iuh.spring.service.CategoryService;
 import com.iuh.spring.service.OrderDetailService;
 import com.iuh.spring.service.OrderService;
@@ -197,5 +198,32 @@ public class AdminController {
 		category.setDescription(description);
 		categoryService.updateCategory(category);
 		return "redirect:/admin/category";
+	}
+	
+	@GetMapping("/ShowUsers")
+	public String showUsers(Model model) {
+		model.addAttribute("listUser", userService.getAllUser());
+		return "admin/muser";
+	}
+	@GetMapping("/formAddUser")
+	public String showFormAddUsers(Model model) {
+		return "admin/user/adduser";
+	}
+	@GetMapping("/removeUser")
+	public String removeUser(@RequestParam("userId") String userId) {
+		long id = Long.parseLong(userId);
+		System.out.println("id: " + id);
+		User user = userService.getUserById(id);
+		System.out.println("user: " + user);
+		userService.deleteUser(id);
+		return "redirect:/admin/ShowUsers";
+	}
+	@PostMapping("/addUser")
+	public String addUser(@RequestParam("email") String email, @RequestParam("pass") String password,
+			@RequestParam("fname") String fname, @RequestParam("lname") String lname,
+			@RequestParam("role") String role, @RequestParam("phone") String phone) {
+		User user = new User(fname, lname, password, email, phone, role);
+		userService.insertUser(user);
+		return "redirect:/admin/ShowUsers";
 	}
 }
