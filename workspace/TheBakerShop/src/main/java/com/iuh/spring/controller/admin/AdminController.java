@@ -41,7 +41,8 @@ public class AdminController {
 
 	@RequestMapping("/revenue")
 	public String showDashboard(Model model) {
-		double totalRevenue = orderService.getTotolOrderPrice();
+//		double totalRevenue = orderService.getTotolOrderPrice();
+		double totalRevenue = orderService.getTotalOrderNotIncluceCanceled();
 		model.addAttribute("totalRevenue", totalRevenue);
 		List<Order> listOrder = orderService.getAllOrder();
 		model.addAttribute("totalOrder", listOrder.size());

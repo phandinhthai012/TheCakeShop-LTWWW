@@ -139,4 +139,17 @@ public class OrderDAOImpl implements OrderDAO {
 		}
 		return 0;
 	}
+
+	@Override
+	@Transactional
+	public double getTotalOrderNotIncluceCanceled() {
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "SELECT SUM(o.totalOrder) FROM Order o WHERE o.status NOT like :status";
+//		Double total = session.createQuery(hql, Double.class).getSingleResult();
+		Double total = session.createQuery(hql, Double.class).setParameter("status", "%Đã hủy%").getSingleResult();
+		if (total != null) {
+			return total;
+		}
+		return 0;
+	}
 }

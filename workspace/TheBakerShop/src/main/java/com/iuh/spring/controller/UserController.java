@@ -169,6 +169,11 @@ public class UserController {
 		user.setPhone(phone);
 		user.setRole("user");
 		userService.insertUser(user);
+
+//		sendMailRegister(email, request, null, "Bạn đã đăng ký tài khoản thành công trên website của chúng tôi với email: "+email);
+
+		String message = createRegistrationMessage(user);
+		sendMailRegister(email, request, null, message);
 		model.addAttribute("message", "Đăng ký thành công");
 		return "login/login";
 	}
@@ -235,13 +240,13 @@ public class UserController {
 		return "redirect:/";
 	}
 
-	public void sendMailRegister(String email,HttpServletRequest request, HttpServletResponse response, String messageToUser) {
+	public void sendMailRegister(String email, HttpServletRequest request, HttpServletResponse response,
+			String messageToUser) {
 		String from = "thaiphan09242002@gmail.com";
 		String password = "etfdfvhcmaqkfgyc";
 		String to = email;
 		String subject = "Register";
-		String text = "You have successfully registered for an account on our website";
-		
+		String text = "Đăng ký thành công\n" + messageToUser;
 		Properties props = System.getProperties();
 		props.setProperty("mail.smtp.host", "smtp.gmail.com");
 		props.put("mail.smtp.auth", "true");
@@ -259,15 +264,26 @@ public class UserController {
 			MimeMessage message = new MimeMessage(session); // Tạo đối tượng mặc định MimeMessage.
 			message.setFrom(new InternetAddress(from));
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+			message.setSubject(subject, "UTF-8");
+			message.setText(text, "UTF-8");
 			message.setSubject(subject);
-			message.setText(text);
+			message.setText(text, "UTF-8");
+			message.setContent(messageToUser, "text/html; charset=UTF-8");
 			Transport.send(message); // Gửi mail
-			response.setContentType("text/html");
-			response.getWriter().println("<h1>Mail sent successfully</h1>");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
 
-
+	public String createRegistrationMessage(User user) {
+		StringBuilder message = new StringBuilder();
+		message.append("Đăng ký tài khoản thành công\n\n<br>");
+		message.append("Thông tin đăng ký của bạn:\n");
+		message.append("<br>Họ và tên: ").append(user.getFirstName()).append(" ").append(user.getLastName()).append("\n");
+		message.append("<br>Email: ").append(user.getEmail()).append("\n");
+		message.append("<br>Số điện thoại: ").append(user.getPhone()).append("\n");
+		message.append("\n");
+		message.append("<br><h3>Vui lòng cập nhật địa chỉ của bạn khi đăng nhập vào website.</h3>\n");
+		return message.toString();
 	}
 }

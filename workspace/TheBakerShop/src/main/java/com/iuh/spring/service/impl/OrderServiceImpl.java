@@ -99,4 +99,11 @@ public class OrderServiceImpl implements OrderService {
 		return orderDAO.countOrderByStatus(status);
 	}
 
+	@Override
+	@Transactional
+	public double getTotalOrderNotIncluceCanceled() {
+		// TODO Auto-generated method stub
+		return orderDAO.getTotalOrderNotIncluceCanceled();
+	}
+
 }

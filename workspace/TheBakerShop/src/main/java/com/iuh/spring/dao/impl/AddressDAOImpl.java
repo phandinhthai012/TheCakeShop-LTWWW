@@ -1,5 +1,7 @@
 package com.iuh.spring.dao.impl;
 
+import java.util.Objects;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +20,13 @@ public class AddressDAOImpl implements AddressDAO {
 	@Transactional
 	public Address getAddressByUserId(long userId) {
 		String hql = "FROM Address a WHERE a.user.userId = :userId";
+		
 		try {
 			Address address = sessionFactory.getCurrentSession().createQuery(hql, Address.class)
 					.setParameter("userId", userId).getSingleResult();
+			if (Objects.isNull(address)) {
+				return null;
+			}
 			return address;
 		} catch (Exception e) {
 			e.printStackTrace();

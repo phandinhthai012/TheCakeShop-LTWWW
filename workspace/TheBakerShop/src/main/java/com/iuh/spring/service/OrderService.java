@@ -28,4 +28,5 @@ public interface OrderService {
 	public List<Order> getOrderByYearAndStatus(String year, String status);
 	
 	public int countOrderByStatus(String status);
+	public double getTotalOrderNotIncluceCanceled();
 }
