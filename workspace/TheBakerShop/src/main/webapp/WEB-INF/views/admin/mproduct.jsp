@@ -15,7 +15,7 @@
 <style>
 .content {
 	display: flex;
-	margin-top: 50px;
+	margin-top: 0px;
 }
 table {
  width: 100%;
@@ -42,8 +42,10 @@ td {
 							<th class="py-3 px-4 text-left">Tên Sản Phẩm</th>
 							<th class="py-3 px-4 text-left">Số Lượng</th>
 							<th class="py-3 px-4 text-left">Giá</th>
-							<th class="py-3 px-4 text-left">Size</th>
+							
 							<th class="py-3 px-4 text-left">Mô tả</th>
+							<th class="py-3 px-4 text-left">Size</th>
+							
 							<th class="py-3 px-4 text-left">Danh Mục</th>
 							<th class="py-3 px-4 text-left">Xử lí</th>
 						</tr>
@@ -51,14 +53,14 @@ td {
 					<tbody>
 						<c:forEach var="product" items="${listProduct}">
 							<tr class="border-t">
-								<td class="py-3 px-4">${product.productId}</td>
-								<td class="py-3 px-4">${product.productName}</td>
-								<td class="py-3 px-4">${product.stockQuantity}</td>
-								<td class="py-3 px-4">${product.price}</td>
-								<td class="py-3 px-4">${product.description}</td>
-								<td class="py-3 px-4">${product.size}</td>
-								<td class="py-3 px-4">${product.category.categoryName}</td>
-								<td class="py-3 px-4"><c:set var="id"
+								<td class="py-2 px-4 border-b">${product.productId}</td>
+								<td class="py-2 px-4 border-b">${product.productName}</td>
+								<td class="py-2 px-4 border-b">${product.stockQuantity}</td>
+								<td class="py-2 px-4 border-b">${product.price}</td>
+								<td class="py-2 px-4 border-b">${product.description}</td>
+								<td class="py-2 px-4 border-b">${product.size}</td>
+								<td class="py-2 px-4 border-b">${product.category.categoryName}</td>
+								<td class="py-2 px-4 border-b"><c:set var="id"
 										value="${product.productId}" />
 									<button class="bg-yellow-500 text-white py-1 px-3 rounded"
 										onClick="openModalDetail('${product.productId}')">View</button></td>

@@ -23,6 +23,7 @@ import com.iuh.spring.service.ProductService;
 import com.iuh.spring.service.UserService;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/admin")
@@ -40,7 +41,10 @@ public class AdminController {
 	private UserService userService;
 
 	@RequestMapping("/revenue")
-	public String showDashboard(Model model) {
+	public String showDashboard(Model model, HttpSession session) {
+		if (session.getAttribute("user") == null) {
+			return "redirect:/user/Slogin";
+		}
 //		double totalRevenue = orderService.getTotolOrderPrice();
 		double totalRevenue = orderService.getTotalOrderNotIncluceCanceled();
 		model.addAttribute("totalRevenue", totalRevenue);
@@ -71,28 +75,40 @@ public class AdminController {
 	}
 
 	@RequestMapping("/product")
-	public String showProduct(Model model) {
+	public String showProduct(Model model, HttpSession session) {
+		if (session.getAttribute("user") == null) {
+			return "redirect:/user/Slogin";
+		}
 		List<Product> list = productService.getAllProducts();
 		model.addAttribute("listProduct", list);
 		return "admin/mproduct";
 	}
 
 	@RequestMapping("/category")
-	public String showCategory(Model model) {
+	public String showCategory(Model model, HttpSession session) {
+		if (session.getAttribute("user") == null) {
+			return "redirect:/user/Slogin";
+		}
 		List<Category> categories = categoryService.getAllCategory();
 		model.addAttribute("listCategory", categories);
 		return "admin/category";
 	}
 
 	@RequestMapping("/invoice")
-	public String showOrder(Model model) {
+	public String showOrder(Model model, HttpSession session) {
+		if (session.getAttribute("user") == null) {
+            return "redirect:/user/Slogin";
+            }
 		List<Order> list = orderService.getAllOrder();
 		model.addAttribute("listOrder", list);
 		return "admin/invoice";
 	}
 
 	@GetMapping("/viewInvoice")
-	public String viewInvoice(@RequestParam("orderId") String orderId, Model model) {
+	public String viewInvoice(@RequestParam("orderId") String orderId, Model model, HttpSession session) {
+		if (session.getAttribute("user") == null) {
+            return "redirect:/user/Slogin";
+            }
 		long id = Long.parseLong(orderId);
 		List<OrderDetail> list = orderDetailService.getOrderDetailByOrderId(id);
 		model.addAttribute("listOrderDetail", list);
@@ -102,7 +118,10 @@ public class AdminController {
 	}
 
 	@GetMapping("/editStatus")
-	public String viewEditStatus(@RequestParam("orderId") String invoiceId, Model model) {
+	public String viewEditStatus(@RequestParam("orderId") String invoiceId, Model model, HttpSession session) {
+		if (session.getAttribute("user") == null) {
+			 return "redirect:/user/Slogin";
+		}
 		long id = Long.parseLong(invoiceId);
 		Order order = orderService.getOrderById(id);
 		model.addAttribute("order", order);
@@ -121,7 +140,10 @@ public class AdminController {
 	}
 
 	@GetMapping("/viewProductDetail")
-	public String viewProductDetail(@RequestParam("productId") String productId, Model model) {
+	public String viewProductDetail(@RequestParam("productId") String productId, Model model,HttpSession session) {
+		if (session.getAttribute("user") == null) {
+			 return "redirect:/user/Slogin";
+		}
 		long id = Long.parseLong(productId);
 		Product product = productService.getProductById(id);
 		List<Category> list = categoryService.getAllCategory();
@@ -131,7 +153,10 @@ public class AdminController {
 	}
 
 	@GetMapping("/viewAddProduct")
-	public String viewAddProduct(Model model) {
+	public String viewAddProduct(Model model, HttpSession session) {
+		if (session.getAttribute("user") == null) {
+			 return "redirect:/user/Slogin";
+		}
 		List<Category> list = categoryService.getAllCategory();
 		model.addAttribute("listCategory", list);
 		return "admin/viewproduct/addProduct";

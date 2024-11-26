@@ -19,7 +19,6 @@
 <style>
 .content {
 	display: flex;
-	margin-top: 50px;
 }
 a:{
 	cursor: pointer;

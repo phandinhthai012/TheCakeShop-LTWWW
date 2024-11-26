@@ -30,7 +30,6 @@
 
 .content {
 	display: flex;
-	margin-top: 50px;
 }
 </style>
 <body>
