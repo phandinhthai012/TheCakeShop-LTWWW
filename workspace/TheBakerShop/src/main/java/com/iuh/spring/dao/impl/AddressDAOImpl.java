@@ -1,5 +1,6 @@
 package com.iuh.spring.dao.impl;
 
+import java.util.List;
 import java.util.Objects;
 
 import org.hibernate.Session;
@@ -22,12 +23,14 @@ public class AddressDAOImpl implements AddressDAO {
 		String hql = "FROM Address a WHERE a.user.userId = :userId";
 		
 		try {
-			Address address = sessionFactory.getCurrentSession().createQuery(hql, Address.class)
-					.setParameter("userId", userId).getSingleResult();
-			if (Objects.isNull(address)) {
-				return null;
-			}
-			return address;
+//			Address address = sessionFactory.getCurrentSession().createQuery(hql, Address.class)
+//					.setParameter("userId", userId).getSingleResult();
+			List<Address> addresses = sessionFactory.getCurrentSession().createQuery(hql, Address.class)
+	                .setParameter("userId", userId).getResultList();
+			if (addresses.isEmpty()) {
+	            return null;
+	        }
+			return addresses.get(0);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

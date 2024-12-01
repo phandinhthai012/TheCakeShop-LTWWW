@@ -36,17 +36,17 @@
 					<h3>Giá</h3>
 					<ul>
 						<li><input type="checkbox" name="price" value="1" <c:if test="${selectedPrices != null && fn:contains(selectedPrices,'1')}">checked</c:if>>
-							100.000đ - 200.000 VNĐ</li>
+							10.000đ - 20.000 VNĐ</li>
 						<li><input type="checkbox" name="price" value="2" <c:if test="${selectedPrices != null && fn:contains(selectedPrices,'2')}">checked</c:if>>
-							200.000đ - 400.000 VNĐ</li>
+							20.000đ - 40.000 VNĐ</li>
 						<li><input type="checkbox" name="price" value="3" <c:if test="${selectedPrices != null && fn:contains(selectedPrices,'3')}">checked</c:if>>
-							400.000đ - 600.000 VNĐ</li>
+							40.000đ - 60.000 VNĐ</li>
 						<li><input type="checkbox" name="price" value="4" <c:if test="${selectedPrices != null && fn:contains(selectedPrices,'4')}">checked</c:if>>
-							600.000đ - 800.000 VNĐ</li>
+							60.000đ - 80.000 VNĐ</li>
 						<li><input type="checkbox" name="price" value="5" <c:if test="${selectedPrices != null && fn:contains(selectedPrices,'5')}">checked</c:if>>
-							800.000đ - 1000.000 VNĐ</li>
+							80.000đ - 100.000 VNĐ</li>
 						<li><input type="checkbox" name="price" value="6" <c:if test="${selectedPrices != null && fn:contains(selectedPrices,'6')}">checked</c:if>>
-							Trên 1000.000 VNĐ</li>
+							Trên 100.000 VNĐ</li>
 					</ul>
 				</div>
 				<button type="submit">Lọc</button>

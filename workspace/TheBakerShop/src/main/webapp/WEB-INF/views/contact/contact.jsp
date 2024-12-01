@@ -33,7 +33,7 @@
                 <p>Cảm ơn quý khách đã quan tâm</p>
                 <p>Nếu quý khách có thắc mắc, ý kiến phản hồi hay đóng góp, xin vui lòng điền vào Form dưới đây và gửi
                     cho chúng tôi</p>
-                <form action="" class="input-form">
+                <form action="${pageContext.request.contextPath}/SendMail" class="input-form" method="post">
                     <div class="name">
                         <div class="last-name">
                             <label for="lastName" class="lbl-last-name">Họ</label>

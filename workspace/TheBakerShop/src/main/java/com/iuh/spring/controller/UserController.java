@@ -145,7 +145,8 @@ public class UserController {
 			model.addAttribute("message", "Số điện thoại không hợp lệ");
 			return "login/register";
 		}
-		String regexMail = "^[a-zA-Z][a-zA-Z0-9_\\.]{5,32}@[a-zA-Z0-9]{2,}(\\.[a-zA-Z0-9]{2,4}){1,2}$";
+		// 5 đến 32 ký tự, bắt đầu bằng chữ cái, không chứa ký tự đặc biệt
+		String regexMail = "^[a-zA-Z][a-zA-Z0-9_\\.]{3,32}@[a-zA-Z0-9]{2,}(\\.[a-zA-Z0-9]{2,4}){1,2}$";
 		if (!email.matches(regexMail)) {
 			model.addAttribute("fname", fname);
 			model.addAttribute("lname", lname);
